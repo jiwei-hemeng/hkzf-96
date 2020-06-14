@@ -1,0 +1,72 @@
+/* 
+  全局样式
+*/
+html,
+body {
+  font-family: 'Microsoft YaHei';
+  color: #333;
+  background-color: #fff;
+}
+
+html,
+body,
+#root,
+.App,
+.map,
+.home,
+.houselist,
+#container {
+  height: 100%;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+* {
+  box-sizing: border-box;
+
+
+  /* 
+    解决 轮播图 手动滚动时，报错的问题：
+    https://www.jianshu.com/p/04bf173826aa
+    https://juejin.im/post/5ad804c1f265da504547fe68
+  */
+  touch-action: pan-y;
+}
+
+ul,
+p,
+dd,
+h1,
+h3 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.fixed {
+  overflow: hidden;
+}
+
+.loading {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.houseloading {
+  height: 115px;
+  background-color: #f6f5f6;
+}
+.StickyFixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index:9999;
+}
+
