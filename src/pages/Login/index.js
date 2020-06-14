@@ -1,8 +1,10 @@
 import React from 'react'
+
+// 创建并导出Home组件
 export default class Login extends React.Component{
   render(){
     return <div>
-      <div>我是Login页面</div>
+      <div>我是Login组件</div>
     </div>
   }
 }
