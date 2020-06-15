@@ -57,7 +57,7 @@ export default class Home extends React.Component{
       <Route exact path="/home/profile" component={MyProFile}></Route>
       <TabBar
           unselectedTintColor="#949494"
-          tintColor="#33A3F4"
+          tintColor="#33AF33"
           barTintColor="white"
           hidden={this.state.hidden}
         >

@@ -1,6 +1,6 @@
 import React from 'react'
 // 导入轮播图的组件库
-import { Carousel, WingBlank,Flex } from 'antd-mobile'
+import { Carousel, Flex } from 'antd-mobile'
 import axios from 'axios'
 // 导入css样式
 import './index.css'
@@ -32,7 +32,7 @@ export default class Index extends React.Component{
         <Flex.Item key={index} onClick={()=>{
           this.props.history.push(item.path)
         }}>
-          <img src={item.imgSrc} />
+          <img src={item.imgSrc} alt="index"/>
           <p>{item.name}</p>
         </Flex.Item>
       )
