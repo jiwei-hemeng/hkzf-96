@@ -6,3 +6,7 @@
   bottom: 0;
   height: 55px;
 }
+/* 设置字体图标大小 */
+.home .iconfont {
+  font-size: 20px;
+}

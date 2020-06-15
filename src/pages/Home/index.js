@@ -14,7 +14,7 @@ import MyProFile from '../myProfile'
 export default class Home extends React.Component{
 
   state = {
-    selectedTab: 'redTab',
+    selectedTab: '/home/index',
       hidden: false,
       fullScreen: false
   }
@@ -34,23 +34,16 @@ export default class Home extends React.Component{
           <TabBar.Item
             title="主页"
             key="Life"
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
-            />
+            icon={
+              <i className="iconfont icon-home"></i>
             }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
-            />
+            selectedIcon={
+              <i className="iconfont icon-home"></i>
             }
-            selected={this.state.selectedTab === 'blueTab'}
-            badge={1}
+            selected={this.state.selectedTab === '/home/index'}
             onPress={() => {
               this.setState({
-                selectedTab: 'blueTab',
+                selectedTab: '/home/index',
               })
               this.props.history.push('/home/index')
             }}
@@ -74,11 +67,10 @@ export default class Home extends React.Component{
             }
             title="找房"
             key="Koubei"
-            badge={'new'}
-            selected={this.state.selectedTab === 'redTab'}
+            selected={this.state.selectedTab === '/home/houselist'}
             onPress={() => {
               this.setState({
-                selectedTab: 'redTab',
+                selectedTab: '/home/houselist',
               })
               this.props.history.push('/home/houselist')
             }}
@@ -102,11 +94,10 @@ export default class Home extends React.Component{
             }
             title="咨询"
             key="Friend"
-            dot
-            selected={this.state.selectedTab === 'greenTab'}
+            selected={this.state.selectedTab === '/home/news'}
             onPress={() => {
               this.setState({
-                selectedTab: 'greenTab',
+                selectedTab: '/home/news',
               })
               this.props.history.push('/home/news')
             }}
@@ -117,10 +108,10 @@ export default class Home extends React.Component{
             selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
             title="我的"
             key="my"
-            selected={this.state.selectedTab === 'yellowTab'}
+            selected={this.state.selectedTab === '/home/myprofile'}
             onPress={() => {
               this.setState({
-                selectedTab: 'yellowTab',
+                selectedTab: '/home/myprofile',
               })
               this.props.history.push('/home/myprofile')
             }}
