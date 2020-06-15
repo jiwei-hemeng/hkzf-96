@@ -34,6 +34,7 @@
   - 本质上：GET 一般只是获取服务端数据；POST 可以修改服务端数据
   - 安全上：POST比GET安全
   - 传输数据量上：POST没有限制，而GET有限制
+  
 - 常见的模板引擎
   - 百度的`template`
   - 腾讯的`art-template`

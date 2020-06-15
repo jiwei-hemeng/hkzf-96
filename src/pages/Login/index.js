@@ -5,6 +5,7 @@ export default class Login extends React.Component{
   render(){
     return <div>
       <div>我是Login组件</div>
+      <i className="iconfont icon-shoucang"></i>
     </div>
   }
 }

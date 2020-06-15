@@ -1,0 +1,8 @@
+/* TabBar 固定定位到Home页面的底部 */
+.home .am-tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55px;
+}
