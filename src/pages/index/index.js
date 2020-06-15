@@ -44,7 +44,6 @@ export default class Index extends React.Component{
       method: 'GET',
       url: 'http://api-haoke-dev.itheima.net/home/swiper'
     })
-    console.log(data)
     // setState 是异步的，第二个参数表示设置成功以后
     this.setState({
       data: data.body
@@ -53,6 +52,29 @@ export default class Index extends React.Component{
         isAutoPlay: true
       })
     })
+  }
+  // 对轮播项的函数封装
+  renderCarousel(){
+    return (
+      this.state.data.map(val => (
+        <a
+          key={val.id}
+          href="http://www.alipay.com"
+          style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+        >
+          <img
+            src={`http://api-haoke-dev.itheima.net${val.imgSrc}`}
+            alt=""
+            style={{ width: '100%', verticalAlign: 'top' }}
+            onLoad={() => {
+              // fire window resize event to change height
+              window.dispatchEvent(new Event('resize'));
+              this.setState({ imgHeight: 'auto' });
+            }}
+          />
+        </a>
+      ))
+    )
   }
   render () {
     return (
@@ -63,24 +85,9 @@ export default class Index extends React.Component{
           // beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
           // afterChange={index => console.log('slide to', index)}
         >
-          {this.state.data.map(val => (
-            <a
-              key={val.id}
-              href="http://www.alipay.com"
-              style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
-            >
-              <img
-                src={`http://api-haoke-dev.itheima.net${val.imgSrc}`}
-                alt=""
-                style={{ width: '100%', verticalAlign: 'top' }}
-                onLoad={() => {
-                  // fire window resize event to change height
-                  window.dispatchEvent(new Event('resize'));
-                  this.setState({ imgHeight: 'auto' });
-                }}
-              />
-            </a>
-          ))}
+          {
+            this.renderCarousel()
+          }
         </Carousel>
         <Flex className="navs">
           {
