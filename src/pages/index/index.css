@@ -1,7 +1,9 @@
 .index .navs{
+  background-color: #fff;
+  padding: 5px 0;
   text-align: center;
 }
 .index .navs img {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
 }

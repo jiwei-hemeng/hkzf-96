@@ -10,6 +10,12 @@ import Index from '../index/'
 import HouseList from '../HouseList/'
 import News from '../News/'
 import MyProFile from '../myProfile'
+const tabItems = [
+  { title: '首页', icon: 'icon-home', path: '/home/index' },
+  { title: '找房', icon: 'icon-all',path: '/home/list' },
+  { title: '资讯', icon: 'icon-zixun', path: '/home/news' },
+  { title: '我的', icon: 'icon-aui-icon-my', path: '/home/profile' }
+]
 // 创建并导出Home组件
 export default class Home extends React.Component{
 
@@ -18,105 +24,46 @@ export default class Home extends React.Component{
       hidden: false,
       fullScreen: false
   }
-
+  renderTabBarItem(){
+    return tabItems.map((item, index) => {
+      return (
+        <TabBar.Item
+            title={item.title}
+            key={index}
+            icon={
+              <i className={`iconfont ${item.icon}`}></i>
+            }
+            selectedIcon={
+              <i className={`iconfont ${item.icon}`}></i>
+            }
+            selected={this.state.selectedTab === item.path}
+            onPress={() => {
+              this.setState({
+                selectedTab: item.path,
+              })
+              this.props.history.push(item.path)
+            }}
+            data-seed="logId"
+          >
+          </TabBar.Item>
+      )
+    })
+  }
   render(){
     return <div className="home">
       <Route exact path="/home/index" component={Index}></Route>
-      <Route exact path="/home/houselist" component={HouseList}></Route>
+      <Route exact path="/home/list" component={HouseList}></Route>
       <Route exact path="/home/news" component={News}></Route>
-      <Route exact path="/home/myprofile" component={MyProFile}></Route>
+      <Route exact path="/home/profile" component={MyProFile}></Route>
       <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
           barTintColor="white"
           hidden={this.state.hidden}
         >
-          <TabBar.Item
-            title="主页"
-            key="Life"
-            icon={
-              <i className="iconfont icon-home"></i>
-            }
-            selectedIcon={
-              <i className="iconfont icon-home"></i>
-            }
-            selected={this.state.selectedTab === '/home/index'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/index',
-              })
-              this.props.history.push('/home/index')
-            }}
-            data-seed="logId"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="找房"
-            key="Koubei"
-            selected={this.state.selectedTab === '/home/houselist'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/houselist',
-              })
-              this.props.history.push('/home/houselist')
-            }}
-            data-seed="logId1"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="咨询"
-            key="Friend"
-            selected={this.state.selectedTab === '/home/news'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/news',
-              })
-              this.props.history.push('/home/news')
-            }}
-          >
-          </TabBar.Item>
-          <TabBar.Item
-            icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-            title="我的"
-            key="my"
-            selected={this.state.selectedTab === '/home/myprofile'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/myprofile',
-              })
-              this.props.history.push('/home/myprofile')
-            }}
-          >
-          </TabBar.Item>
+          {
+            this.renderTabBarItem()
+          }
         </TabBar>
     </div>
   }
