@@ -169,7 +169,28 @@
     var obj = new Obect()
     ```
 
-  - 工厂的方式批量创建对象
+  - 自定义构造函数创建对象
+
+    ```js
+    function  CreateHero ( name, age, height ) {
+        this.name = name;
+        this.age = age;
+          this.height = height;
+     }
+    ```
+
+  - 工厂的方式创建对象
+
+    ```js
+    function  create ( name, age, height ) {
+    var  Ob = new Object()
+    	  Ob.name = name;
+    	  Ob.age = age;
+      	  Ob.height = height;
+      	  Ob.eat = function () {}
+       return Ob;
+    }
+    ```
 
 - 数组的常用方法
 
@@ -280,11 +301,22 @@
   -  Destoryed 组件销毁完毕
 - Es6的新语法
   - Const 用来定义常量
+  
   - Let 用来定义变量
-  -  箭头函数（没有this）
+  
+  - 箭头函数（没有this）
+  
   - 对象的简写形式
+  
   - Set 新的数据类型
+  
   - 对象、数组的解构
+  
+  - 模板字符串
+  
+    ```js
+    var str = `string ${item}`
+    ```
 - 关于Promise？
   - Promise 是Es6 新的对象，用来解决异步程序回调地狱的问题
   
