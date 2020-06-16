@@ -146,6 +146,13 @@
   - `document.querySelect()` 通过选择器获取元素
   - `document.querrySelectAll()` 通过选择器获取一类元素，得到伪数组
 
+- this 指向问题
+
+    - 在普通函数中，this指向 `window`
+    - 在事件处理程序中，this 指向 `事件源`
+    - 在构造函数中，this 指向 创建的对象
+    - 在方法中，this 指向当前方法所属的对象
+
 -  如何创建、删除Dom元素？
 
   -  创建元素 `document.createElement('标签名')`
