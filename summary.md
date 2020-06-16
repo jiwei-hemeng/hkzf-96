@@ -113,14 +113,14 @@
 
 - 本地存储
 
-  - 保存数据到本地   `localStorage.setItem(key, value)`
-  -  获取本地存储的数据  `localStorage.setItem(key) `
-  -  从本地存储中移除数据  `localStorage.removeItem(key) ` 
+  - 保存数据到本地   *localStorage.setItem(key, value)*
+  -  获取本地存储的数据  *localStorage.setItem(key)*
+  -  从本地存储中移除数据  *localStorage.removeItem(key)*
 
 -  Js 数据类型？如何判断
 
   - 简单数据类型：Number、String、布尔类型(boolean)
-  -  复杂数据类型：对象类型、数组、Set类型
+  - 复杂数据类型：对象类型、数组、Set类型
   - 可以通过typeof 或者 instrandof 判断
 
 - Typeof 判断复杂数据类型
@@ -142,21 +142,21 @@
 
 - 如何获取Dom元素？
 
-  - `document.getElementById(‘id’)` 通过id获取元素
-  - `document.querySelect()` 通过选择器获取元素
-  - `document.querrySelectAll()` 通过选择器获取一类元素，得到伪数组
+  - *document.getElementById(‘id’)*  通过id获取元素
+  - *document.querySelect()*  通过选择器获取元素
+  - *document.querrySelectAll()*  通过选择器获取一类元素，得到伪数组
 
 - this 指向问题
 
-    - 在普通函数中，this指向 `window`
-    - 在事件处理程序中，this 指向 `事件源`
+    - 在普通函数中，this指向 *window*
+    - 在事件处理程序中，this 指向  *事件源*
     - 在构造函数中，this 指向 创建的对象
     - 在方法中，this 指向当前方法所属的对象
 
 -  如何创建、删除Dom元素？
 
-  -  创建元素 `document.createElement('标签名')`
-  -  删除元素：`父元素.removeChild(子元素)`
+  -  创建元素 *document.createElement('标签名')*
+  -  删除元素 *父元素.removeChild(子元素)*
 
 -  函数的作用
 
@@ -170,7 +170,7 @@
     var obj = {}
     ```
 
-  - `new Object()`的方式创建对象
+  - *new Object()*  的方式创建对象
 
     ```js
     var obj = new Obect()
@@ -221,8 +221,8 @@
 
 - 如何阻止事件的冒泡？如何阻止时间的默认行为？
 
-  - 阻止事件冒泡`event.stopPropagation()`
-  - 阻止默认行为` event.preventDefault()`
+  - 阻止事件冒泡 *event.stopPropagation()*
+  - 阻止默认行为 *event.preventDefault()*
 
 - 事件委托的原理是什么？
 
@@ -299,7 +299,7 @@
 + 箭头函数与普通函数的异同？
 
   + 普通函数 *this* 指向 window；箭头函数没有 *this* 指向，所以箭头函数的 *this* 指向上级作用域
-  + 普通函数有arguments；而箭头函数没有必须使用剩余参数 `...` 
+  + 普通函数有arguments；而箭头函数没有必须使用剩余参数 *...* 
   + 箭头函数不能用于构造函数: 普通函数可以用于构造函数
 
 + 对象的简写形式
@@ -344,7 +344,7 @@
   
 - vue 双向数据绑定的原理
 
-  - *v-modle* 默认接受 *input* 事件，相当于*@input=“事件名”* 默认发送*：value=“数据 ”*  的数据。
+  - *v-modle* 默认接受 *input* 事件，相当于 *@input=“事件名”*  默认发送  *:value=“数据 ”*  的数据。
 
 - 关于Promise？
   - Promise 是Es6 新的对象，用来解决异步程序回调地狱的问题
@@ -401,7 +401,7 @@
       - 在该函数中可以发送ajax请求，也可以获取DOM元素
   - 更新时
     - *shouldComponentUpdate()*
-      - 控制组件是否更新。`return true` 表示可以更新，`return false` 表示不更新
+      - 控制组件是否更新。*return true*  表示可以更新，*return false* 表示不更新
     - *render()*
       - 把更新的结果加载到内存上
     - *componeentsDidUpdate()*
