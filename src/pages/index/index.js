@@ -140,6 +140,27 @@ export default class Index extends React.Component{
             )}
           />
         </div>
+        <div className="news">
+          <h2 className="news-title">最新资讯</h2>
+          <ul>
+            {
+              this.state.News.map((item, index) => {
+                return (
+                  <li className="news-item" key={item.id}>
+                    <img src={`http://api-haoke-dev.itheima.net${item.imgSrc}`} alt=""></img>
+                    <div className="news-content">
+                    <h2>{item.title}</h2>
+                      <p>
+                        <span>{item.from}</span>
+                        <span>{item.date}</span>
+                      </p>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
       </div>
     )
   }
