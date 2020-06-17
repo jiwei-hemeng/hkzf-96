@@ -7,12 +7,15 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 // 导入 Map 组件
 import Map from './pages/Map'
+// 导入城市选择组件
+import CityList from './pages/citylist'
 export default class App extends React.Component{
   render(){
     return <BrowserRouter>
       <div className="App">
         <Route exact path="/login" component={ Login }></Route>
         <Route exact path="/map" component={ Map }></Route>
+        <Route exact path="/citylist" component={ CityList }></Route>
         <Route path="/home" component={ Home }></Route>
         
         {/* 路由重定向 */}

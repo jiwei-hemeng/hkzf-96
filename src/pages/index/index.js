@@ -24,12 +24,14 @@ export default class Index extends React.Component{
     isAutoPlay: false, // 基于阿里巴巴 antd-mobile 轮播图的bug,无法自动轮播
     // 产生bug的原因 ： axios 请求需要时间,而carous组件在页面加载时就完成,所以该组件不知道那些图片需要轮播
     Group: [], // 租房小组数据
-    News: []
+    News: [],
+    cityName: ''
   }
   componentDidMount() {
     this.getSWiperdata()
     this.getGroup()
     this.getNews()
+    this.getCityName()
   }
   // 循环渲染nav
   renderNavs(){
@@ -77,6 +79,16 @@ export default class Index extends React.Component{
       News: data.body
     })
   }
+  // 通过IP地位,获取城市名
+  getCityName () {
+    const myCity = new window.BMap.LocalCity()
+    myCity.get((res)=>{
+      const cityName = res.name
+      this.setState({
+        cityName
+      })
+    })
+  }
   // 对轮播项的函数封装
   renderCarousel(){
     return (
@@ -106,9 +118,12 @@ export default class Index extends React.Component{
         <Flex className='searchBox'>
           <Flex className='searchLeft'>
             <div
-            className='location'
+              className='location'
+              onClick={() => {
+                this.props.history.push('/citylist')
+              }}
             >
-            <span>上海</span>
+            <span>{this.state.cityName}</span>
             <i className="iconfont icon-below-s" />
             </div>
             <div
@@ -118,7 +133,9 @@ export default class Index extends React.Component{
               <span>请输入小区或地址</span>
             </div>
           </Flex>
-          <i className="iconfont icon-map"  />
+          <i className="iconfont icon-map" onClick={() => {
+            this.props.history.push('/map')
+          }}  />
         </Flex>
         <Carousel
           autoplay={this.state.isAutoPlay}
