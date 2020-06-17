@@ -1,3 +1,7 @@
+// 解决index被tabbar 遮挡的漏洞
+.index {
+  padding-bottom: 50px;
+}
 // 租房小组
 .groups {
   overflow: hidden;
@@ -64,5 +68,31 @@
     padding-left: 5px;
     font-size: 14px;
     font-weight: 700;
+  }
+  .news-item {
+    display: flex;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    img {
+      width: 120px;
+    }
+    .news-content {
+      position: relative;
+      padding-left: 10px;
+      h2 {
+        margin: 0;
+        font-size: 14px;
+      }
+      p {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
   }
 }

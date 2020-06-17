@@ -149,7 +149,7 @@ export default class Index extends React.Component{
                   <li className="news-item" key={item.id}>
                     <img src={`http://api-haoke-dev.itheima.net${item.imgSrc}`} alt=""></img>
                     <div className="news-content">
-                    <h2>{item.title}</h2>
+                      <h2>{item.title}</h2>
                       <p>
                         <span>{item.from}</span>
                         <span>{item.date}</span>
