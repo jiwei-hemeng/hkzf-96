@@ -1,6 +1,5 @@
 import React from 'react'
 // 导入路由组件
-// import { BrowserRouter, Route, Link, Redirect} from 'react-router-dom'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 // 导入 Home 组件
 import Home from './pages/Home'
