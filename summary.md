@@ -109,6 +109,16 @@
   }
   ```
 
++ c3 盒模型
+
+  + div p 等元素的大小会受到内边距、外边距以及边框的影响，可以通过设置c3 和模型使其更稳固的结构，意味着如果添加border或padding会造成真正放置内容的区域变小
+
+    ```css
+    div {
+       box-sizing: border-box; 
+    }
+    ```
+
 ## javascript
 
 - 本地存储
@@ -315,6 +325,21 @@
   ```
 
 + 对象、数组的解构
+
++ es6中的class
+
+  ```js
+  class Student{
+      constructor(name){
+          this.name = name
+      }
+      doSth(){
+          console.log(this.name)
+      }
+  }
+  let s1 = new Student('若川')
+  s1.doSth();
+  ```
 
 + 模板字符串
 

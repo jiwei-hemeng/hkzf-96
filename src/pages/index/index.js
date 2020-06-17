@@ -19,11 +19,13 @@ export default class Index extends React.Component{
   state = {
     data: [],
     imgHeight: 176,
-    isAutoPlay: false // 基于阿里巴巴 antd-mobile 轮播图的bug,无法自动轮播
+    isAutoPlay: false, // 基于阿里巴巴 antd-mobile 轮播图的bug,无法自动轮播
     // 产生bug的原因 ： axios 请求需要时间,而carous组件在页面加载时就完成,所以该组件不知道那些图片需要轮播
+    Group: []
   }
   componentDidMount() {
     this.getSWiperdata()
+    this.getGroup()
   }
   // 循环渲染nav
   renderNavs(){
@@ -51,6 +53,15 @@ export default class Index extends React.Component{
       this.setState({
         isAutoPlay: true
       })
+    })
+  }
+  // 封装请求获取合租数据
+  async getGroup(){
+    const { data } = await axios({
+      url: 'http://api-haoke-dev.itheima.net/home/groups?area=AREA%7C88cff55c-aaa4-e2e0'
+    })
+    this.setState({
+      Group: data.body
     })
   }
   // 对轮播项的函数封装
