@@ -1,9 +1,11 @@
 import React from 'react'
 // 导入轮播图的组件库
-import { Carousel, Flex } from 'antd-mobile'
+import { Carousel, Flex, Grid } from 'antd-mobile'
 import axios from 'axios'
 // 导入css样式
 import './index.css'
+// 导入sass 样式
+import './index.scss'
 // 由于react不能加载本地图片，所以必须import才能加载
 import Nav1 from '../../assets/images/nav-1.png'
 import Nav2 from '../../assets/images/nav-2.png'
@@ -105,6 +107,28 @@ export default class Index extends React.Component{
             this.renderNavs()
           }
         </Flex>
+        <div className="groups">
+          <Flex className="groups-title" justify="between">
+            <h3>租房小组</h3>
+            <span>更多</span>
+          </Flex>
+        </div>
+        <Grid
+            data={this.state.Group}
+            columnNum={2}
+            square={false}
+            activeStyle
+            hasLine={false}
+            renderItem={item => (
+              <Flex className="grid-item" justify="between">
+                <div className="desc">
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+                <img src={`http://api-haoke-dev.itheima.net${item.imgSrc}`} alt="" />
+              </Flex>
+            )}
+          />
       </div>
     )
   }
