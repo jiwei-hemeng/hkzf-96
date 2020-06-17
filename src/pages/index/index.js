@@ -112,8 +112,7 @@ export default class Index extends React.Component{
             <h3>租房小组</h3>
             <span>更多</span>
           </Flex>
-        </div>
-        <Grid
+          <Grid
             data={this.state.Group}
             columnNum={2}
             square={false}
@@ -129,6 +128,7 @@ export default class Index extends React.Component{
               </Flex>
             )}
           />
+        </div>
       </div>
     )
   }
