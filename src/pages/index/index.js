@@ -103,6 +103,23 @@ export default class Index extends React.Component{
   render () {
     return (
       <div className="index">
+        <Flex className='searchBox'>
+          <Flex className='searchLeft'>
+            <div
+            className='location'
+            >
+            <span>上海</span>
+            <i className="iconfont icon-below-s" />
+            </div>
+            <div
+            className='searchForm'
+            >
+              <i className="iconfont icon-search1" />
+              <span>请输入小区或地址</span>
+            </div>
+          </Flex>
+          <i className="iconfont icon-map"  />
+        </Flex>
         <Carousel
           autoplay={this.state.isAutoPlay}
           infinite
