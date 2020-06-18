@@ -83,6 +83,7 @@ export default class Index extends React.Component{
   getCityName () {
     const myCity = new window.BMap.LocalCity()
     myCity.get((res)=>{
+      console.log(res)
       const cityName = res.name
       this.setState({
         cityName

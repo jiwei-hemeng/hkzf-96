@@ -75,6 +75,7 @@
     border-bottom: 1px solid #ccc;
     background-color: #fff;
     img {
+      height: 90px;
       width: 120px;
     }
     .news-content {
@@ -92,6 +93,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        span {
+          color: #ccc;
+          font-size: 12px;
+        }
       }
     }
   }
