@@ -30,7 +30,7 @@ export default class CityList extends Component {
       url: 'http://api-haoke-dev.itheima.net/area/hot'
     })
     cityList.hot = hotCity.data.body
-    cityIndex.unshift('热')
+    cityIndex.unshift('hot')
 
     // 4. 获取当前定位的城市的数据
     const currentCity = await getCurrentCity()
@@ -74,12 +74,32 @@ export default class CityList extends Component {
     let word = this.state.cityIndex[index]
     return (
       <div className="list" key={key}>
-        <div className="title">{word}</div>
-        <div className="city">北京</div>
+        <div className="title">{this.formatWord(word)}</div>
+        {
+          this.renderList(word)
+        }
       </div>
     );
   }
+  renderList(word){
+    return this.state.cityList[word].map((item,index) => {
+      return (
+        <div className="city" key={index}>{item.label}</div>
+      )
+    })
+  }
 
+  // 格式化word
+  formatWord(word){
+    switch(word){
+      case "#" :
+        return '当前定位城市';
+      case 'hot':
+        return '热门城市';
+      default:
+        return word.toUpperCase()
+    }
+  }
   render() {
     return (
       <div className="cityList">
