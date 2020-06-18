@@ -5,6 +5,10 @@ import axios from 'axios'
 // 导入获取当前定位城市数据的插件
 import { getCurrentCity } from '../../utils/'
 export default class CityList extends Component {
+  state = {
+    cityList: {},
+    cityIndex: []
+  }
   componentDidMount(){
     this.getCityList()
   }
@@ -26,6 +30,12 @@ export default class CityList extends Component {
     // 4. 获取当前定位的城市的数据
     const currentCity = await getCurrentCity()
     console.log(currentCity)
+    cityList['#'] = [currentCity]
+    cityIndex.unshift('#')
+    this.setState({
+      cityIndex,
+      cityList
+    })
 
 
     console.log(cityList)
