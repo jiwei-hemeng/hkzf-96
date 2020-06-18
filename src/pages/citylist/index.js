@@ -2,8 +2,19 @@ import React, { Component } from 'react'
 // 导入 antd-mobile 组件
 import { NavBar, Icon } from 'antd-mobile'
 import axios from 'axios'
+// 导入 react-virtualized 可视区域渲染 插件
+import { List } from 'react-virtualized'
 // 导入获取当前定位城市数据的插件
 import { getCurrentCity } from '../../utils/'
+
+
+const list = [
+  'Brian Vaughn',
+  // And so on...
+];
+
+
+
 export default class CityList extends Component {
   state = {
     cityList: {},
@@ -58,14 +69,39 @@ export default class CityList extends Component {
       cityIndex
     }
   }
+
+  rowRenderer = ({
+    key, 
+    index, 
+    isScrolling, 
+    isVisible, 
+    style,
+  }) => {
+    let word = this.state.cityIndex[index]
+    return (
+      <div className="list" key={key}>
+        <div className="title">{word}</div>
+        <div className="content">北京</div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="cityList">
         <NavBar
+          className="navBar"
           mode="light"
           icon={<Icon type="left" />}
           onLeftClick={() => {this.props.history.push('/home/index')}}
         >城市选择</NavBar>
+        <List
+          width={300}
+          height={300}
+          rowCount={this.state.cityIndex.length}
+          rowHeight={20}
+          rowRenderer={this.rowRenderer}
+        />
       </div>
     )
   }
