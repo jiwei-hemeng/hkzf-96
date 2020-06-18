@@ -1,0 +1,27 @@
+.cityList {
+  padding-top: 45px;
+  width: 100%;
+  height: 100%;
+  .navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .cityList {
+    width: 100%;
+    height: 100%;
+  }
+  .list {
+    background-color: #fff;
+    padding: 5px 15px;
+    border-bottom: 1px solid #eee;
+    .title {
+      color: #666;
+      font-size: 14px;
+    }
+    .city {
+      padding: 5px 0;
+    }
+  }
+}

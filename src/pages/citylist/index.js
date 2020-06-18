@@ -6,14 +6,8 @@ import axios from 'axios'
 import { List } from 'react-virtualized'
 // 导入获取当前定位城市数据的插件
 import { getCurrentCity } from '../../utils/'
-
-
-const list = [
-  'Brian Vaughn',
-  // And so on...
-];
-
-
+// 导入组件样式文件
+import './index.scss'
 
 export default class CityList extends Component {
   state = {
@@ -81,7 +75,7 @@ export default class CityList extends Component {
     return (
       <div className="list" key={key}>
         <div className="title">{word}</div>
-        <div className="content">北京</div>
+        <div className="city">北京</div>
       </div>
     );
   }
@@ -96,10 +90,10 @@ export default class CityList extends Component {
           onLeftClick={() => {this.props.history.push('/home/index')}}
         >城市选择</NavBar>
         <List
-          width={300}
+          width={375}
           height={300}
           rowCount={this.state.cityIndex.length}
-          rowHeight={20}
+          rowHeight={40}
           rowRenderer={this.rowRenderer}
         />
       </div>
