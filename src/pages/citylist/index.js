@@ -12,7 +12,8 @@ import './index.scss'
 export default class CityList extends Component {
   state = {
     cityList: {},
-    cityIndex: []
+    cityIndex: [],
+    activeIndex: 0
   }
   componentDidMount(){
     this.getCityList()
@@ -102,6 +103,15 @@ export default class CityList extends Component {
     let citys=this.state.cityList[zimu]
     return 25 + 50 * citys.length
   }
+
+  onRowsRendered = ({ overscanStartIndex, overscanStopIndex, startIndex, stopIndex })=>{
+    if(startIndex !== this.state.activeIndex) {
+      this.setState({
+        activeIndex: startIndex
+      })
+    }
+  }
+  
   render() {
     return (
       <div className="cityList">
@@ -119,6 +129,7 @@ export default class CityList extends Component {
                 rowCount={this.state.cityIndex.length}
                 rowHeight={this.getHeigth}
                 rowRenderer={this.rowRenderer}
+                onRowsRendered={this.onRowsRendered}
               />
             )}
         </AutoSizer>
