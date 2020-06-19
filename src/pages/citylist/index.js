@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // 导入 antd-mobile 组件
-import { NavBar, Icon } from 'antd-mobile'
+import { NavBar, Icon, Toast } from 'antd-mobile'
 import axios from 'axios'
 // 导入 react-virtualized 可视区域渲染 插件
 import { List, AutoSizer } from 'react-virtualized'
@@ -81,7 +81,21 @@ export default class CityList extends Component {
         {/* <div className="city">北京</div> */}
         {
           citys.map((item, index)=>{
-            return <div className="city" key={index}>{item.label}</div>
+            return (
+              <div
+                className="city"
+                key={index}
+                onClick={() => {
+                  let house_city = ['北京', '上海', '广州', '深圳']
+                  if(house_city.indexOf(item.label)!== -1){
+                    localStorage.setItem('my-city', JSON.stringify(item))
+                    this.props.history.push('/home/index')
+                  }else {
+                    Toast.info('该城市暂无房源信息哦~.~',2)
+                  }
+                }}
+              >{item.label}</div>
+              )
           })
         }
       </div>
