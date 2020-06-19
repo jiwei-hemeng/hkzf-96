@@ -72,21 +72,18 @@ export default class CityList extends Component {
     style,
   }) => {
     let word = this.state.cityIndex[index]
+    let citys = this.state.cityList[word]
     return (
-      <div className="list" key={key}>
+      <div className="list" key={key} style={style}>
         <div className="title">{this.formatWord(word)}</div>
+        {/* <div className="city">北京</div> */}
         {
-          this.renderList(word)
+          citys.map((item, index)=>{
+            return <div className="city" key={index}>{item.label}</div>
+          })
         }
       </div>
     );
-  }
-  renderList(word){
-    return this.state.cityList[word].map((item,index) => {
-      return (
-        <div className="city" key={index}>{item.label}</div>
-      )
-    })
   }
 
   // 格式化word
@@ -99,6 +96,11 @@ export default class CityList extends Component {
       default:
         return word.toUpperCase()
     }
+  }
+  getHeigth = ({index}) => {
+    let zimu=this.state.cityIndex[index]
+    let citys=this.state.cityList[zimu]
+    return 25 + 50 * citys.length
   }
   render() {
     return (
@@ -115,7 +117,7 @@ export default class CityList extends Component {
                 width={ width }
                 height={ height }
                 rowCount={this.state.cityIndex.length}
-                rowHeight={40}
+                rowHeight={this.getHeigth}
                 rowRenderer={this.rowRenderer}
               />
             )}
