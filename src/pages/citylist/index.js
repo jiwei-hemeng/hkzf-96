@@ -107,7 +107,7 @@ export default class CityList extends Component {
           className="navBar"
           mode="light"
           icon={<Icon type="left" />}
-          onLeftClick={() => {this.props.history.push('/home/index')}}
+          onLeftClick={() => {this.props.history.go(-1)}}
         >城市选择</NavBar>
         <List
           width={375}

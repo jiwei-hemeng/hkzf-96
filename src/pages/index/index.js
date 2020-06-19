@@ -11,6 +11,9 @@ import Nav1 from '../../assets/images/nav-1.png'
 import Nav2 from '../../assets/images/nav-2.png'
 import Nav3 from '../../assets/images/nav-3.png'
 import Nav4 from '../../assets/images/nav-4.png'
+
+import { getCurrentCity} from '../../utils/index'
+
 const menus = [
   { name: '整租', imgSrc: Nav1, path: '/home/list' },
   { name: '合租', imgSrc: Nav2, path: '/home/list' },
@@ -80,15 +83,16 @@ export default class Index extends React.Component{
     })
   }
   // 通过IP地位,获取城市名
-  getCityName () {
-    const myCity = new window.BMap.LocalCity()
-    myCity.get((res)=>{
-      console.log(res)
-      const cityName = res.name
+   async getCityName () {
+     const mycity = await getCurrentCity()
+    // const myCity = new window.BMap.LocalCity()
+    // myCity.get((res)=>{
+    //   console.log(res)
+    //   const cityName = res.name
       this.setState({
-        cityName
+        cityName: mycity.label
       })
-    })
+    // })
   }
   // 对轮播项的函数封装
   renderCarousel(){
