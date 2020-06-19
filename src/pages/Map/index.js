@@ -1,6 +1,7 @@
 import React from 'react'
 import './map.scss'
-// const BMap = window.BMap
+// 导入导航栏组件
+import NavHeader from '../../components/NavHeader'
 export default class Map extends React.Component{
   componentDidMount(){
     this.initMap()
@@ -16,6 +17,13 @@ export default class Map extends React.Component{
   render(){
     return (
       <div className="map">
+        {/* <NavBar
+          className="navBar"
+          mode="light"
+          icon={<Icon type="left" />}
+          onLeftClick={() => {this.props.history.go(-1)}}
+        >城市选择</NavBar> */}
+        <NavHeader title="地图导航" />
         <div id="container"></div>
       </div>
     )
