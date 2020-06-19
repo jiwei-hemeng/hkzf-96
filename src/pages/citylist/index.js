@@ -10,6 +10,7 @@ import { getCurrentCity } from '../../utils/'
 import './index.scss'
 
 export default class CityList extends Component {
+  ListRef = React.createRef()
   state = {
     cityList: {},
     cityIndex: [],
@@ -130,6 +131,8 @@ export default class CityList extends Component {
                 rowHeight={this.getHeigth}
                 rowRenderer={this.rowRenderer}
                 onRowsRendered={this.onRowsRendered}
+                ref={this.ListRef}
+                scrollToAlignment="start"
               />
             )}
         </AutoSizer>
@@ -137,7 +140,13 @@ export default class CityList extends Component {
           {
             this.state.cityIndex.map((item, index) => {
               return (
-                <li className={index === this.state.activeIndex ? 'active' : ''} key={index}>{item === 'hot' ? '热' : item.toUpperCase()}</li>
+                <li
+                  className={index === this.state.activeIndex ? 'active' : ''}
+                  key={index}
+                  onClick={()=>{
+                    this.ListRef.current.scrollToRow(index)
+                  }}
+                >{item === 'hot' ? '热' : item.toUpperCase()}</li>
               )
             })
           }
