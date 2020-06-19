@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavBar, Icon} from 'antd-mobile'
+import './index.scss'
 
 // 1. 由于react 封装组件时没有this.props.history,所以必须使用withRouter组件才会有this.props.history
 import { withRouter} from 'react-router-dom'
@@ -10,6 +11,7 @@ class NavHeader extends React.Component{
     return (
       <div>
         <NavBar
+          className="navBar"
           mode="light"
           icon={<Icon type="left" />}
           onLeftClick={() => {this.props.history.go(-1)}}

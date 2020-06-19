@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // 导入 antd-mobile 组件
-import { NavBar, Icon, Toast } from 'antd-mobile'
+import { Toast } from 'antd-mobile'
 import axios from 'axios'
 // 导入 react-virtualized 可视区域渲染 插件
 import { List, AutoSizer } from 'react-virtualized'
@@ -8,6 +8,8 @@ import { List, AutoSizer } from 'react-virtualized'
 import { getCurrentCity } from '../../utils/'
 // 导入组件样式文件
 import './index.scss'
+// 导入NavHeader组件
+import NavHeader from '../../components/NavHeader'
 
 export default class CityList extends Component {
   ListRef = React.createRef()
@@ -130,12 +132,7 @@ export default class CityList extends Component {
   render() {
     return (
       <div className="cityList">
-        <NavBar
-          className="navBar"
-          mode="light"
-          icon={<Icon type="left" />}
-          onLeftClick={() => {this.props.history.go(-1)}}
-        >城市选择</NavBar>
+        <NavHeader title="城市选择" />
         <AutoSizer>
           {({height, width}) => (
               <List
