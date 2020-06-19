@@ -30,4 +30,24 @@
       border-bottom: 1px solid #eee;
     }
   }
+
+  // 右侧固定栏
+  .ListIndex {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    li {
+      height: 20px;
+      line-height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      text-align: center;
+      margin-top: 1px;
+      font-size: 12px;
+    }
+    .active{
+      background-color: #21b97a;
+      color: #fff;
+    }
+  }
 }

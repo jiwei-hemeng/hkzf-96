@@ -111,7 +111,7 @@ export default class CityList extends Component {
       })
     }
   }
-  
+
   render() {
     return (
       <div className="cityList">
@@ -133,6 +133,15 @@ export default class CityList extends Component {
               />
             )}
         </AutoSizer>
+        <ul className="ListIndex">
+          {
+            this.state.cityIndex.map((item, index) => {
+              return (
+                <li className={index === this.state.activeIndex ? 'active' : ''} key={index}>{item === 'hot' ? '热' : item.toUpperCase()}</li>
+              )
+            })
+          }
+        </ul>
       </div>
     )
   }
