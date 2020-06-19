@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { NavBar, Icon } from 'antd-mobile'
 import axios from 'axios'
 // 导入 react-virtualized 可视区域渲染 插件
-import { List } from 'react-virtualized'
+import { List, AutoSizer } from 'react-virtualized'
 // 导入获取当前定位城市数据的插件
 import { getCurrentCity } from '../../utils/'
 // 导入组件样式文件
@@ -109,13 +109,17 @@ export default class CityList extends Component {
           icon={<Icon type="left" />}
           onLeftClick={() => {this.props.history.go(-1)}}
         >城市选择</NavBar>
-        <List
-          width={375}
-          height={300}
-          rowCount={this.state.cityIndex.length}
-          rowHeight={40}
-          rowRenderer={this.rowRenderer}
-        />
+        <AutoSizer>
+          {({height, width}) => (
+              <List
+                width={ width }
+                height={ height }
+                rowCount={this.state.cityIndex.length}
+                rowHeight={40}
+                rowRenderer={this.rowRenderer}
+              />
+            )}
+        </AutoSizer>
       </div>
     )
   }
