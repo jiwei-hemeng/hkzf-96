@@ -93,7 +93,7 @@ export default class CityList extends Component {
                     localStorage.setItem('my-city', JSON.stringify(item))
                     this.props.history.push('/home/index')
                   }else {
-                    Toast.info('该城市暂无房源信息哦~.~',2)
+                    Toast.info('暂无该城市的房源信息哦~.~',2)
                   }
                 }}
               >{item.label}</div>

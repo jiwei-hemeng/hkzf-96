@@ -2,15 +2,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+在项目根目录下,你可以运行:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+启动开发者模式.<br />
+在浏览器地址栏中输入 [http://localhost:3000](http://localhost:3000) 来查看开发效果.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+如果你的项目代码更改以后,服务会重新启动.<br />
+你也可以在控制台参看报错信息.
 
 ### `npm test`
 
