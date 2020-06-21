@@ -1,7 +1,8 @@
 import React from 'react'
-import './map.scss'
 // 导入导航栏组件
 import NavHeader from '../../components/NavHeader'
+import styles from './map.module.scss'
+import './map.css'
 export default class Map extends React.Component{
   componentDidMount(){
     this.initMap()
@@ -16,7 +17,7 @@ export default class Map extends React.Component{
   }
   render(){
     return (
-      <div className="map">
+      <div className={styles.map}>
         {/* <NavBar
           className="navBar"
           mode="light"
@@ -24,7 +25,7 @@ export default class Map extends React.Component{
           onLeftClick={() => {this.props.history.go(-1)}}
         >城市选择</NavBar> */}
         <NavHeader title="地图导航" />
-        <div id="container"></div>
+        <div id='container'></div>
       </div>
     )
   }

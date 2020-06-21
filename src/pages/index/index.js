@@ -53,7 +53,7 @@ export default class Index extends React.Component{
   async getSWiperdata(){
     const { data } = await axios({
       method: 'GET',
-      url: 'http://api-haoke-dev.itheima.net/home/swiper'
+      url: 'http://api-haoke-web.itheima.net/home/swiper'
     })
     // setState 是异步的，第二个参数表示设置成功以后
     this.setState({
@@ -67,7 +67,7 @@ export default class Index extends React.Component{
   // 封装请求获取合租数据
   async getGroup(){
     const { data } = await axios({
-      url: 'http://api-haoke-dev.itheima.net/home/groups?area=AREA%7C88cff55c-aaa4-e2e0'
+      url: 'http://api-haoke-web.itheima.net/home/groups?area=AREA%7C88cff55c-aaa4-e2e0'
     })
     this.setState({
       Group: data.body
@@ -76,7 +76,7 @@ export default class Index extends React.Component{
   // 分装请求获取最新资讯数据
   async getNews(){
     const { data } = await axios({
-      url: 'http://api-haoke-dev.itheima.net/home/news?area=AREA%7C88cff55c-aaa4-e2e0'
+      url: 'http://api-haoke-web.itheima.net/home/news?area=AREA%7C88cff55c-aaa4-e2e0'
     })
     this.setState({
       News: data.body
@@ -104,7 +104,7 @@ export default class Index extends React.Component{
           style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
         >
           <img
-            src={`http://api-haoke-dev.itheima.net${val.imgSrc}`}
+            src={`http://api-haoke-web.itheima.net${val.imgSrc}`}
             alt=""
             style={{ width: '100%', verticalAlign: 'top' }}
             onLoad={() => {
@@ -174,7 +174,7 @@ export default class Index extends React.Component{
                   <h3>{item.title}</h3>
                   <p>{item.desc}</p>
                 </div>
-                <img src={`http://api-haoke-dev.itheima.net${item.imgSrc}`} alt="" />
+                <img src={`http://api-haoke-web.itheima.net${item.imgSrc}`} alt="" />
               </Flex>
             )}
           />
@@ -186,7 +186,7 @@ export default class Index extends React.Component{
               this.state.News.map((item, index) => {
                 return (
                   <li className="news-item" key={item.id}>
-                    <img src={`http://api-haoke-dev.itheima.net${item.imgSrc}`} alt=""></img>
+                    <img src={`http://api-haoke-web.itheima.net${item.imgSrc}`} alt=""></img>
                     <div className="news-content">
                       <h2>{item.title}</h2>
                       <p>
