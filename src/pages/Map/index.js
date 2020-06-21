@@ -21,15 +21,16 @@ export default class Map extends React.Component{
       map.centerAndZoom(point, 15)
 
       // 为地图添加控件
-      map.addControl(new window.BMap.NavigationControl());    
-      map.addControl(new window.BMap.ScaleControl());    
-      map.addControl(new window.BMap.OverviewMapControl());    
-      map.addControl(new window.BMap.MapTypeControl());
+      map.addControl(new window.BMap.NavigationControl());    // 平移缩放控件
+      map.addControl(new window.BMap.ScaleControl());     // 比例尺控件
+      map.addControl(new window.BMap.OverviewMapControl());  // 缩略地图
+      map.addControl(new window.BMap.MapTypeControl());  // 地图类型
+      map.addControl(new window.BMap.GeolocationControl());  // 地图定位
 
       // 添加文字标注
       var opts = {
         position: point,    // 指定文本标注所在的地理位置
-        offset: new window.BMap.Size(30, -30)    //设置文本偏移量
+        offset: new window.BMap.Size(-35, -35)    //设置文本偏移量
       }
       var label = new window.BMap.Label("", opts);  // 创建文本标注对象
       // 设置文字标注的内容
@@ -48,6 +49,9 @@ export default class Map extends React.Component{
         color: 'rgb(255, 255, 255)',
         textAlign: 'center'
       });
+      label.addEventListener('click',()=>{
+        console.log(123);
+      })
       map.addOverlay(label); 
       }, city)
 
