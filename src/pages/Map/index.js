@@ -10,8 +10,8 @@ import './map.css'
 export default class Map extends React.Component{
   state = {
     count: 0,
-    list: [],
-    isShow: false
+    list: [],     // 房源列表
+    isShow: false       // 是否显示房源信息
   }
   componentDidMount(){
     this.initMap()
@@ -20,7 +20,14 @@ export default class Map extends React.Component{
     let city = await getCurrentCity()
     // 创建地图实例
     this.map = new window.BMap.Map("container"); 
-    // 地址解析
+    // 为地图添加移动事件
+    this.map.addEventListener('movestart',()=>{
+      // 移动地图关闭当前小区的房源信息
+      this.setState({
+        isShow: false
+      })
+    })
+    // 移动地图关闭当前小区的房源信息
     var myGeo = new window.BMap.Geocoder()
     myGeo.getPoint(city.label, async (Point)=>{
       // 初始化地图，设置中心点坐标和地图级别 
@@ -150,12 +157,6 @@ export default class Map extends React.Component{
   render(){
     return (
       <div className={styles.map}>
-        {/* <NavBar
-          className="navBar"
-          mode="light"
-          icon={<Icon type="left" />}
-          onLeftClick={() => {this.props.history.go(-1)}}
-        >城市选择</NavBar> */}
         <NavHeader title="地图导航" />
         <div id='container'></div>
         <div
