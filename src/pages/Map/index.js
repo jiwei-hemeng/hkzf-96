@@ -5,6 +5,8 @@ import NavHeader from '../../components/NavHeader'
 import styles from './map.module.scss'
 // 导入获取定位城市方法
 import { getCurrentCity } from '../../utils/index'
+// 导入antd-moblie
+import {Toast} from 'antd-mobile'
 import axios from 'axios'
 import './map.css'
 export default class Map extends React.Component{
@@ -53,9 +55,11 @@ export default class Map extends React.Component{
   }
   async renderOverlay(id, type){
      // 请求获取小区数据
-     let {data } = await axios({
+     Toast.loading('正在加载中...', 0)
+    let {data } = await axios({
       url: 'http://api-haoke-web.itheima.net/area/map?id=' + id
     })
+    Toast.hide()
     data.body.forEach((item, index) => {
       // 根据经纬度得到相应的点
       let point = new window.BMap.Point(item.coord.longitude, item.coord.latitude)
