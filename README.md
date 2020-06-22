@@ -3,6 +3,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 在项目根目录下,你可以运行:
+### `npx create-react-app hkzf-96`
+
+创建项目
 
 ### `npm start`
 
