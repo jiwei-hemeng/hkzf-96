@@ -1,7 +1,8 @@
 import React from 'react'
 // 导入轮播图的组件库
 import { Carousel, Flex, Grid } from 'antd-mobile'
-import axios from 'axios'
+// 导入封装的axios 组件
+import { API } from '../../utils/API'
 // 导入css样式
 import './index.css'
 // 导入sass 样式
@@ -51,9 +52,9 @@ export default class Index extends React.Component{
   }
   // 获取轮播图数据
   async getSWiperdata(){
-    const { data } = await axios({
+    const { data } = await API({
       method: 'GET',
-      url: 'http://api-haoke-web.itheima.net/home/swiper'
+      url: '/home/swiper'
     })
     // setState 是异步的，第二个参数表示设置成功以后
     this.setState({
@@ -66,8 +67,8 @@ export default class Index extends React.Component{
   }
   // 封装请求获取合租数据
   async getGroup(){
-    const { data } = await axios({
-      url: 'http://api-haoke-web.itheima.net/home/groups?area=AREA%7C88cff55c-aaa4-e2e0'
+    const { data } = await API({
+      url: '/home/groups?area=AREA%7C88cff55c-aaa4-e2e0'
     })
     this.setState({
       Group: data.body
@@ -75,8 +76,8 @@ export default class Index extends React.Component{
   }
   // 分装请求获取最新资讯数据
   async getNews(){
-    const { data } = await axios({
-      url: 'http://api-haoke-web.itheima.net/home/news?area=AREA%7C88cff55c-aaa4-e2e0'
+    const { data } = await API({
+      url: '/home/news?area=AREA%7C88cff55c-aaa4-e2e0'
     })
     this.setState({
       News: data.body

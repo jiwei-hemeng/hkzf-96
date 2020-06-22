@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // 导入 antd-mobile 组件
 import { Toast } from 'antd-mobile'
-import axios from 'axios'
+// 导入封装的axios 组件
+import { API } from '../../utils/API'
 // 导入 react-virtualized 可视区域渲染 插件
 import { List, AutoSizer } from 'react-virtualized'
 // 导入获取当前定位城市数据的插件
@@ -23,15 +24,15 @@ export default class CityList extends Component {
   }
   async getCityList(){
     // 1.请求获取城市列表
-    const { data} = await axios({
-      url: 'http://api-haoke-web.itheima.net/area/city?level=1'
+    const { data} = await API({
+      url: '/area/city?level=1'
     })
 
     // 2.格式化城市列表数据
     const { cityList, cityIndex } = this.formatCity(data.body)
     // 3.请求获取热门城市
-    const hotCity = await axios({
-      url: 'http://api-haoke-web.itheima.net/area/hot'
+    const hotCity = await API({
+      url: '/area/hot'
     })
     cityList.hot = hotCity.data.body
     cityIndex.unshift('hot')

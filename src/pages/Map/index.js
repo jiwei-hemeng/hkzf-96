@@ -7,7 +7,7 @@ import styles from './map.module.scss'
 import { getCurrentCity } from '../../utils/index'
 // 导入antd-moblie
 import {Toast} from 'antd-mobile'
-import axios from 'axios'
+import { API } from '../../utils/API'
 import './map.css'
 export default class Map extends React.Component{
   state = {
@@ -56,8 +56,8 @@ export default class Map extends React.Component{
   async renderOverlay(id, type){
      // 请求获取小区数据
      Toast.loading('正在加载中...', 0)
-    let {data } = await axios({
-      url: 'http://api-haoke-web.itheima.net/area/map?id=' + id
+    let {data } = await API({
+      url: '/area/map?id=' + id
     })
     Toast.hide()
     data.body.forEach((item, index) => {
@@ -164,7 +164,7 @@ export default class Map extends React.Component{
 
   // 发送请求获取当前小区的房子列表
   async getHouseList(id){
-    const { data } = await axios({
+    const { data } = await API({
       url: 'http://api-haoke-web.itheima.net/houses?cityId=' + id
     })
     this.setState({
