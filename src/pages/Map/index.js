@@ -41,7 +41,7 @@ export default class Map extends React.Component{
       this.map.addControl(new window.BMap.GeolocationControl());  // 地图定位
 
       // 发送请求并渲染到页面
-      this.renderOverlay(city.value)
+      this.renderOverlay(city.value, 'bubble')
     }, city)
 
     // 1.创建地图实例
@@ -51,7 +51,7 @@ export default class Map extends React.Component{
     // 3.初始化地图，设置中心点坐标和地图级别 
     // map.centerAndZoom(point, 15)
   }
-  async renderOverlay(id){
+  async renderOverlay(id, type){
      // 请求获取小区数据
      let {data } = await axios({
       url: 'http://api-haoke-web.itheima.net/area/map?id=' + id
@@ -65,12 +65,22 @@ export default class Map extends React.Component{
       }
       var label = new window.BMap.Label("", opts);  // 创建文本标注对象
       // 设置文字标注的内容
-      label.setContent(`
-        <div class="${styles.bubble}">
-          <p class="${styles.name}">${item.label}</p>
-          <p>${item.count}套</p>
-        </div>
-      `)
+      if(type === 'bubble'){
+        label.setContent(`
+          <div class="${styles.bubble}">
+            <p class="${styles.name}">${item.label}</p>
+            <p>${item.count}套</p>
+          </div>
+        `)
+      }else if(type === 'rect'){
+        label.setContent(`
+          <div class="${styles.rect}">
+            <span class="${styles.housename}">${item.label}</span>
+            <span class="${styles.housenum}">${item.count}</span>
+            <i class="${styles.arrow}"></i>
+          </div>
+        `)
+      }
       label.setStyle({
         cursor: 'pointer',
         border: '0px solid rgb(255, 0, 0)',
@@ -85,7 +95,7 @@ export default class Map extends React.Component{
         // this.map.getZoom() 获取当前地图级别
         if(this.map.getZoom() === 11){
           // 点击覆盖物以后请求数据并进入下一级地图
-          this.renderOverlay(item.value)
+          this.renderOverlay(item.value, 'bubble')
           // 清除原有的覆盖物，由于百度地图的bug，清除原来的覆盖物必须要有延时，否则会报错
           window.setTimeout(()=> {
             this.map.clearOverlays()
@@ -93,7 +103,7 @@ export default class Map extends React.Component{
           // 进入下一级地图
           this.map.centerAndZoom(point, 13)
         }else if(this.map.getZoom()===13){
-          this.renderOverlay(item.value)
+          this.renderOverlay(item.value, 'rect')
           // 清除原有的覆盖物，由于百度地图的bug，清除原来的覆盖物必须要有延时，否则会报错
           window.setTimeout(()=> {
             this.map.clearOverlays()
