@@ -70,15 +70,28 @@ export default class Map extends React.Component{
       });
 
       label.addEventListener('click',()=>{
-
-        // 点击覆盖物以后请求数据并进入下一级地图
-        this.renderOverlay(item.value)
-        // 清除原有的覆盖物，由于百度地图的bug，清除原来的覆盖物必须要有延时，否则会报错
-        window.setTimeout(()=> {
-          this.map.clearOverlays()
-        },10)
-        // 进入下一级地图
-        this.map.centerAndZoom(point, 13)
+        // this.map.getZoom() 获取当前地图级别
+        if(this.map.getZoom() === 11){
+          // 点击覆盖物以后请求数据并进入下一级地图
+          this.renderOverlay(item.value)
+          // 清除原有的覆盖物，由于百度地图的bug，清除原来的覆盖物必须要有延时，否则会报错
+          window.setTimeout(()=> {
+            this.map.clearOverlays()
+          },10)
+          // 进入下一级地图
+          this.map.centerAndZoom(point, 13)
+        }else if(this.map.getZoom()===13){
+          this.renderOverlay(item.value)
+          // 清除原有的覆盖物，由于百度地图的bug，清除原来的覆盖物必须要有延时，否则会报错
+          window.setTimeout(()=> {
+            this.map.clearOverlays()
+          },10)
+          // 进入下一级地图
+          this.map.centerAndZoom(point, 15)
+        }else{
+          // 发送请求获取当前小区的房子列表
+          console.log('不放大')
+        }  
       })
 
       this.map.addOverlay(label); 
