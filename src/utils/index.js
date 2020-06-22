@@ -1,4 +1,5 @@
-import axios from 'axios'
+// 导入封装的axios请求模块
+import { API } from './API'
 // 封装并导出当前定位的城市的数据
 export const getCurrentCity = () => {
   let city = JSON.parse(localStorage.getItem('my-city'))
@@ -10,8 +11,8 @@ export const getCurrentCity = () => {
         let cityName = res.name
         console.log(cityName)
         // 2. 根据城市名字获取当前定位城市
-        const localCity = await axios({
-          url: 'http://api-haoke-dev.itheima.net/area/info?name=' + cityName
+        const localCity = await API({
+          url: '/area/info?name=' + cityName
         })
         localStorage.setItem('my-city', JSON.stringify(localCity.data.body))
         resolve(localCity.data.body)
