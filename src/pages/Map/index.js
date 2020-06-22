@@ -91,7 +91,7 @@ export default class Map extends React.Component{
         textAlign: 'center'
       });
 
-      label.addEventListener('click',()=>{
+      label.addEventListener('click',(e)=>{
         // this.map.getZoom() 获取当前地图级别
         if(this.map.getZoom() === 11){
           // 点击覆盖物以后请求数据并进入下一级地图
@@ -111,8 +111,13 @@ export default class Map extends React.Component{
           // 进入下一级地图
           this.map.centerAndZoom(point, 15)
         }else{
+          // 获取点击的坐标
+          const { clientX, clientY } = e.changedTouches[0]
+          const x = (window.innerHeight - 330) / 2 - clientX
+          const y = window.innerWidth / 2 - clientY
+          // 移动地图
+          this.map.panBy(x, y)
           // 发送请求获取当前小区的房子列表
-          console.log('不放大')
           this.getHouseList(item.value)
         }  
       })
