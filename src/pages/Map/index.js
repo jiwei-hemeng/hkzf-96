@@ -10,7 +10,8 @@ import './map.css'
 export default class Map extends React.Component{
   state = {
     count: 0,
-    list: []
+    list: [],
+    isShow: false
   }
   componentDidMount(){
     this.initMap()
@@ -102,16 +103,48 @@ export default class Map extends React.Component{
       this.map.addOverlay(label); 
     });
   }
+  renderHouseItem(){
+    // 循环渲染房源列表
+    return this.state.list.map((item, index) => {
+      console.log(item)
+      return (
+        <div key={index} className={styles.house}>
+          <div className={styles.imgWrap}>
+            <img className={styles.img} src={`http://api-haoke-web.itheima.net${item.houseImg}`} alt="" />
+          </div>
+          <div className={styles.content}>
+            <h3 className={styles.title}>{item.title}</h3>
+            <div className={styles.desc}>{item.desc}</div>
+            <div>
+                {/* ['近地铁', '随时看房'] */}
+                {
+                  item.tags.map((v, i)=>{
+                    return (
+                      <span key={i} className={[styles.tag,styles.tag1 ].join(' ')} >
+                        {v}
+                      </span>
+                    )
+                  })
+                }
+            </div>
+            <div className={styles.price}>
+              <span className={styles.priceNum}>{item.price}</span> 元/月
+            </div>
+          </div>
+        </div>
+      )
+    })
+  }
 
   // 发送请求获取当前小区的房子列表
   async getHouseList(id){
     const { data } = await axios({
       url: 'http://api-haoke-web.itheima.net/houses?cityId=' + id
     })
-    console.log(data)
     this.setState({
       count: data.body.count,
-      list: data.body.list
+      list: data.body.list,
+      isShow: true
     })
   }
   render(){
@@ -125,6 +158,21 @@ export default class Map extends React.Component{
         >城市选择</NavBar> */}
         <NavHeader title="地图导航" />
         <div id='container'></div>
+        <div
+          className={[styles.houseList, this.state.isShow ? styles.show :'' ].join(' ')}
+        >
+          <div className={styles.titleWrap}>
+            <h1 className={styles.listTitle}>房屋列表</h1>
+            <a className={styles.titleMore} href="/house/list">
+              更多房源
+            </a>
+          </div>
+          <div className={styles.houseItems}>
+            {
+              this.renderHouseItem()
+            }
+          </div>
+        </div>
       </div>
     )
   }
