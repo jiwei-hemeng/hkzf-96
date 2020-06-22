@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 
 // 导入动画库组件
 import { Spring } from 'react-spring/renderprops'
-
-import { API, getCurrentCity } from '../../../../utils'
-
+import { API } from '../../../../utils/API'
+import { getCurrentCity } from '../../../../utils/index'
 import FilterTitle from '../FilterTitle'
 import FilterPicker from '../FilterPicker'
 import FilterMore from '../FilterMore'
