@@ -8,6 +8,10 @@ import { getCurrentCity } from '../../utils/index'
 import axios from 'axios'
 import './map.css'
 export default class Map extends React.Component{
+  state = {
+    count: 0,
+    list: []
+  }
   componentDidMount(){
     this.initMap()
   }
@@ -91,11 +95,24 @@ export default class Map extends React.Component{
         }else{
           // 发送请求获取当前小区的房子列表
           console.log('不放大')
+          this.getHouseList(item.value)
         }  
       })
 
       this.map.addOverlay(label); 
     });
+  }
+
+  // 发送请求获取当前小区的房子列表
+  async getHouseList(id){
+    const { data } = await axios({
+      url: 'http://api-haoke-web.itheima.net/houses?cityId=' + id
+    })
+    console.log(data)
+    this.setState({
+      count: data.body.count,
+      list: data.body.list
+    })
   }
   render(){
     return (
