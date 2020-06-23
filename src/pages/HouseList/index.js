@@ -21,11 +21,16 @@ export default class HouseList extends React.Component{
     return (
       <div className="houselist">
         <div className="Header">
-          <i className="iconfont icon-jiantouarrowhead7"></i>
+          <i
+            className="iconfont icon-jiantouarrowhead7"
+            onClick={() => {
+              this.props.history.go(-1)
+            }}
+          />
           <SearchHeader 
             className="searchhearder"
             cityname={ this.state.cityname }
-          ></SearchHeader>
+          />
         </div>
         <Filter />
       </div>
