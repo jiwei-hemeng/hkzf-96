@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import FilterTitle from '../FilterTitle'
 import FilterPicker from '../FilterPicker'
-import FilterMore from '../FilterMore'
+// import FilterMore from '../FilterMore'
 
 import styles from './index.module.css'
 import { API } from '../../../../utils/API'
@@ -65,6 +65,10 @@ export default class Filter extends Component {
         case 'price':
           data = [...filterData.price]
           cols = 2
+          break;
+        default:
+          data = []
+          cols = 0
           break;
       }
       return <FilterPicker 
