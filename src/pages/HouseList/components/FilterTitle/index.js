@@ -31,7 +31,7 @@ export default function FilterTitle({ onClick, titleSelectedStatus }) {
               ].join(' ')}
             >
               <span>{item.title}</span>
-              <i className="iconfont icon-arrow" />
+              <i className="iconfont icon-below-s" />
             </span>
           </Flex.Item>
         )

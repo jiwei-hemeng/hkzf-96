@@ -1,0 +1,12 @@
+.houselist {
+  .Header {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    background-color: pink;
+    .searchBox {
+      position: relative;
+      top: 0;
+    }
+  }
+}
