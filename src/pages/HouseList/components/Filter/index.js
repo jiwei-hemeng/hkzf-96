@@ -50,12 +50,29 @@ export default class Filter extends Component {
   renderPicker(){
     let { openType } = this.state
     if(openType === 'area' || openType === 'mode' || openType === 'price'){
+      let { filterData } = this.state
+      let data = []
+      let cols = 0
+      switch(openType){
+        case 'area':
+          data = [filterData.area, filterData.subway]
+          cols = 3
+          break;
+        case 'mode':
+          data = [...filterData.rentType]
+          cols = 1
+          break;
+        case 'price':
+          data = [...filterData.price]
+          cols = 2
+          break;
+      }
       return <FilterPicker 
+              data={ data }
+              cols={ cols }
               onCancel={ this.onCancel }
               onSave={ this.onSave }
              />
-    }else if(openType === 'more'){
-      return <FilterMore /> 
     }else{
       return null
     }
