@@ -17,7 +17,8 @@ export default class Filter extends Component {
   constructor(){
     super()
     this.state = {
-      titleStatus
+      titleStatus,
+      openType: ''  // 用来控制Picker的显示与隐藏
     }
   }
   changeStatus=(type)=>{
@@ -27,8 +28,18 @@ export default class Filter extends Component {
         ...titleStatus,
         // type 应该是一个变量，所以使用[]
         [type]: true
-      }
+      },
+      openType: type
     })
+  }
+  // 渲染Picker
+  renderPicker(){
+    let { openType } = this.state
+    if(openType === 'area' || openType === 'mode' || openType === 'price'){
+      return <FilterPicker />
+    }else{
+      return null
+    }
   }
   render() {
     return (
@@ -45,6 +56,7 @@ export default class Filter extends Component {
 
           {/* 前三个菜单对应的内容： */}
           {/* <FilterPicker /> */}
+          { this.renderPicker() }
 
           {/* 最后一个菜单对应的内容： */}
           {/* <FilterMore /> */}
