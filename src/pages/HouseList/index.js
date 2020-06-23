@@ -12,7 +12,6 @@ export default class HouseList extends React.Component{
   }
   async getCityName(){
     let res = await getCurrentCity()
-    console.log(res)
     this.setState({
       cityname: res.label
     })

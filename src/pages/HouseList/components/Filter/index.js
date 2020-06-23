@@ -20,8 +20,15 @@ export default class Filter extends Component {
       titleStatus
     }
   }
-  changeStatus=(i)=>{
-    console.log(i)
+  changeStatus=(type)=>{
+    console.log(type)
+    this.setState({
+      titleStatus: {
+        ...titleStatus,
+        // type 应该是一个变量，所以使用[]
+        [type]: true
+      }
+    })
   }
   render() {
     return (
