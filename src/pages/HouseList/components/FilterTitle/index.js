@@ -12,30 +12,22 @@ const titleList = [
   { title: '筛选', type: 'more' }
 ]
 
-export default function FilterTitle({ onClick, titleSelectedStatus }) {
+export default function FilterTitle() {
   return (
     <Flex align="center" className={styles.root}>
-      {titleList.map(item => {
-        // 判断当前菜单是否高亮
-        // titleSelectedStatus[item.type] ==> titleSelectedStatus['area'] ==> titleSelectedStatus.area ==> 布尔值
-        const isSelected = titleSelectedStatus[item.type]
-
-        return (
-          <Flex.Item key={item.type}>
-            {/* 选中类名： selected */}
-            <span
-              onClick={() => onClick(item.type)}
-              className={[
-                styles.dropdown,
-                isSelected ? styles.selected : ''
-              ].join(' ')}
-            >
-              <span>{item.title}</span>
-              <i className="iconfont icon-below-s" />
-            </span>
-          </Flex.Item>
-        )
-      })}
+      {
+          titleList.map((item, index) => {
+            return (
+              <Flex.Item key={item.type}>
+        {/* 选中类名： selected */}
+        <span className={[styles.dropdown, styles.selected].join(' ')}>
+            <span>{item.title}</span>
+          <i className="iconfont icon-below-s" />
+        </span>
+      </Flex.Item>
+            )
+          })
+      }
     </Flex>
   )
 }

@@ -38,7 +38,7 @@ SearchHeader.propsTypes = {
 
 // 设置传参默认值
 SearchHeader.defaultProps={
-  cityname: '全国'
+  cityname: '火星'
 }
 
 export default withRouter(SearchHeader)
