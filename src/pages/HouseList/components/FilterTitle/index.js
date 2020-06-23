@@ -16,17 +16,17 @@ export default function FilterTitle() {
   return (
     <Flex align="center" className={styles.root}>
       {
-          titleList.map((item, index) => {
-            return (
-              <Flex.Item key={item.type}>
-        {/* 选中类名： selected */}
-        <span className={[styles.dropdown, styles.selected].join(' ')}>
-            <span>{item.title}</span>
-          <i className="iconfont icon-below-s" />
-        </span>
-      </Flex.Item>
-            )
-          })
+        titleList.map((item, index) => {
+          return (
+            <Flex.Item key={item.type}>
+              {/* 选中类名： selected */}
+              <span className={[styles.dropdown, styles.selected].join(' ')}>
+                  <span>{item.title}</span>
+                <i className="iconfont icon-below-s" />
+              </span>
+            </Flex.Item>
+          )
+        })
       }
     </Flex>
   )
