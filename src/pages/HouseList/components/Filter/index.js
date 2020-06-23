@@ -5,6 +5,8 @@ import FilterPicker from '../FilterPicker'
 import FilterMore from '../FilterMore'
 
 import styles from './index.module.css'
+import { API } from '../../../../utils/API'
+import { getCurrentCity } from '../../../../utils/index'
 
 const titleStatus = {
   area: false,
@@ -18,11 +20,23 @@ export default class Filter extends Component {
     super()
     this.state = {
       titleStatus,
-      openType: ''  // 用来控制Picker的显示与隐藏
+      openType: '',  // 用来控制Picker的显示与隐藏
+      filterData: {}
     }
   }
+  componentDidMount(){
+    this.getFilterdata()
+  }
+  async getFilterdata(){
+    const city = await getCurrentCity()
+    const { data } = await API({
+      url: '/houses/condition?id=' + city.value
+    })
+    this.setState({
+      filterData: data.body
+    })
+  }
   changeStatus=(type)=>{
-    console.log(type)
     this.setState({
       titleStatus: {
         ...titleStatus,
