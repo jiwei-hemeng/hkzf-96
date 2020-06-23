@@ -12,7 +12,7 @@ const titleList = [
   { title: '筛选', type: 'more' }
 ]
 
-export default function FilterTitle() {
+export default function FilterTitle(props) {
   return (
     <Flex align="center" className={styles.root}>
       {
@@ -20,7 +20,7 @@ export default function FilterTitle() {
           return (
             <Flex.Item key={item.type}>
               {/* 选中类名： selected */}
-              <span className={[styles.dropdown, styles.selected].join(' ')}>
+              <span className={[styles.dropdown, props.titleStatus[item.type]? styles.selected : ''].join(' ')}>
                   <span>{item.title}</span>
                 <i className="iconfont icon-below-s" />
               </span>
