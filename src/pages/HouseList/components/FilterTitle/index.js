@@ -18,8 +18,12 @@ export default function FilterTitle(props) {
       {
         titleList.map((item, index) => {
           return (
-            <Flex.Item key={item.type}>
-              {/* 选中类名： selected */}
+            <Flex.Item
+              key={item.type}
+              onClick={()=>{
+                props.changeStatus(item.type)
+              }}
+            >
               <span className={[styles.dropdown, props.titleStatus[item.type]? styles.selected : ''].join(' ')}>
                   <span>{item.title}</span>
                 <i className="iconfont icon-below-s" />

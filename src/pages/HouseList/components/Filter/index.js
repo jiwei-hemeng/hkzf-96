@@ -20,6 +20,9 @@ export default class Filter extends Component {
       titleStatus
     }
   }
+  changeStatus=(i)=>{
+    console.log(i)
+  }
   render() {
     return (
       <div className={styles.root}>
@@ -30,6 +33,7 @@ export default class Filter extends Component {
           {/* 标题栏 */}
           <FilterTitle
             titleStatus={ this.state.titleStatus }
+            changeStatus= { this.changeStatus }
           />
 
           {/* 前三个菜单对应的内容： */}
