@@ -36,10 +36,27 @@ export default class Filter extends Component {
   renderPicker(){
     let { openType } = this.state
     if(openType === 'area' || openType === 'mode' || openType === 'price'){
-      return <FilterPicker />
+      return <FilterPicker 
+              onCancel={ this.onCancel }
+              onSave={ this.onSave }
+             />
+    }else if(openType === 'more'){
+      return <FilterMore /> 
     }else{
       return null
     }
+  }
+  // 点击取消
+  onCancel=()=>{
+    this.setState({
+      openType: ''
+    })
+  }
+   // 点击取消
+   onSave=()=>{
+    this.setState({
+      openType: ''
+    })
   }
   render() {
     return (

@@ -95,7 +95,10 @@ export default class FilterPicker extends Component {
         <PickerView data={province} value={null} cols={3} />
 
         {/* 底部按钮 */}
-        <FilterFooter />
+        <FilterFooter
+          onCancel={ this.props.onCancel } 
+          onSave={ this.props.onSave }
+        />
       </>
     )
   }
