@@ -62,6 +62,8 @@ export default class CityList extends Component {
       }
       cityList[word] = [item]
     })
+    // Object.key() 方法用来获取对象的键名，并返回一个数组
+    // 数组.sort() 方法用来排序数组
     const cityIndex = Object.keys(cityList).sort()
     return {
       cityList,
