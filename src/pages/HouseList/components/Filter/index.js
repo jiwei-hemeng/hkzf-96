@@ -64,7 +64,7 @@ export default class Filter extends Component {
           break;
         case 'price':
           data = [...filterData.price]
-          cols = 2
+          cols = 1
           break;
         default:
           data = []

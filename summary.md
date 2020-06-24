@@ -133,12 +133,12 @@
   - 复杂数据类型：对象类型、数组、Set类型
   - 可以通过typeof 或者 instrandof 判断
 
-- Typeof 判断复杂数据类型
+- typeof 判断复杂数据类型
 
-  - 用于判断数据类型，返回值为6个字符串，分别为string、Boolean、number、function、object、undefined
-  -  typeof对于丰富的对象实例，只能返回"Object"字符串
-  -  instanceof用来判断对象，代码形式为obj1 instanceof obj2（obj1是否是obj2的实例），obj2必须为对象，否则会报错！其返回值为布尔值
-  -  instanceof可以对不同的对象实例进行判断，判断方法是根据对象的原型链依次向下查询，如果obj2的原型属性存在obj1的原型链上，（obj1 instanceof obj2）值为true。
+  - *typeof*  用于判断数据类型，返回值为6个字符串，分别为string、Boolean、number、function、object、undefined
+  -  *typeof* 对于丰富的对象实例，只能返回"Object"字符串
+  -  *instanceof* 用来判断对象，代码形式为obj1 instanceof obj2（obj1是否是obj2的实例），obj2必须为对象，否则会报错！其返回值为布尔值
+  -  *instanceof* 可以对不同的对象实例进行判断，判断方法是根据对象的原型链依次向下查询，如果obj2的原型属性存在obj1的原型链上，（obj1 instanceof obj2）值为true。
 
 - 简单数据类型和复杂数据类型的存储方式？
 
@@ -200,11 +200,11 @@
 
     ```js
     function  create ( name, age, height ) {
-    	var  Ob = new Object()
-    	Ob.name = name;
-    	Ob.age = age;
-      	Ob.height = height;
-      	Ob.eat = function () {}
+       var  Ob = new Object()
+       Ob.name = name;
+       Ob.age = age;
+       Ob.height = height;
+       Ob.eat = function () {}
        return Ob;
     }
     ```
