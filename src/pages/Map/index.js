@@ -165,7 +165,7 @@ export default class Map extends React.Component{
   // 发送请求获取当前小区的房子列表
   async getHouseList(id){
     const { data } = await API({
-      url: 'http://api-haoke-web.itheima.net/houses?cityId=' + id
+      url: '/houses?cityId=' + id
     })
     this.setState({
       count: data.body.count,
