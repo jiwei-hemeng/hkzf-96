@@ -296,6 +296,53 @@
   debounce()
   ```
 
+## Git
+
++ **Git常用命令**
+
+  ```shell
+  # 初始化仓库
+  git init
+  # 工作区提交到暂存区
+  git add file
+  # 从暂存区提交到本地仓库
+  git commit -m '提交说明'
+  # 删除文件
+  git rm file
+  # 查看版本库日志信息
+  git log
+  # 查看当前文件修改状态
+  git status
+  ```
+
++ **Git 配置命令**
+
+  ```shell
+  # 设置用户名
+  git config --global user.name 'userName'
+  # 设置邮箱
+  git config --global user.email 'example@xx.com'
+  # 配置SSH
+  ssh-keygen -t rsa -C "你的邮箱地址"
+  ```
+
++ **关于分支的命令**
+
+  ```shell
+  # 查看当前分支
+  git branch
+  # 创建分支
+  git branch name
+  # 修改当前分支名称
+  git branch -m oldName newName
+  # 创建分支并切换分支
+  git checkout -b name
+  # 切换分支
+  git checkout name
+  # 合并分支
+  git merge dev
+  ```
+
 ## ES6
 
 + 关于*var* 、 *const* 、*let* 的区别
