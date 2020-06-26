@@ -21,7 +21,13 @@ export default class Filter extends Component {
     this.state = {
       titleStatus,
       openType: '',  // 用来控制Picker的显示与隐藏
-      filterData: {}
+      filterData: {},     //筛选条件数据
+      selectedValues: {   // 默认选中的值
+        area: ["area", null],
+        mode: ["null"],
+        price: ["null"],
+        more: []
+      }
     }
   }
   componentDidMount(){
@@ -49,6 +55,7 @@ export default class Filter extends Component {
   // 渲染Picker
   renderPicker(){
     let { openType } = this.state
+    let defaultValue = this.state.selectedValues[openType]
     if(openType === 'area' || openType === 'mode' || openType === 'price'){
       let { filterData } = this.state
       let data = []
@@ -76,6 +83,7 @@ export default class Filter extends Component {
               cols={ cols }
               onCancel={ this.onCancel }
               onSave={ this.onSave }
+              defaultValue={ defaultValue }
              />
     }else{
       return null
@@ -88,9 +96,16 @@ export default class Filter extends Component {
     })
   }
    // 点击取消
-   onSave=()=>{
+  onSave=(value)=>{
+    let type = this.state.openType
     this.setState({
+      selectedValues:{
+        ...this.state.selectedValues,
+        [type]: value
+      },
       openType: ''
+    },()=>{
+      console.log(this.state.selectedValues)
     })
   }
   render() {
