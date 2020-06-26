@@ -16,6 +16,9 @@ export default class HouseList extends React.Component{
       cityname: res.label
     })
   }
+  onfilter=(filters)=>{
+    console.log(filters)
+  }
   render () {
     return (
       <div className="houselist">
@@ -31,7 +34,9 @@ export default class HouseList extends React.Component{
             cityname={ this.state.cityname }
           />
         </div>
-        <Filter />
+        <Filter
+        onfilter={ this.onfilter }
+        />
       </div>
     )
   }

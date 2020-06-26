@@ -105,6 +105,19 @@ export default class Filter extends Component {
         [type]: value
       },
       openType: ''
+    },()=>{
+      const { area, mode, price, more } = this.state.selectedValues
+      let filters = {}
+      filters.mode = mode[0]
+      filters.price = price[0]
+      filters.more = more.join(',')
+      let areaName = area[0]
+      let areaValue = "null"
+      if(area.length === 3) {
+        areaValue = area[2] === "null" ? area[1] : area[2]
+      }
+      filters[areaName] = areaValue
+      this.props.onfilter(filters)
     })
   }
   // 渲染filterMore 组件
