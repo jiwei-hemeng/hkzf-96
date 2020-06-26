@@ -4,6 +4,9 @@ import SearchHeader from '../../components/SearchHeader'
 import { getCurrentCity } from '../../utils/index'
 import './index.scss'
 import { API } from '../../utils/API'
+// 导入可视化渲染
+import {List} from 'react-virtualized'
+
 export default class HouseList extends React.Component{
   state = {
     cityname: '',
@@ -41,6 +44,20 @@ export default class HouseList extends React.Component{
       list: data.body.list
     })
   }
+  rowRenderer=({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    isScrolling, // The List is currently being scrolled
+    isVisible, // This row is visible within the List (eg it is not an overscanned row)
+    style, // Style object to be applied to row (to position it)
+  })=> {
+    return (
+      <div key={key} style={style}>
+        {/* {list[index]} */}
+        哈哈
+      </div>
+    );
+  }
   render () {
     return (
       <div className="houselist">
@@ -59,6 +76,14 @@ export default class HouseList extends React.Component{
         <Filter
           onfilter={ this.onfilter }
         />
+        {/* 房源列表 */}
+        <List
+          width={300}
+          height={300}
+          rowCount={this.state.count}
+          rowHeight={20}
+          rowRenderer={this.rowRenderer}
+        />  
       </div>
     )
   }
