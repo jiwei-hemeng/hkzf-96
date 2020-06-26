@@ -5,7 +5,7 @@ import { getCurrentCity } from '../../utils/index'
 import './index.scss'
 import { API } from '../../utils/API'
 // 导入可视化渲染
-import {List} from 'react-virtualized'
+import { List, AutoSizer } from 'react-virtualized'
 
 export default class HouseList extends React.Component{
   state = {
@@ -23,7 +23,6 @@ export default class HouseList extends React.Component{
     })
   }
   onfilter=(filters)=>{
-    console.log(filters)
     this.filters = filters
     this.getHouseList()
   }
@@ -38,11 +37,17 @@ export default class HouseList extends React.Component{
         end: 20
       }
     })
-    console.log(data)
     this.setState({
       count: data.body.count,
       list: data.body.list
     })
+  }
+  panduan(index){
+    let list = this.state.list
+    if(list[index]){
+      return <div>{list[index].desc}</div>
+    }
+    return <div>{index}</div>
   }
   rowRenderer=({
     key, // Unique key within array of rows
@@ -53,8 +58,12 @@ export default class HouseList extends React.Component{
   })=> {
     return (
       <div key={key} style={style}>
-        {/* {list[index]} */}
-        哈哈
+        {/* { item.desc } */}
+        {/* <img src={'http://api-haoke-dev.itheima.net'+item.houseImg} alt="" /> */}
+        {
+          this.panduan(index)
+        }
+        { index }
       </div>
     );
   }
@@ -77,13 +86,17 @@ export default class HouseList extends React.Component{
           onfilter={ this.onfilter }
         />
         {/* 房源列表 */}
-        <List
-          width={300}
-          height={300}
-          rowCount={this.state.count}
-          rowHeight={20}
-          rowRenderer={this.rowRenderer}
-        />  
+        <AutoSizer>
+          {({height, width})=>(
+            <List
+              width={ width }
+              height={ height }
+              rowCount={this.state.count}
+              rowHeight={40}
+              rowRenderer={this.rowRenderer}
+            />  
+          )}
+        </AutoSizer>
       </div>
     )
   }
