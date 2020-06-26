@@ -37,7 +37,11 @@ export default class FilterMore extends Component {
         </div>
 
         {/* 底部按钮 */}
-        <FilterFooter className={styles.footer} />
+        <FilterFooter
+          className={styles.footer}
+          onSave={this.props.onSave}
+          onCancel={this.props.onCancel}
+        />
       </div>
     )
   }

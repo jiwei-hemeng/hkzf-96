@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import FilterTitle from '../FilterTitle'
 import FilterPicker from '../FilterPicker'
-// import FilterMore from '../FilterMore'
+import FilterMore from '../FilterMore'
 
 import styles from './index.module.css'
 import { API } from '../../../../utils/API'
@@ -107,6 +107,24 @@ export default class Filter extends Component {
       openType: ''
     })
   }
+  // 渲染filterMore 组件
+  renderMore(){
+    const { openType, filterData } = this.state
+    let data = {
+      roomType: filterData.roomType, // 户型
+      oriented: filterData.oriented,  // 朝向
+      floor: filterData.floor,  // 楼层
+      characteristic: filterData.characteristic // 房屋亮点
+    }
+    if(openType === 'more'){
+      return <FilterMore 
+               data={ data }
+               onSave={this.onSave}
+               onCancel={this.onCancel}
+             />
+    }
+    return null
+  }
   render() {
     return (
       <div className={styles.root}>
@@ -126,6 +144,7 @@ export default class Filter extends Component {
 
           {/* 最后一个菜单对应的内容： */}
           {/* <FilterMore /> */}
+          { this.renderMore()}
         </div>
       </div>
     )
