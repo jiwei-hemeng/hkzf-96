@@ -116,10 +116,12 @@ export default class Filter extends Component {
       floor: filterData.floor,  // 楼层
       characteristic: filterData.characteristic // 房屋亮点
     }
+    let defaultValue = this.state.selectedValues['more']
     if(openType === 'more'){
       return <FilterMore 
                data={ data }
                onSave={this.onSave}
+               defaultValue={ defaultValue }
              />
     }
     return null
