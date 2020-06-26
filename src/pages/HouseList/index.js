@@ -58,8 +58,6 @@ export default class HouseList extends React.Component{
   })=> {
     return (
       <div key={key} style={style}>
-        {/* { item.desc } */}
-        {/* <img src={'http://api-haoke-dev.itheima.net'+item.houseImg} alt="" /> */}
         {
           this.panduan(index)
         }
