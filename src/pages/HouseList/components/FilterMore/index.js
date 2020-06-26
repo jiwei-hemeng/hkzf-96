@@ -5,6 +5,9 @@ import FilterFooter from '../../../../components/FilterFooter'
 import styles from './index.module.css'
 
 export default class FilterMore extends Component {
+  state = {
+    moreValues: []
+  }
   // 渲染标签
   renderFilters(arr) {
     // 高亮类名： styles.tagActive
@@ -16,7 +19,19 @@ export default class FilterMore extends Component {
       return (
         <span
           key={item.value}
-          className={[styles.tag, ''].join(' ')}
+          className={[styles.tag, this.state.moreValues.indexOf(item.value) === -1? '': styles.tagActive ].join(' ')}
+          onClick={()=>{
+            let newValue = [...this.state.moreValues]
+            let index = newValue.indexOf(item.value)
+            if(index === -1){
+              newValue.push(item.value)
+            }else{
+              newValue.splice(index, 1)
+            }
+            this.setState({
+              moreValues: newValue
+            })
+          }}
         >{item.label}</span>
       )
     })
@@ -49,7 +64,9 @@ export default class FilterMore extends Component {
         {/* 底部按钮 */}
         <FilterFooter
           className={styles.footer}
-          onSave={this.props.onSave}
+          onSave={()=>{
+            this.props.onSave(this.state.moreValues)
+          }}
           onCancel={this.props.onCancel}
         />
       </div>
