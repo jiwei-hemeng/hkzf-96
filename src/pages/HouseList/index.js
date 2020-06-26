@@ -3,9 +3,12 @@ import Filter from './components/Filter'
 import SearchHeader from '../../components/SearchHeader'
 import { getCurrentCity } from '../../utils/index'
 import './index.scss'
+import { API } from '../../utils/API'
 export default class HouseList extends React.Component{
   state = {
-    cityname: ''
+    cityname: '',
+    count: 0,
+    list: []
   }
   componentDidMount(){
     this.getCityName()
@@ -18,6 +21,25 @@ export default class HouseList extends React.Component{
   }
   onfilter=(filters)=>{
     console.log(filters)
+    this.filters = filters
+    this.getHouseList()
+  }
+  async getHouseList(){
+    const city = await getCurrentCity()
+    const { data } = await API({
+      url: '/houses',
+      params: {
+        cityId: city.value,
+        ...this.filters,
+        start: 1,
+        end: 20
+      }
+    })
+    console.log(data)
+    this.setState({
+      count: data.body.count,
+      list: data.body.list
+    })
   }
   render () {
     return (
@@ -35,7 +57,7 @@ export default class HouseList extends React.Component{
           />
         </div>
         <Filter
-        onfilter={ this.onfilter }
+          onfilter={ this.onfilter }
         />
       </div>
     )
