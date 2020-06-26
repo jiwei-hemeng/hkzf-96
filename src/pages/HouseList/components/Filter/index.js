@@ -120,7 +120,6 @@ export default class Filter extends Component {
       return <FilterMore 
                data={ data }
                onSave={this.onSave}
-               onCancel={this.onCancel}
              />
     }
     return null

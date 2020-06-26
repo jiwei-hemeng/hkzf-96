@@ -132,7 +132,6 @@ export default class Map extends React.Component{
   renderHouseItem(){
     // 循环渲染房源列表
     return this.state.list.map((item, index) => {
-      console.log(item)
       return (
         <div key={index} className={styles.house}>
           <div className={styles.imgWrap}>

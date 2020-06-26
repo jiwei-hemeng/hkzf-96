@@ -67,7 +67,12 @@ export default class FilterMore extends Component {
           onSave={()=>{
             this.props.onSave(this.state.moreValues)
           }}
-          onCancel={this.props.onCancel}
+          cancelText="清除"
+          onCancel={()=>{
+            this.setState({
+              moreValues: []
+            })
+          }}
         />
       </div>
     )
