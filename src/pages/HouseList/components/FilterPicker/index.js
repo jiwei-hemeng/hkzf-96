@@ -6,8 +6,11 @@ import FilterFooter from '../../../../components/FilterFooter'
 
 
 export default class FilterPicker extends Component {
-  state={
-     value: this.props.defaultValues  //默认选中值
+  constructor(props){
+    super(props)
+    this.state={
+      value: this.props.defaultValue  //默认选中值
+    }
   }
   render() {
     console.log('picker的props',this.props)

@@ -84,6 +84,7 @@ export default class Filter extends Component {
               onCancel={ this.onCancel }
               onSave={ this.onSave }
               defaultValue={ defaultValue }
+              key={ openType }
              />
     }else{
       return null
