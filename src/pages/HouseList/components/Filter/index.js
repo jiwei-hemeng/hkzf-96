@@ -105,8 +105,6 @@ export default class Filter extends Component {
         [type]: value
       },
       openType: ''
-    },()=>{
-      console.log(this.state.selectedValues)
     })
   }
   render() {
