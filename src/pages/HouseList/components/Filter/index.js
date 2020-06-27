@@ -96,7 +96,7 @@ export default class Filter extends Component {
       openType: ''
     })
   }
-   // 点击取消
+   // 点击确定
   onSave=(value)=>{
     let type = this.state.openType
     this.setState({
