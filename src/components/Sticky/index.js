@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Sticky extends Component {
+  // 1. ref 定义ref
   pRef = React.createRef()
   cRef = React.createRef()
   componentDidMount(){
@@ -12,6 +13,7 @@ export default class Sticky extends Component {
     window.removeEventListener('scroll', this.handleScroll)
   }
   handleScroll=() => {
+    // 3. 使用ref
     let pDiv = this.pRef.current
     let cDiv = this.cRef.current
     // js 原生的方法用来获取元素所在位置的信息
@@ -31,6 +33,7 @@ export default class Sticky extends Component {
   render() {
     return (
       <div className="sticky">
+        {/* 2. 绑定ref */}
         <div id="placeholder" ref={this.pRef}></div>
         <div id="content" ref={this.cRef}>
           { this.props.children }
