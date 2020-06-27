@@ -9,6 +9,8 @@ import Sticky from '../../components/Sticky'
 import { List, AutoSizer, WindowScroller, InfiniteLoader } from 'react-virtualized'
 // 导入局部样式
 import styles from './index.module.scss'
+// 导入antd-moblie组件的Loading
+import { Toast } from 'antd-mobile'
 export default class HouseList extends React.Component{
   state = {
     cityname: '',
@@ -32,6 +34,7 @@ export default class HouseList extends React.Component{
   }
   async getHouseList(){
     const city = await getCurrentCity()
+    Toast.loading('正在加载中...', 0)
     const { data } = await API({
       url: '/houses',
       params: {
@@ -41,6 +44,8 @@ export default class HouseList extends React.Component{
         end: 20
       }
     })
+    Toast.hide()
+    Toast.info(`共找到${data.body.count}条房源信息`)
     this.setState({
       count: data.body.count,
       list: data.body.list
