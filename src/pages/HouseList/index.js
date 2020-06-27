@@ -11,6 +11,8 @@ import { List, AutoSizer, WindowScroller, InfiniteLoader } from 'react-virtualiz
 import styles from './index.module.scss'
 // 导入antd-moblie组件的Loading
 import { Toast } from 'antd-mobile'
+// react 动画库的引入
+import {Spring} from 'react-spring/renderprops'
 export default class HouseList extends React.Component{
   state = {
     cityname: '',
@@ -124,18 +126,29 @@ export default class HouseList extends React.Component{
   render () {
     return (
       <div className="houselist">
-        <div className="Header">
-          <i
-            className="iconfont icon-jiantouarrowhead7"
-            onClick={() => {
-              this.props.history.go(-1)
-            }}
-          />
-          <SearchHeader 
-            className="searchhearder"
-            cityname={ this.state.cityname }
-          />
-        </div>
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={ {duration:3000} }
+        >
+          {props => {
+            // <div style={props}>hello</div>
+            return (
+              <div className="Header" style={props}>
+                <i
+                  className="iconfont icon-jiantouarrowhead7"
+                  onClick={() => {
+                    this.props.history.go(-1)
+                  }}
+                />
+                <SearchHeader 
+                  className="searchhearder"
+                  cityname={ this.state.cityname }
+                />
+              </div>
+            )
+          }}
+        </Spring>
         <Sticky height={40}>
           <Filter
             onfilter={ this.onfilter }
