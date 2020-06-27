@@ -86,15 +86,31 @@ export default class HouseList extends React.Component{
       </div>
     );
   }
+  // 当前数据是否加载完成
   isRowLoaded= ({ index })=> {
     return !!this.state.list[index];
   }
+  // 加载更多
   loadMoreRows= ({ startIndex, stopIndex }) => {
     console.log('加载更多。。。。。')
-    return fetch(`path/to/api?startIndex=${startIndex}&stopIndex=${stopIndex}`)
-      .then(response => {
-        // Store response data in list...
+    return new Promise(async (resolve, reject)=>{
+      const city = await getCurrentCity()
+      const { data } = await API({
+        url: '/houses',
+        params: {
+          cityId: city.value,
+          ...this.filters,
+          start: startIndex,
+          end: stopIndex
+        }
       })
+      let newList = [...this.state.list,...data.body.list]
+      this.setState({
+        count: data.body.count,
+        list: newList
+      })
+      return resolve()
+    })
   }
   render () {
     return (
