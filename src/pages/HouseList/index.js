@@ -16,6 +16,8 @@ export default class HouseList extends React.Component{
   }
   componentDidMount(){
     this.getCityName()
+    this.filters = {}
+    this.getHouseList()
   }
   async getCityName(){
     let res = await getCurrentCity()
