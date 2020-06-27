@@ -159,6 +159,7 @@ export default class HouseList extends React.Component{
           isRowLoaded={this.isRowLoaded} // 当前数据加载完成
           loadMoreRows={this.loadMoreRows} // 加载更多
           rowCount={this.state.count} // 总条数
+          minimumBatchSize={10} // 加载更多时每次加载的数据量
         >
           {({ onRowsRendered, registerChild }) => (
             <WindowScroller>
@@ -180,7 +181,7 @@ export default class HouseList extends React.Component{
                         // list 组件的要求
                         width={ width }
                         height={ height }
-                        rowCount={this.state.count}
+                        rowCount={this.state.count}   // 数据的总条数
                         rowHeight={120}   // 每行的高度
                         rowRenderer={this.rowRenderer} // 每条数据渲染的函数
                       />  
