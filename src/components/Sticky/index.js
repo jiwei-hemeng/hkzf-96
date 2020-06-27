@@ -14,24 +14,25 @@ export default class Sticky extends Component {
   handleScroll=() => {
     let pDiv = this.pRef.current
     let cDiv = this.cRef.current
+    // js 原生的方法用来获取元素所在位置的信息
     let { top } = pDiv.getBoundingClientRect()
     if(top <= 0){
       cDiv.style.position = 'fixed'
       cDiv.style.top = 0
       cDiv.style.left = 0
-      cDiv.style.rigth = 0
-      pDiv.style.heigth = this.props.heigth + 'px'
+      cDiv.style.right = 0
+      pDiv.style.height = this.props.height + 'px'
       cDiv.style.zIndex = 999
     }else{
       cDiv.style.position = 'static'
-      pDiv.style.heigth = 0
+      pDiv.style.height = 0
     }
   }
   render() {
     return (
       <div className="sticky">
-        <div id="placeholder" ref={this.pDiv}></div>
-        <div id="content" ref={this.cDiv}>
+        <div id="placeholder" ref={this.pRef}></div>
+        <div id="content" ref={this.cRef}>
           { this.props.children }
         </div>
       </div>

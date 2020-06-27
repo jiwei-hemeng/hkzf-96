@@ -4,6 +4,7 @@ import SearchHeader from '../../components/SearchHeader'
 import { getCurrentCity } from '../../utils/index'
 import './index.scss'
 import { API } from '../../utils/API'
+import Sticky from '../../components/Sticky'
 // 导入可视化渲染
 import { List, AutoSizer, WindowScroller, InfiniteLoader } from 'react-virtualized'
 // 导入局部样式
@@ -130,9 +131,11 @@ export default class HouseList extends React.Component{
             cityname={ this.state.cityname }
           />
         </div>
-        <Filter
-          onfilter={ this.onfilter }
-        />
+        <Sticky height={40}>
+          <Filter
+            onfilter={ this.onfilter }
+          />
+        </Sticky>
         {/* 房源列表 */}
         <InfiniteLoader
           isRowLoaded={this.isRowLoaded} // 当前数据加载完成
