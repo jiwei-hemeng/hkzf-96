@@ -5,7 +5,7 @@ import { getCurrentCity } from '../../utils/index'
 import './index.scss'
 import { API } from '../../utils/API'
 // 导入可视化渲染
-import { List, AutoSizer } from 'react-virtualized'
+import { List, AutoSizer, WindowScroller } from 'react-virtualized'
 // 导入局部样式
 import styles from './index.module.scss'
 export default class HouseList extends React.Component{
@@ -105,17 +105,27 @@ export default class HouseList extends React.Component{
           onfilter={ this.onfilter }
         />
         {/* 房源列表 */}
-        <AutoSizer>
-          {({height, width})=>(
-            <List
-              width={ width }
-              height={ height }
-              rowCount={this.state.count}
-              rowHeight={120}   // 每行的高度
-              rowRenderer={this.rowRenderer} // 每条数据渲染的函数
-            />  
-          )}
-        </AutoSizer>
+        <WindowScroller>
+          {({height, isScrolling, onChildScroll, scrollTop})=>{
+            return (
+              <AutoSizer>
+                {({ width })=>(
+                  <List
+                    autoHeight  // 自适应高度
+                    width={ width }
+                    isScrolling={isScrolling}  // 组件是否滚动
+                    onScroll={ onChildScroll} // 监听让页面一起滚动
+                    scrollTop={scrollTop}
+                    height={ height }
+                    rowCount={this.state.count}
+                    rowHeight={120}   // 每行的高度
+                    rowRenderer={this.rowRenderer} // 每条数据渲染的函数
+                  />  
+                )}
+              </AutoSizer>
+            )
+          }}
+        </WindowScroller>
       </div>
     )
   }
