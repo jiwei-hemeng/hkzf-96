@@ -28,14 +28,15 @@ export default class Index extends React.Component{
     isAutoPlay: false, // 基于阿里巴巴 antd-mobile 轮播图的bug,无法自动轮播
     // 产生bug的原因 ： axios 请求需要时间,而carous组件在页面加载时就完成,所以该组件不知道那些图片需要轮播
     Group: [], // 租房小组数据
-    News: [],
-    cityName: ''
+    News: [],  // 最新资讯
+    cityName: '', // 城市名
+    cityId: ''   // 城市id
   }
   componentDidMount() {
+    this.getCityName()
     this.getSWiperdata()
     this.getGroup()
     this.getNews()
-    this.getCityName()
   }
   // 循环渲染nav
   renderNavs(){
@@ -68,7 +69,7 @@ export default class Index extends React.Component{
   // 封装请求获取合租数据
   async getGroup(){
     const { data } = await API({
-      url: '/home/groups?area=AREA%7C88cff55c-aaa4-e2e0'
+      url: `/home/groups?area=${this.state.cityId}`
     })
     this.setState({
       Group: data.body
@@ -77,7 +78,7 @@ export default class Index extends React.Component{
   // 分装请求获取最新资讯数据
   async getNews(){
     const { data } = await API({
-      url: '/home/news?area=AREA%7C88cff55c-aaa4-e2e0'
+      url: `/home/news?area=${this.state.cityId}`
     })
     this.setState({
       News: data.body
@@ -91,7 +92,8 @@ export default class Index extends React.Component{
     //   console.log(res)
     //   const cityName = res.name
       this.setState({
-        cityName: mycity.label
+        cityName: mycity.label,
+        cityId: mycity.value
       })
     // })
   }
