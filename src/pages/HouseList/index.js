@@ -88,11 +88,14 @@ export default class HouseList extends React.Component{
   }
   // 当前数据是否加载完成
   isRowLoaded= ({ index })=> {
+    // !! 表示返回布尔值
     return !!this.state.list[index];
   }
   // 加载更多
   loadMoreRows= ({ startIndex, stopIndex }) => {
-    console.log('加载更多。。。。。')
+    // 要求必须返回ProMise对象
+    // startIndex 是请求更多的开始索引 stopIndex 是请求更多的结束索引
+    // 默认每次请求10条
     return new Promise(async (resolve, reject)=>{
       const city = await getCurrentCity()
       const { data } = await API({
