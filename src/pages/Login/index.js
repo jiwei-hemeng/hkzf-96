@@ -9,7 +9,7 @@ import styles from './index.module.css'
 
 import { API } from '../../utils/API'
 
-import { Formik, withFormik, ErrorMessage, Form, Field } from 'formik'
+import { withFormik, ErrorMessage, Form, Field } from 'formik'
 
 // 导入yup
 import * as Yup from 'yup'
@@ -20,7 +20,7 @@ import * as Yup from 'yup'
 
 class Login extends Component {
   render() {
-    let { values, handleChange, handleSubmit, errors} = this.props
+    let { errors} = this.props
     return (
       <div className={styles.root}>
         {/* 顶部导航 */}
@@ -74,7 +74,6 @@ export default withFormik({
   },
   // 默认相当于提交事件
   handleSubmit: async (value, { props })=>{
-    console.log('配置的提交函数')
     Toast.loading('正在登录中...', 0)
     const { data } = await API({
       method: 'POST',
