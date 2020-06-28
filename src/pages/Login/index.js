@@ -9,7 +9,7 @@ import styles from './index.module.css'
 
 import { API } from '../../utils/API'
 
-import { Formik, withFormik } from 'formik'
+import { Formik, withFormik, ErrorMessage, Form, Field } from 'formik'
 
 // 导入yup
 import * as Yup from 'yup'
@@ -29,34 +29,22 @@ class Login extends Component {
 
         {/* 登录表单 */}
         <WingBlank>
-          <form onSubmit={ handleSubmit }>
+          <Form>
             <div className={styles.formItem}>
-              <input
-                value={ values.username }
-                onChange = { handleChange }
-                className={styles.input}
-                name="username"
-                placeholder="请输入账号"
-              />
+              {/* 相当于input */}
+              <Field type="text" name="username" className={styles.input} placeholder="请输入账号"/>
             </div>
-            {/* 长度为5到8位，只能出现数字、字母、下划线 */}
             {
-              errors.username ? <div className={styles.error}>{ errors.username }</div> : null
+              errors.username ? <ErrorMessage component="div" name="username" className={styles.error} /> : null
             }
             {/* <div className={styles.error}>账号为必填项</div> */}
             <div className={styles.formItem}>
-              <input
-                value={ values.password }
-                onChange= { handleChange }
-                className={styles.input}
-                name="password"
-                type="password"
-                placeholder="请输入密码"
-              />
+              <Field type="password" name="password" className={styles.input} placeholder="请输入密码"/>
             </div>
             {/* 长度为5到12位，只能出现数字、字母、下划线 */}
+            
             {
-              errors.password ? <div className={styles.error}>{ errors.password }</div> : null
+              errors.password ? <ErrorMessage component="div" name="password" className={styles.error} /> : null
             }
             {/* <div className={styles.error}>账号为必填项</div> */}
             <div className={styles.formSubmit}>
@@ -64,7 +52,7 @@ class Login extends Component {
                 登 录
               </button>
             </div>
-          </form>
+          </Form>
           <Flex className={styles.backHome}>
             <Flex.Item>
               <Link to="/registe">还没有账号，去注册~</Link>
