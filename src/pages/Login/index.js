@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Flex, WingBlank, WhiteSpace } from 'antd-mobile'
+import { Flex, WingBlank, WhiteSpace, Toast } from 'antd-mobile'
 
 import { Link } from 'react-router-dom'
 
@@ -30,6 +30,7 @@ class Login extends Component {
   }
   formSubmit = async (e) => {
     e.preventDefault()
+    Toast.loading('正在登录中...', 0)
     const { data } = await API({
       method: 'POST',
       url: '/user/login',
@@ -38,7 +39,13 @@ class Login extends Component {
         password: this.state.password
       }
     })
-    console.log(data)
+    Toast.hide()
+    if(data.status === 200){
+      Toast.success('登录成功哦~~', 2)
+      localStorage.setItem('my-token', data.body.token)
+    }else{
+      Toast.fail('登录失败~~', 2)
+    }
   }
   render() {
     return (
