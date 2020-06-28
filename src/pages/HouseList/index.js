@@ -68,7 +68,14 @@ export default class HouseList extends React.Component{
       )
     }
     return (
-      <div key={key} style={style} className={styles.house}>
+      <div
+        key={key}
+        style={style}
+        className={styles.house}
+        onClick={()=>{
+          this.props.history.push('/detail/' + house.houseCode)
+        }}
+      >
         <div className={styles.imgWrap}>
           <img className={styles.img} src={`http://api-haoke-dev.itheima.net${house.houseImg}`} alt="" />
         </div>
