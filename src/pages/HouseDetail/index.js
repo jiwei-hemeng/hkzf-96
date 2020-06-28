@@ -97,12 +97,6 @@ export default class HouseDetail extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
-    
-    this.renderMap('天山星城', {
-      latitude: '31.219228',
-      longitude: '121.391768'
-    })
     this.getHouseDetail()
   }
   async getHouseDetail(){
@@ -111,6 +105,15 @@ export default class HouseDetail extends Component {
       url: '/houses/' + id
     })
     console.log(data)
+    this.renderMap(data.body.community, {
+      latitude: data.body.coord.latitude,
+      longitude: data.body.coord.longitude
+    })
+    this.setState({
+      houseInfo:{
+        slides: data.body.houseImg
+      }
+    })
   }
 
   // 渲染轮播图结构
@@ -119,9 +122,9 @@ export default class HouseDetail extends Component {
       houseInfo: { slides }
     } = this.state
 
-    return slides.map(item => (
+    return slides.map((item, index) => (
       <a
-        key={item.id}
+        key={index}
         href="http://itcast.cn"
         style={{
           display: 'inline-block',
@@ -130,7 +133,7 @@ export default class HouseDetail extends Component {
         }}
       >
         <img
-          src={baseURL + item.imgSrc}
+          src={baseURL + item}
           alt=""
           style={{ width: '100%', verticalAlign: 'top' }}
         />
