@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Map from './pages/Map'
 // 导入城市选择组件
 import CityList from './pages/citylist'
+import Detail from './pages/HouseDetail'
 export default class App extends React.Component{
   render(){
     return <BrowserRouter>
@@ -17,6 +18,7 @@ export default class App extends React.Component{
         <Route exact path="/map" component={ Map }></Route>
         <Route exact path="/citylist" component={ CityList }></Route>
         <Route path="/home" component={ Home }></Route>
+        <Route path="/detail/:id" component={ Detail }></Route>
         
         {/* 路由重定向 */}
         <Route exact path="/" render={(props)=>{
