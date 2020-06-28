@@ -7,6 +7,8 @@ import NavHeader from '../../components/NavHeader'
 
 import styles from './index.module.css'
 
+import { API } from '../../utils/API'
+
 // 验证规则：
 // const REG_UNAME = /^[a-zA-Z_\d]{5,8}$/
 // const REG_PWD = /^[a-zA-Z_\d]{5,12}$/
@@ -26,6 +28,18 @@ class Login extends Component {
       password: e.target.value
     })
   }
+  formSubmit = async (e) => {
+    e.preventDefault()
+    const { data } = await API({
+      method: 'POST',
+      url: '/user/login',
+      data: {
+        username: this.state.username,
+        password: this.state.password
+      }
+    })
+    console.log(data)
+  }
   render() {
     return (
       <div className={styles.root}>
@@ -35,7 +49,7 @@ class Login extends Component {
 
         {/* 登录表单 */}
         <WingBlank>
-          <form>
+          <form onSubmit={ this.formSubmit }>
             <div className={styles.formItem}>
               <input
                 value={ this.state.username }
