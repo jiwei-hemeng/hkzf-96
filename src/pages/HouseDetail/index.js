@@ -9,6 +9,7 @@ import HousePackage from '../../components/HousePackage'
 import { baseURL } from '../../utils/baseURL'
 
 import styles from './index.module.css'
+import { API } from '../../utils/API'
 
 // 猜你喜欢
 const recommendHouses = [
@@ -96,10 +97,20 @@ export default class HouseDetail extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
+    
     this.renderMap('天山星城', {
       latitude: '31.219228',
       longitude: '121.391768'
     })
+    this.getHouseDetail()
+  }
+  async getHouseDetail(){
+    let id = this.props.match.params.id
+    const { data } = await API({
+      url: '/houses/' + id
+    })
+    console.log(data)
   }
 
   // 渲染轮播图结构
@@ -156,8 +167,8 @@ export default class HouseDetail extends Component {
         <NavHeader
           className={styles.navHeader}
           rightContent={[<i key="share" className="iconfont icon-share" />]}
+          title={'天山星城'}
         >
-          天山星城
         </NavHeader>
 
         {/* 轮播图 */}
