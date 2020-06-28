@@ -9,15 +9,45 @@ import styles from './index.module.css'
 
 import { API } from '../../utils/API'
 
-import { Formik, withFormik } from 'formik'
-
 // 验证规则：
 // const REG_UNAME = /^[a-zA-Z_\d]{5,8}$/
 // const REG_PWD = /^[a-zA-Z_\d]{5,12}$/
 
 class Login extends Component {
+  state = {
+    username: '',
+    password: ''
+  }
+  setUserName =(e) => {
+    this.setState({
+      username: e.target.value
+    })
+  }
+  setPassWord = e => {
+    this.setState({
+      password: e.target.value
+    })
+  }
+  formSubmit = async (e) => {
+    e.preventDefault()
+    Toast.loading('正在登录中...', 0)
+    const { data } = await API({
+      method: 'POST',
+      url: '/user/login',
+      data: {
+        username: this.state.username,
+        password: this.state.password
+      }
+    })
+    Toast.hide()
+    if(data.status === 200){
+      Toast.success('登录成功哦~~', 2)
+      localStorage.setItem('my-token', data.body.token)
+    }else{
+      Toast.fail('登录失败~~', 2)
+    }
+  }
   render() {
-    let { values, handleChange, handleSubmit} = this.props
     return (
       <div className={styles.root}>
         {/* 顶部导航 */}
@@ -26,11 +56,11 @@ class Login extends Component {
 
         {/* 登录表单 */}
         <WingBlank>
-          <form onSubmit={ handleSubmit }>
+          <form onSubmit={ this.formSubmit }>
             <div className={styles.formItem}>
               <input
-                value={ values.username }
-                onChange = { handleChange }
+                value={ this.state.username }
+                onChange = { this.setUserName }
                 className={styles.input}
                 name="username"
                 placeholder="请输入账号"
@@ -40,8 +70,8 @@ class Login extends Component {
             {/* <div className={styles.error}>账号为必填项</div> */}
             <div className={styles.formItem}>
               <input
-                value={ values.password }
-                onChange= { handleChange }
+                value={ this.state.password }
+                onChange= { this.setPassWord }
                 className={styles.input}
                 name="password"
                 type="password"
@@ -67,30 +97,4 @@ class Login extends Component {
   }
 }
 
-export default withFormik({
-  mapPropsToValues: ()=>{
-    return {
-      username: '',
-      password: ''
-    }
-  },
-  handleSubmit: async (value, { props })=>{
-    console.log('配置的提交函数')
-    Toast.loading('正在登录中...', 0)
-    const { data } = await API({
-      method: 'POST',
-      url: '/user/login',
-      data: {
-        username: value.username,
-        password: value.password
-      }
-    })
-    Toast.hide()
-    if(data.status === 200){
-      Toast.success('登录成功哦~~', 2)
-      localStorage.setItem('my-token', data.body.token)
-    }else{
-      Toast.fail('登录失败~~', 2)
-    }
-  }
-})(Login)
+export default Login
