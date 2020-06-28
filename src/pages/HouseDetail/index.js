@@ -99,19 +99,25 @@ export default class HouseDetail extends Component {
   componentDidMount() {
     this.getHouseDetail()
   }
+  // 请求获取房源的详细信息
   async getHouseDetail(){
+    // 获取请求参数
     let id = this.props.match.params.id
     const { data } = await API({
       url: '/houses/' + id
     })
-    console.log(data)
+    // 渲染地图
     this.renderMap(data.body.community, {
       latitude: data.body.coord.latitude,
       longitude: data.body.coord.longitude
     })
     this.setState({
       houseInfo:{
-        slides: data.body.houseImg
+        community: data.body.community,
+        slides: data.body.houseImg,
+        title: data.body.title,
+        price: data.body.price,
+        size: data.body.size
       }
     })
   }
@@ -170,7 +176,7 @@ export default class HouseDetail extends Component {
         <NavHeader
           className={styles.navHeader}
           rightContent={[<i key="share" className="iconfont icon-share" />]}
-          title={'天山星城'}
+          title={ this.state.houseInfo.community }
         >
         </NavHeader>
 
@@ -188,7 +194,7 @@ export default class HouseDetail extends Component {
         {/* 房屋基础信息 */}
         <div className={styles.info}>
           <h3 className={styles.infoTitle}>
-            整租 · 精装修，拎包入住，配套齐Q，价格优惠
+            { this.state.houseInfo.title }
           </h3>
           <Flex className={styles.tags}>
             <Flex.Item>
@@ -201,7 +207,7 @@ export default class HouseDetail extends Component {
           <Flex className={styles.infoPrice}>
             <Flex.Item className={styles.infoPriceItem}>
               <div>
-                8500
+                {this.state.houseInfo.price}
                 <span className={styles.month}>/月</span>
               </div>
               <div>租金</div>
@@ -211,7 +217,7 @@ export default class HouseDetail extends Component {
               <div>房型</div>
             </Flex.Item>
             <Flex.Item className={styles.infoPriceItem}>
-              <div>78平米</div>
+              <div>{ this.state.houseInfo.size }平米</div>
               <div>面积</div>
             </Flex.Item>
           </Flex>
