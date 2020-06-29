@@ -24,13 +24,29 @@
         }
     }
     ```
-- 请求方式有哪些？
+  
+- 请求方式有以下几种：
   - GET
   - POST
   - DELETE
   - PUT（完整修改）
   - PATCH（局部修改）
--  GET和POST有什么区别？
+  
+-  HTTPS和HTTP的区别主要如下：
+  
+  - http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。
+  - http和https使用的是完全不同的连接方式
+  - 用的端口也不一样，http是80，https是443。
+  - http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
+  
+- TCP协议的三次握手
+
+  - 客户端发送了一个带有SYN的Tcp报文到服务器，表示客户端想要和服务端建立连接
+  - 服务端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK标志，询问客户端是否准备好。
+  - 客户端再次响应服务端一个ACK，表示我已经准备好
+
+-  GET和POST的区别：
+  
   - 本质上：GET 一般只是获取服务端数据；POST 可以修改服务端数据
   - 安全上：POST比GET安全
   - 传输数据量上：POST没有限制，而GET有限制
@@ -38,24 +54,27 @@
 - 常见的模板引擎
   - 百度的`template`
   - 腾讯的`art-template`
-- 同源策略
-  - 以下三个不一致就会有同源策略
-    - 协议
-    - 域名
-    - 端口号
+  
+- 同源策略及产生的影响
+  
+  如果协议、域名、端口号不一致时就会非同源，就会阻止dom获取和操作，无法发送Ajax请求
+  
 - 如何解决跨域
   -  Jsonp
   - cors
   - 服务端代理
+  
 - Jsonp 的原理和特点是什么
   - 原理
     - img,script,这种标签如果有相应的src，那么便会发起一个htttp请求来请求相应的资源,如果有script标签对应的路径是一个js文件，那么在下载完毕这个js之后会马上执行
   - 特点
     - 只能发送get请求
     - 需要后台配合
+  
 - http协议是什么？
   - 首先有客服端发起http请求
   - 服务器收到客服端的请求后处理数据，然后将结果返回给客户端
+  
 -  状态码及其代表的意义
   - 200 表示请求成功
   - 401 身份认证失败
@@ -226,10 +245,74 @@
   - *push()* 追加数组元素，将其放在数组的最后一个位置，并增加数组的长度
   - *pop()* 数组末尾移除最后一项，减少数组的 length 值，然后返回移除的项。
   - *shift()* 删除原数组第一项，并返回删除元素的值；如果数组为空则返回undefined 。
-  - *unshift* 将参数添加到原数组开头，并返回数组的长度 。
+  - *unshift()* 将参数添加到原数组开头，并返回数组的长度 。
   - *splice(index, length)* 删除数组中的元素，参数一：删除的开始位置，参数二：删除数组元素的条目数
   - *forEach()* 对数组进行遍历循环，对数组中的每一项运行给定函数。这个方法没有返回值。参数都是function类型，默认有传参，参数分别为：遍历的数组内容；第对应的数组索引，数组本身。
   - *map()* 循环遍历数组 参数是一个函数，该函数的第一个参数是item表示遍历项目，第二个参数是遍历项的索引,第三个参数循环项本身
+
+- 字符串常用的方法
+
+    - *split()* 用于将字符串按照某个分隔符分隔，得到一个数组
+
+        ```js
+        var myStr = "I,Love,You,Do,you,love,me";
+        var substrArray = myStr .split(",");     // ["I", "Love", "You", "Do", "you", "love", "me"];
+        ```
+
+    - *str.length()* 用于计算字符串长度
+
+    - *indexOf()* 用于查找某个字符在字符串中的位置
+
+    - 常用的转换为大写或者小写字符串函数，如下：
+
+        ```js
+        var myStr = "I,love,you,Do,you,love,me";
+        var lowCaseStr = myStr.toLowerCase();
+        //"i,love,you,do,you,love,me";
+        var upCaseStr = myStr.toUpperCase();
+        //"I,LOVE,YOU,DO,YOU,LOVE,ME"
+        ```
+
+    - *字符串切割和提取*
+
+        有三种可以从字符串中抽取和切割的方法，如：
+
+        第一种，使用slice():
+
+        ```js
+        var myStr = "I,love,you,Do,you,love,me";
+        var subStr = myStr.slice(1,5);//",lov"
+        ```
+
+        第二种，使用substring():
+
+        ```js
+        var myStr = "I,love,you,Do,you,love,me";
+        var subStr = myStr.substring(1,5); //",lov"
+        ```
+
+        第三种，使用substr():
+
+        ```js
+        var myStr = "I,love,you,Do,you,love,me";
+        var subStr = myStr.substr(1,5); //",love"
+        ```
+
+        与第一种和第二种不同的是，substr()第二个参数代表截取的字符串最大长度，如上结果所示
+
+    - *replace()* 用于字符串的替换
+
+        ```js
+        var myStr = "I,love,you,Do,you,love,me";
+        var replacedStr = myStr.replace(/love/g,"hate");
+        ```
+
+    - *charAt(8)* 查找给定位置的字符或其字符编码值
+
+      ```js
+      var myStr = "I,love,you,Do,you,love,me";
+      var theChar = myStr.charAt(8);// "o",同样从0开始
+      ```
 
 -  数组的反转方法是什么
 
@@ -480,7 +563,7 @@
 ## react
 
 - 原理
-  - 虚拟dom 它是一个js对象，它和页面真是dom一一对应。react会在页面加载时自动在内存中生成虚拟dom，根据虚拟dom会在页面生成真实的dom
+  - 虚拟dom 它是一个js对象，它和页面真实dom一一对应。react会在页面加载时自动在内存中生成虚拟dom，根据虚拟dom会在页面生成真实的dom
   - diff算法，它会一层一层、一级一级的比较，如果发现不同将不会在继续进行比较，而是直接更新其组件、及其后代组件
 - react的生命周期
   - 创建时
