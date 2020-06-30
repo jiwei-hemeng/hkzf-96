@@ -7,6 +7,8 @@ import { baseURL } from '../../utils/baseURL'
 
 import styles from './index.module.css'
 
+import { isAuto } from '../../utils/token'
+
 // 菜单数据
 const menus = [
   { id: 1, name: '我的收藏', iconfont: 'icon-coll', to: '/favorate' },
@@ -21,6 +23,9 @@ const menus = [
 const DEFAULT_AVATAR = baseURL + '/img/profile/avatar.png'
 
 export default class Profile extends Component {
+  state = {
+    isLogin: isAuto()
+  }
   render() {
     const { history } = this.props
 
@@ -39,30 +44,37 @@ export default class Profile extends Component {
             </div>
             <div className={styles.user}>
               <div className={styles.name}>游客</div>
-              {/* 登录后展示： */}
-              {/* <>
-                <div className={styles.auth}>
-                  <span onClick={this.logout}>退出</span>
-                </div>
+              {
+                this.state.isLogin
+                ?
+                <>
+                  <div className={styles.auth}>
+                    <span onClick={this.logout}>退出</span>
+                  </div>
+                  <div className={styles.edit}>
+                    编辑个人资料
+                    <span className={styles.arrow}>
+                      <i className="iconfont icon-arrow" />
+                    </span>
+                  </div>
+                </>
+                :
                 <div className={styles.edit}>
-                  编辑个人资料
-                  <span className={styles.arrow}>
-                    <i className="iconfont icon-arrow" />
-                  </span>
+                  <Button
+                    type="primary"
+                    size="small"
+                    inline
+                    onClick={() => history.push('/login')}
+                  >
+                    去登录
+                  </Button>
                 </div>
-              </> */}
+              }
+              {/* 登录后展示： */}
+              {/*  */}
 
               {/* 未登录展示： */}
-              <div className={styles.edit}>
-                <Button
-                  type="primary"
-                  size="small"
-                  inline
-                  onClick={() => history.push('/login')}
-                >
-                  去登录
-                </Button>
-              </div>
+              
             </div>
           </div>
         </div>

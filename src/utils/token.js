@@ -1,11 +1,11 @@
 // 新建token
 const setToken = (token) => {
-  localStorage.setItem("my-token", JSON.stringify(token))
+  localStorage.setItem("my-token", token)
 }
 
 // 获取token
 const getToken = () => {
-  return JSON.parse( localStorage.getItem("my-token"))
+  return localStorage.getItem("my-token")
 }
 
 // 移除token
