@@ -22,7 +22,7 @@ export default class App extends React.Component{
         <Route path="/home" component={ Home }></Route>
         <Route path="/login" component={ Login }></Route>
         <Route path="/detail/:id" component={ Detail }></Route>
-        <AuthRoute path="/rent" exact={true} route={Rent}></AuthRoute>
+        <AuthRoute path="/rent" exact={true} Page={Rent}></AuthRoute>
         
         {/* 路由重定向 */}
         <Route exact path="/" render={(props)=>{

@@ -3,14 +3,15 @@ import { Route, Redirect } from 'react-router-dom'
 import { isAuto } from '../../utils/token'
 export default class index extends Component {
   render() {
-    const { path, exact, route } = this.props
+    const { path, exact, Page } = this.props
     return (
       <Route
         path={path}
         exact={exact}
         render={(props)=>{
           if(isAuto()){
-            return <route></route>
+            // 封装以后必须先张开props然后传给相应的页面
+            return <Page {...props}></Page>
           }
           return <Redirect to="/login"></Redirect>
         }}
