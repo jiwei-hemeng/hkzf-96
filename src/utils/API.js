@@ -1,6 +1,6 @@
 // 导入axios 模块
 import axios from 'axios'
-import { getToken } from './token'
+import { getToken, removeToken } from './token'
 
 // 导入baseURL
 import { baseURL } from './baseURL.js'
@@ -19,7 +19,10 @@ API.interceptors.request.use(config => {
 
 // 响应拦截器 常用来处理错误的请求
 API.interceptors.response.use(response => {
-  console.log(response)
+  if (response.data.status === 400) {
+    // 移除 token
+    removeToken()
+  }
   return response
 })
 
