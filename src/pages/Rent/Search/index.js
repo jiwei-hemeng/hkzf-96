@@ -15,21 +15,31 @@ export default class Search extends Component {
     searchTxt: '',
     tipsList: []
   }
-
+  
   // 获取搜索列表数据
   getSearchList = async (val) => {
     this.setState({
       searchTxt: val
     })
+    if(!val){
+      return this.setState({
+        tipsList: []
+      })
+    }
     const { value } = await getCurrentCity()
-    const res = await API({
-      url: '/area/community',
-      params: {
-        name: val,
-        id: value
-      }
-    })
-    console.log( res )
+    window.clearTimeout(this.timer)
+    this.timer = setTimeout(async () => {
+      const { data } = await API({
+        url: '/area/community',
+        params: {
+          name: val,
+          id: value
+        }
+      })
+      this.setState({
+        tipsList: data.body
+      })
+    }, 300);
   }
 
   // 渲染搜索结果列表

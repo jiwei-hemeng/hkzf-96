@@ -80,7 +80,7 @@ export default class Rent extends Component {
 
     return (
       <div className={styles.root}>
-        <NavHeader onLeftClick={() => history.go(-1)}>房屋管理</NavHeader>
+        <NavHeader onLeftClick={() => history.go(-1)} title={'房屋管理'}></NavHeader>
 
         {this.renderRentList()}
       </div>

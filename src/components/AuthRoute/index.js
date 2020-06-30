@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { isAuto } from '../../utils/token'
-export default class index extends Component {
+export default class AuthRoute extends Component {
   render() {
     const { path, exact, Page } = this.props
     return (

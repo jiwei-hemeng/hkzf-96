@@ -25,7 +25,30 @@
     }
     ```
   
+- axios 的拦截器
+  
+  ```js
+  // 请求拦截器 常用来添加token
+  API.interceptors.request.use(config => {
+  
+    if(config.url.startsWith('/user') && config.url !== '/user/registered' && config.url !== '/user/login'){
+      config.headers.authorization = getToken()
+    }
+    return config
+  })
+  
+  // 响应拦截器 常用来处理错误的请求
+  API.interceptors.response.use(response => {
+    if (response.data.status === 400) {
+      // 移除 token
+      removeToken()
+    }
+    return response
+  })
+  ```
+  
 - 请求方式有以下几种：
+  
   - GET
   - POST
   - DELETE
@@ -508,7 +531,21 @@
     - 子组件：$emit(‘字定义事件名’，值)
     - 父组件：v-on绑定该自定义事件
   
+- *vue-router*  提供的导航守卫主要用来通过跳转或取消的方式守卫导航
+  
+  ```js
+  beforeRouteLeave (to, from, next) {
+    const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+    if (answer) {
+      next()
+    } else {
+      next(false)
+    }
+  }
+  ```
+  
 - Vue的生命周期
+  
   - BeforeCreate 实例创建之前
   -  Created 实例创建完成
   - BeforeMount 渲染模板之前
@@ -565,11 +602,39 @@
 - 原理
   - 虚拟dom 它是一个js对象，它和页面真实dom一一对应。react会在页面加载时自动在内存中生成虚拟dom，根据虚拟dom会在页面生成真实的dom
   - diff算法，它会一层一层、一级一级的比较，如果发现不同将不会在继续进行比较，而是直接更新其组件、及其后代组件
+  
+- 鉴定路由 **AuthRoute**
+
+  ```js
+  import React, { Component } from 'react'
+  import { Route, Redirect } from 'react-router-dom'
+  // 导入获取token的文件
+  import { isAuto } from '../../utils/token'
+  export default class AuthRoute extends Component {
+    render() {
+      const { path, exact, Page } = this.props
+      return (
+        <Route
+          path={path}
+          exact={exact}
+          render={(props)=>{
+            if(isAuto()){
+              // 封装以后必须先张开props然后传给相应的页面
+              return <Page {...props}></Page>
+            }
+            return <Redirect to="/login"></Redirect>
+          }}
+        ></Route>
+      )
+    }
+  }
+  ```
+
 - react的生命周期
   - 创建时
     - *constructor()*
       - 初始化state
-      - 为事件处理程序绑定this
+      - 为事件处理程序绑定 *this*
     - *render()*
       - 加载到内存上
     - *componentDidMount()*

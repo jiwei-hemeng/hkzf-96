@@ -28,7 +28,7 @@ export default class Profile extends Component {
   state = {
     isLogin: isAuto(),
     userInfo: {
-      avatar: '',
+      avatar: null,
       nickname: ''
     }
   }

@@ -108,7 +108,7 @@ export default class RentAdd extends Component {
 
     return (
       <div className={styles.root}>
-        <NavHeader onLeftClick={this.onCancel}>发布房源</NavHeader>
+        <NavHeader onLeftClick={this.onCancel} title={'发布房源'}></NavHeader>
 
         <List
           className={styles.header}
