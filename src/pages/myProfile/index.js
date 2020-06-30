@@ -32,6 +32,21 @@ export default class Profile extends Component {
       nickname: ''
     }
   }
+  componentDidMount(){
+    this.getUserInfo()
+  }
+  async getUserInfo(){
+    const { data } = await API({
+      url: '/user'
+    })
+    console.log(data)
+    this.setState({
+      userInfo: {
+        avatar: data.body.avatar,
+        nicknamea: data.body.nickname
+      }
+    })
+  }
   logout=()=>{
     Modal.alert('删除提示', '要离开吗？你好狠心啊~~', [
       {
@@ -57,7 +72,8 @@ export default class Profile extends Component {
   }
   render() {
     const { history } = this.props
-
+    const { userInfo } = this.state
+    console.log(userInfo)
     return (
       <div className={styles.root}>
         {/* 个人信息 */}
@@ -69,10 +85,10 @@ export default class Profile extends Component {
           />
           <div className={styles.info}>
             <div className={styles.myIcon}>
-              <img className={styles.avatar} src={DEFAULT_AVATAR} alt="icon" />
+              <img className={styles.avatar} src={this.state.userInfo.avatar || DEFAULT_AVATAR} alt="icon" />
             </div>
             <div className={styles.user}>
-              <div className={styles.name}>游客</div>
+              <div className={styles.name}> { userInfo.nicknamea || '游客'}</div>
               {
                 this.state.isLogin
                 ?
