@@ -115,7 +115,7 @@
 - 清除浮动
 
   ```css
-  .clearfix::afer {
+  .clearfix::after {
       content: "";
       display: block;
       clear: both;
