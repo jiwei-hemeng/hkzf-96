@@ -15,6 +15,8 @@ import Detail from './pages/HouseDetail'
 import AuthRoute from './components/AuthRoute'
 // 导入rent组件
 import Rent from './pages/Rent'
+import RentAdd from './pages/Rent/Add'
+import RentSearch from './pages/Rent/Search'
 export default class App extends React.Component{
   render(){
     return <BrowserRouter>
@@ -26,6 +28,8 @@ export default class App extends React.Component{
         <Route path="/login" component={ Login }></Route>
         <Route path="/detail/:id" component={ Detail }></Route>
         <AuthRoute path="/rent" exact={true} Page={Rent}></AuthRoute>
+        <AuthRoute path="/rent/search" exact={true} Page={RentSearch}></AuthRoute>
+        <AuthRoute path="/rent/add" exact={true} Page={RentAdd}></AuthRoute>
         
         {/* 路由重定向 */}
         <Route exact path="/" render={(props)=>{

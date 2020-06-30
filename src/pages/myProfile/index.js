@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
-import { Grid, Button, Modal, Toast } from 'antd-mobile'
+import { Grid, Button, Modal } from 'antd-mobile'
 
 import { baseURL } from '../../utils/baseURL'
 
 import styles from './index.module.css'
 
-import { isAuto, getToken, removeToken } from '../../utils/token'
+import { isAuto, removeToken } from '../../utils/token'
 
 import { API } from '../../utils/API'
 
