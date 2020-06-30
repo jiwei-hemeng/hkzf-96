@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
-import { Grid, Button } from 'antd-mobile'
+import { Grid, Button, Modal } from 'antd-mobile'
 
 import { baseURL } from '../../utils/baseURL'
 
@@ -25,6 +25,16 @@ const DEFAULT_AVATAR = baseURL + '/img/profile/avatar.png'
 export default class Profile extends Component {
   state = {
     isLogin: isAuto()
+  }
+  logout(){
+    Modal.alert('删除提示', '要离开吗？你好狠心啊~~', [
+      {
+        text: '取消', onPress: () => console.log('cancel'), style: 'default' 
+      },
+      { 
+        text: '确定', onPress: () => console.log('ok') 
+      }
+    ]);
   }
   render() {
     const { history } = this.props

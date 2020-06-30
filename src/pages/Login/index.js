@@ -87,6 +87,7 @@ export default withFormik({
     if(data.status === 200){
       Toast.success('登录成功哦~~', 2)
       localStorage.setItem('my-token', data.body.token)
+      props.history.go(-1)
     }else{
       Toast.fail('登录失败~~', 2)
     }
