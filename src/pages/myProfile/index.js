@@ -41,10 +41,7 @@ export default class Profile extends Component {
         text: '确定', onPress: async () => {
           const { data } = await API({
             method: 'POST',
-            url: '/user/logout',
-            headers: {
-              authorization: getToken()
-            }
+            url: '/user/logout'
           })
           if(data.status === 200){
             // 本地退出
