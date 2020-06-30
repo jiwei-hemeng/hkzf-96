@@ -11,7 +11,10 @@ import Map from './pages/Map'
 import CityList from './pages/citylist'
 // 导入房源详情组件
 import Detail from './pages/HouseDetail'
+// 导入封装的鉴权路由
 import AuthRoute from './components/AuthRoute'
+// 导入rent组件
+import Rent from './pages/Rent'
 export default class App extends React.Component{
   render(){
     return <BrowserRouter>
