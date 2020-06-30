@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
-import { Grid, Button, Modal } from 'antd-mobile'
+import { Grid, Button, Modal, Toast } from 'antd-mobile'
 
 import { baseURL } from '../../utils/baseURL'
 
 import styles from './index.module.css'
 
-import { isAuto } from '../../utils/token'
+import { isAuto, getToken, removeToken } from '../../utils/token'
+
+import { API } from '../../utils/API'
 
 // 菜单数据
 const menus = [
@@ -24,15 +26,35 @@ const DEFAULT_AVATAR = baseURL + '/img/profile/avatar.png'
 
 export default class Profile extends Component {
   state = {
-    isLogin: isAuto()
+    isLogin: isAuto(),
+    userInfo: {
+      avatar: '',
+      nickname: ''
+    }
   }
-  logout(){
+  logout=()=>{
     Modal.alert('删除提示', '要离开吗？你好狠心啊~~', [
       {
-        text: '取消', onPress: () => console.log('cancel'), style: 'default' 
+        text: '取消', onPress: () => console.log('cancel'), style: 'default'
       },
       { 
-        text: '确定', onPress: () => console.log('ok') 
+        text: '确定', onPress: async () => {
+          const { data } = await API({
+            method: 'POST',
+            url: '/user/logout',
+            headers: {
+              authorization: getToken()
+            }
+          })
+          if(data.status === 200){
+            // 本地退出
+            removeToken()
+            this.setState({
+              isLogin: false,
+              userInfo: {}
+            })
+          }
+        } 
       }
     ]);
   }
