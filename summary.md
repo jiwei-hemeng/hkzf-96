@@ -494,6 +494,7 @@
   ```js
   class Student{
       constructor(name){
+          // 如果有super必须写在最强面
           this.name = name
       }
       doSth(){

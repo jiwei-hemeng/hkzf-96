@@ -39,7 +39,6 @@ export default class Profile extends Component {
     const { data } = await API({
       url: '/user'
     })
-    console.log(data)
     this.setState({
       userInfo: {
         avatar: data.body.avatar,
@@ -73,7 +72,6 @@ export default class Profile extends Component {
   render() {
     const { history } = this.props
     const { userInfo } = this.state
-    console.log(userInfo)
     return (
       <div className={styles.root}>
         {/* 个人信息 */}

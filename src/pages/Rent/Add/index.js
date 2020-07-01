@@ -138,6 +138,7 @@ export default class RentAdd extends Component {
     tempSlides.forEach((item, index)=>{
       fd.append('file',item.file)
     })
+    Toast.loading("正在加载...", 0)
     const { data } = await API({
       method: 'POST',
       url: '/houses/image',
@@ -165,7 +166,7 @@ export default class RentAdd extends Component {
         community: community.id
       }
     })
-    console.log(res)
+    Toast.hide()
     const { status } = res.data
     if (status === 400) {
       // 登录超时，提醒用户重新登录
