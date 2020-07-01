@@ -29,19 +29,18 @@
   
   ```js
   // 请求拦截器 常用来添加token
-  API.interceptors.request.use(config => {
-  
-    if(config.url.startsWith('/user') && config.url !== '/user/registered' && config.url !== '/user/login'){
-      config.headers.authorization = getToken()
+  axios.interceptors.request.use(config => {
+    if(config.url.startsWith('/user') && config.url !== '/user/login'){
+      config.headers.authorization = localStorage.getItem("token")
     }
     return config
   })
   
   // 响应拦截器 常用来处理错误的请求
-  API.interceptors.response.use(response => {
+  axios.interceptors.response.use(response => {
     if (response.data.status === 400) {
       // 移除 token
-      removeToken()
+      localStorage.getItem("token")
     }
     return response
   })
@@ -64,7 +63,7 @@
   
 - TCP协议的三次握手
 
-  - 客户端发送了一个带有SYN的Tcp报文到服务器，表示客户端想要和服务端建立连接
+  - 客户端发送了一个带有SYN的tcp报文到服务器，表示客户端想要和服务端建立连接
   - 服务端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK标志，询问客户端是否准备好。
   - 客户端再次响应服务端一个ACK，表示我已经准备好
 
@@ -534,14 +533,10 @@
 - *vue-router*  提供的导航守卫主要用来通过跳转或取消的方式守卫导航
   
   ```js
-  beforeRouteLeave (to, from, next) {
-    const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
-    if (answer) {
-      next()
-    } else {
-      next(false)
-    }
-  }
+  const router = new VueRouter({ ... })
+  router.beforeEach((to, from, next) => {
+    // to 表示去哪 from 表示来源 next表示放行
+  })
   ```
   
 - Vue的生命周期
