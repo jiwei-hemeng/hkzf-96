@@ -1,6 +1,7 @@
 // 导入axios 模块
 import axios from 'axios'
 import { getToken, removeToken } from './token'
+import { Toast } from 'antd-mobile'
 
 // 导入baseURL
 import { baseURL } from './baseURL.js'
@@ -22,6 +23,7 @@ API.interceptors.response.use(response => {
   if (response.data.status === 400) {
     // 移除 token
     removeToken()
+    Toast.success("token过期请重新登录...", 2)
   }
   return response
 })
