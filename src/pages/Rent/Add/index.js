@@ -7,7 +7,8 @@ import {
   Picker,
   ImagePicker,
   TextareaItem,
-  Modal
+  Modal,
+  Toast
 } from 'antd-mobile'
 
 import NavHeader from '../../../components/NavHeader'
@@ -120,8 +121,21 @@ export default class RentAdd extends Component {
   }
 
   addHouse=async ()=>{
+    const {
+      tempSlides,
+      title,
+      description,
+      oriented,
+      supporting,
+      price,
+      roomType,
+      size,
+      floor,
+      community
+    } = this.state
     let fd = new FormData()
-    this.state.tempSlides.forEach((item, index)=>{
+    if (tempSlides.length <= 0) return
+    tempSlides.forEach((item, index)=>{
       fd.append('file',item.file)
     })
     const { data } = await API({
@@ -132,11 +146,49 @@ export default class RentAdd extends Component {
         'Content-Type':'multipart/form-data'
       }
     })
-    this.setState({
-      houseImg: data.body.join('|')
-    },()=>{
-      console.log(this.state)
+
+    // 获取到上传图片的地址
+    let houseImg = data.body.join('|')
+    const res = await API({
+      url: '/user/houses',
+      method: 'POST',
+      data: {
+        houseImg,
+        title,
+        description,
+        oriented,
+        supporting,
+        price,
+        roomType,
+        size,
+        floor,
+        community: community.id
+      }
     })
+    console.log(res)
+    const { status } = res.data
+    if (status === 400) {
+      // 登录超时，提醒用户重新登录
+      Toast.info(
+        '登录超时，请重新登录',
+        2,
+        () => {
+          this.props.history.push('/login', {
+            from: this.props.location
+          })
+        },
+        false
+      )
+    } else {
+      Toast.info(
+        '发布成功',
+        1,
+        () => {
+          this.props.history.push('/rent')
+        },
+        false
+      )
+    }
   }
 
 
