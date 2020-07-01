@@ -14,6 +14,7 @@ import NavHeader from '../../../components/NavHeader'
 import HousePackge from '../../../components/HousePackage'
 
 import styles from './index.module.css'
+import { API } from '../../../utils/API'
 
 const alert = Modal.alert
 
@@ -84,7 +85,6 @@ export default class RentAdd extends Component {
   getcommunity(){
     const { state } = this.props.location
     if(state){
-      console.log(state)
       this.setState({
         community: {
           name: state.name,
@@ -119,8 +119,24 @@ export default class RentAdd extends Component {
     })
   }
 
-  addHouse=()=>{
-    console.log(this.state)
+  addHouse=async ()=>{
+    let fd = new FormData()
+    this.state.tempSlides.forEach((item, index)=>{
+      fd.append('file',item.file)
+    })
+    const { data } = await API({
+      method: 'POST',
+      url: '/houses/image',
+      data: fd,
+      headers: {
+        'Content-Type':'multipart/form-data'
+      }
+    })
+    this.setState({
+      houseImg: data.body.join('|')
+    },()=>{
+      console.log(this.state)
+    })
   }
 
 
