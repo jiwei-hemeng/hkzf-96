@@ -112,6 +112,13 @@ export default class RentAdd extends Component {
     })
   }
 
+  // 获取房子的图片
+  handleHouseImg =(files, operationType, index)=>{
+    this.setState({
+      tempSlides: files
+    })
+  }
+
   addHouse=()=>{
     console.log(this.state)
   }
@@ -227,6 +234,7 @@ export default class RentAdd extends Component {
             files={tempSlides}
             multiple={true}
             className={styles.imgpicker}
+            onChange={this.handleHouseImg}
           />
         </List>
 
