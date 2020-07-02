@@ -292,8 +292,8 @@
     - *split()* 用于将字符串按照某个分隔符分隔，得到一个数组
 
         ```js
-        var myStr = "I,Love,You,Do,you,love,me";
-        var substrArray = myStr .split(",");     // ["I", "Love", "You", "Do", "you", "love", "me"];
+        var myStr = "I,Love,You,Do,you,love,me"
+        var substrArray = myStr.split(",")    // ["I", "Love", "You", "Do", "you", "love", "me"];
         ```
 
     - *str.length()* 用于计算字符串长度
@@ -303,10 +303,10 @@
     - 常用的转换为大写或者小写字符串函数，如下：
 
         ```js
-        var myStr = "I,love,you,Do,you,love,me";
-        var lowCaseStr = myStr.toLowerCase();
-        //"i,love,you,do,you,love,me";
-        var upCaseStr = myStr.toUpperCase();
+        var myStr = "I,love,you,Do,you,love,me"
+        var lowCaseStr = myStr.toLowerCase()
+        //"i,love,you,do,you,love,me"
+        var upCaseStr = myStr.toUpperCase()
         //"I,LOVE,YOU,DO,YOU,LOVE,ME"
         ```
 
@@ -317,22 +317,22 @@
         第一种，使用slice():
 
         ```js
-        var myStr = "I,love,you,Do,you,love,me";
-        var subStr = myStr.slice(1,5);//",lov"
+        var myStr = "I,love,you,Do,you,love,me"
+        var subStr = myStr.slice(1,5)	//",lov"
         ```
 
         第二种，使用substring():
 
         ```js
-        var myStr = "I,love,you,Do,you,love,me";
-        var subStr = myStr.substring(1,5); //",lov"
+        var myStr = "I,love,you,Do,you,love,me"
+        var subStr = myStr.substring(1,5)	 //",lov"
         ```
 
         第三种，使用substr():
 
         ```js
-        var myStr = "I,love,you,Do,you,love,me";
-        var subStr = myStr.substr(1,5); //",love"
+        var myStr = "I,love,you,Do,you,love,me"
+        var subStr = myStr.substr(1,5)	 //",love"
         ```
 
         与第一种和第二种不同的是，substr()第二个参数代表截取的字符串最大长度，如上结果所示
@@ -340,15 +340,15 @@
     - *replace()* 用于字符串的替换
 
         ```js
-        var myStr = "I,love,you,Do,you,love,me";
-        var replacedStr = myStr.replace(/love/g,"hate");
+        var myStr = "I,love,you,Do,you,love,me"
+        var replacedStr = myStr.replace(/love/g,"hate")
         ```
 
     - *charAt(8)* 查找给定位置的字符或其字符编码值
 
       ```js
-      var myStr = "I,love,you,Do,you,love,me";
-      var theChar = myStr.charAt(8);// "o",同样从0开始
+      var myStr = "I,love,you,Do,you,love,me"
+      var theChar = myStr.charAt(8)		// "o",同样从0开始
       ```
 
 -  数组的反转方法是什么

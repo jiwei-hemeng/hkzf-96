@@ -39,12 +39,14 @@ export default class Profile extends Component {
     const { data } = await API({
       url: '/user'
     })
-    this.setState({
-      userInfo: {
-        avatar: data.body.avatar,
-        nicknamea: data.body.nickname
-      }
-    })
+    if(data.status === 200) {
+      this.setState({
+        userInfo: {
+          avatar: data.body.avatar,
+          nicknamea: data.body.nickname
+        }
+      })
+    }
   }
   logout=()=>{
     Modal.alert('删除提示', '要离开吗？你好狠心啊~~', [
