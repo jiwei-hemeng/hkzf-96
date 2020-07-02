@@ -9,10 +9,6 @@
 3. redux基于Flux架构模式的具体产物
 4. redux可以用来做统一的数据管理
 
-**react-redux** 数据流程图
-
-### ![img](https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=743793422,3600976729&fm=26&gp=0.jpg)
-
 ## 安装
 
 ```shell
