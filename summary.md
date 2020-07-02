@@ -43,6 +43,16 @@
   })
   ```
   
+- axios 基础地址的配置
+  
+  ```js
+  // 导入axios 模块
+  import axios from 'axios'
+  let API = axios.create({
+    baseURL: 'xx.com'
+  })
+  ```
+  
 - 请求方式有以下几种：
   
   - GET
