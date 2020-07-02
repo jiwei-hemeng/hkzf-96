@@ -23,9 +23,7 @@ npm i react-redux redux -S
 import { createStore } from 'redux'
 import Reducer from './reducer.js'
 let state = {
-  num1: 10,
-  num2: 20,
-  num3: 30
+  num: 10
 }
 let store = createStore(Reducer, state)
 export default store
@@ -40,7 +38,7 @@ const Reducer = (state, action) => {
   switch (action.type) {
     case 'add':
       const newState = {...state}
-      newState += action
+      newState.num += action.value
       return newstate
     default:
       return state
@@ -56,6 +54,7 @@ export default Reducer
 ```js
 import React from 'react'
 import ReactDOM from 'react-dom'
+// 导入react-redux需要的文件
 import { Provider } from 'react-redux'
 import store from './store/index.js'
 
@@ -92,7 +91,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     add: () => {
       dispatch({
-          type: add,
+          type: 'add',
           value: 1
       })
     }
