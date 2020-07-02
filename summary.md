@@ -2,28 +2,25 @@
 
 - 原生ajax如何执行？
   - 创建xhr对象
-  
   - 调用 xhr.open('get', url?参数=值&参数=值) 函数
-  
   - 调用 xhr.send(null) 函数
-  
   - 监听 xhr.onreadystatechange 事件（状态值0，1，2，3，4, 4的事后表示请求完成）
   
-    ```js
-    // 1. 创建xhr对象
-    var xhr = new XMLHttpRequest();
-    // 2. 调用open方法，设置请求方式和url
-    xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks?id=3');
-    // 3. 调用send方法，发送请求
-    xhr.send();
-    // 4. 设置onreadystatechange事件，事件内部使用responseText属性接受结果
-    xhr.onreadystatechange = function () {
-        if (this.readyState === 4) {
-            var res = this.responseText; // 是JSON格式的结果
-            console.log(JSON.parse(res));
-        }
-    }
-    ```
+  ```js
+  // 1. 创建xhr对象
+  var xhr = new XMLHttpRequest();
+  // 2. 调用open方法，设置请求方式和url
+  xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks?id=3');
+  // 3. 调用send方法，发送请求
+  xhr.send();
+  // 4. 设置onreadystatechange事件，事件内部使用responseText属性接受结果
+  xhr.onreadystatechange = function () {
+      if (this.readyState === 4) {
+          var res = this.responseText; // 是JSON格式的结果
+          console.log(JSON.parse(res));
+      }
+  }
+  ```
   
 - axios 的拦截器
   
