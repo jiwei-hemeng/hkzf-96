@@ -128,7 +128,7 @@ import { List, AutoSizer, windowScroller } from 'react-virtualized'
 ```js
 // 判断每一行数据是否加载完毕
 isRowLoaded = ({ index }) => {
-  return !!this.state.list[index];
+  return !!this.state.list[index]
 }
 // 用来获取更多房屋列表数据
 loadMoreRows = ({ startIndex, stopIndex }) => {
@@ -136,7 +136,7 @@ loadMoreRows = ({ startIndex, stopIndex }) => {
      ...
      // 请求完成必须reslove()
      resolve()
-  });
-};
+  })
+}
 ```
 
