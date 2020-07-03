@@ -27,7 +27,6 @@ let state = {
 }
 let store = createStore(Reducer, state)
 export default store
-
 ```
 
 在项目`src`目录上创建  `store/reducer.js`
@@ -44,9 +43,7 @@ const Reducer = (state, action) => {
       return state
   }
 }
-
 export default Reducer
-
 ```
 
 `项目的入口文件index.js`
@@ -57,16 +54,13 @@ import ReactDOM from 'react-dom'
 // 导入react-redux需要的文件
 import { Provider } from 'react-redux'
 import store from './store/index.js'
-
 import App from './App'
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
 )
-
 ```
 
 ## 在项目的组件中使用
@@ -76,7 +70,6 @@ import { connect } from 'react-redux'
 class Total extends React.Component {	
   render() {
     const { sum } = this.props // {}
-
     return <div>商品总数：【{sum}】</div>
   }
 }
@@ -97,11 +90,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
   }
 }
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Total)
-
 ```
-
-
-
