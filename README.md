@@ -2,12 +2,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-在项目根目录下,你可以运行:
-### ` npx create-react-app hkzf-96 `
+### 在项目根目录下,你可以运行:
 
-创建项目
+```shell
+npx create-react-app hkzf-96
+```
 
-### `npm start`
+### 创建项目
+
+```shell
+npm start
+```
 
 启动开发者模式. <br />
 在浏览器地址栏中输入 [http://localhost:3000](http://localhost:3000) 来查看开发效果.
@@ -15,13 +20,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 如果你的项目代码更改以后,服务会重新启动. <br />
 你也可以在控制台参看报错信息.
 
-### `npm run build`
+### 进行项目的打包
 
-进行项目的打包
+```shell
+npm run build
+```
 
-`serve -s build/`
+### 对打包结果进行预览
 
-对打包结果进行预览
+```shell
+serve -s build
+```
 
 ## Learn More
 
