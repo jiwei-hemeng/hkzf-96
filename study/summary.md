@@ -153,13 +153,29 @@
       height: 0
   }
   .clearfix {
+      /*   IE6、7、8的写法  */
       zoom: 1
   }
   ```
 
++ 关于flex布局
+
+  + flex-direction：设置主轴的方向
+  + justify-content：设置主轴上的子元素排列方式
+  + flex-wrap：设置子元素是否换行  
+  + align-content：设置侧轴上的子元素的排列方式（多行）
+  + align-items：设置侧轴上的子元素排列方式（单行）
+  + flex-flow：复合属性，相当于同时设置了 flex-direction 和 flex-wrap
+
 + 关于媒体查询
 
   H5的新特性，为了移动端的使用而新增的特性，使用 @media 查询，你可以针对不同的媒体类型定义不同的样式，响应式布局就是使用媒体查询的原理
+
+  ```css
+  /*and  可以将多个媒体特性链接到一块,相当于且*/
+  /*only   指定某个特定的媒体类型, 可以省略*/
+  @media only screen and (min-width: 320px) and (max-width: 767px) {}
+  ```
 
 + c3 盒模型
 
