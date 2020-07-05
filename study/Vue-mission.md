@@ -91,3 +91,19 @@ include 和 exclude 的属性允许组件有条件地缓存。二者都可以用
 + v-model=’渲染的数据’  数据的双向绑定，和表单元素配置使用
 + v-for  DOM遍历  for = ‘item of arr’
 + v-once  让DOM中的数据只渲染一次，不能再改动
++ v-bind  绑定DOM属性 :简写方式
++ v-cloak  当数据真正渲染到DOM上之后才进行显示
++ v-pre 让DOM中的数据不进行解析
++ for循环写法繁杂  for..in遍历对象使用，不适合遍历数组forEach 不能和continue break return配合使用  for..of修正以上缺点
+
+### **methods和computed的作用**
+
+methods方法调用时计算逻辑的过程，相当于js function结算逻辑的过程,computed直接拿到的结果，是一个值，相当于js函数中的return返回值
+
+### **methods,computed和watch的区别**
+
+methods调用一次计算一次，使用计算好的返回值时没有computed性能高。computed计算好的结果会进行缓存，如果没有变动，重复使用时，直接取到缓存的结果拿来使用，不会再进行计算。监听属性配合表单使用，当表单中绑定的属性变化时，会触发监听属性下对应的方法进行操作，当使用固定返回值要使用computed代替watch和methods
+
+### **v-for中的key**
+
+v-for的key值需要使用v-bind去绑定唯一的key，当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用“就地更新”的策略。如果需要dom记录自己的什么，当进行值变动时把DOM节点摧毁重建需要给他加上唯一的key值。建议尽可能在使用 v-for 时提供 key attribute，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。
