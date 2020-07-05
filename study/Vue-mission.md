@@ -79,3 +79,15 @@ include 和 exclude 的属性允许组件有条件地缓存。二者都可以用
 + **history 模式：**
   + history采用HTML5的新特性；且提供了两个新方法：pushState（），replaceState（）可以对浏览器历史记录栈进行修改，以及popState事件的监听到状态变更。
   + history 模式下，前端的 URL 必须和实际向后端发起请求的 URL 一致，如 http://www.xxx.com/items/id。后端如果缺少对 /items/id 的路由处理，将返回 404 错误。
+
+### **vue指令有哪些，分别作用是什么**
+
++ v-html 绑定DOM元素并解析
+
++ v-text 绑定元素解析为文本
++ v-on:事件名=’方法名’  绑定事件  等价于简写方式@click=’方法名’
++ v-show=’布尔值’  控制节点的显示隐藏
++ v-if=’布尔值’  控制节点的显示隐藏
++ v-model=’渲染的数据’  数据的双向绑定，和表单元素配置使用
++ v-for  DOM遍历  for = ‘item of arr’
++ v-once  让DOM中的数据只渲染一次，不能再改动
