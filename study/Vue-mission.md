@@ -2,7 +2,7 @@
 
 ### Vue的基本原理
 
-<img src="https://github.com/jiwei-hemeng/hkzf-96/edit/master/study/images\Vue-yuanli.png"  />
+<img src="./images\Vue-yuanli.png"  />
 
 + 建立虚拟DOM Tree，通过document.createDocumentFragment()，遍历指定根节点内部节点，根据{{ prop }}、v-model等规则进行compile；
 
