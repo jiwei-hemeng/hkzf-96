@@ -6,6 +6,7 @@ import { getCurrentCity } from '../../../utils'
 
 import styles from './index.module.css'
 import { API } from '../../../utils/API'
+import NavHeader  from '../../../components/NavHeader'
 
 export default class Search extends Component {
   // 当前城市id
@@ -68,6 +69,7 @@ export default class Search extends Component {
 
     return (
       <div className={styles.root}>
+        <NavHeader title="选择小区"></NavHeader>
         {/* 搜索框 */}
         <SearchBar
           placeholder="请输入小区或地址"
