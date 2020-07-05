@@ -2,7 +2,8 @@
 
 ### Vue的基本原理
 
-<img src="E:\study\React\react96\study\images\Vue-yuanli.png"  />
+<img src="./images\Vue-yuanli.png"  />
+
 + 建立虚拟DOM Tree，通过document.createDocumentFragment()，遍历指定根节点内部节点，根据{{ prop }}、v-model等规则进行compile；
 
 + 通过Object.defineProperty()进行数据变化拦截；
