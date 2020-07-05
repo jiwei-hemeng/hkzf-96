@@ -2,10 +2,7 @@
 
 ### Vue的基本原理
 
-<img src="./images\Vue-yuanli.png"  />
-
 + 建立虚拟DOM Tree，通过document.createDocumentFragment()，遍历指定根节点内部节点，根据{{ prop }}、v-model等规则进行compile；
-
 + 通过Object.defineProperty()进行数据变化拦截；
 + 截取到的数据变化，通过发布者-订阅者模式，触发Watcher，从而改变虚拟DOM中的具体数据；
 + 通过改变虚拟DOM元素值，从而改变最后渲染dom树的值，完成双向绑定
@@ -13,7 +10,7 @@
 
 ### Vue实现数据双向绑定的原理:
 
-采**用数据劫持结合发布者-订阅者模式**的方式，通过**Object.defineProperty（）**来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应监听回调
+采用**数据劫持结合发布者-订阅者模式**的方式，通过**Object.defineProperty（）**来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应监听回调
 
 ### Vue 自定义过滤器
 
