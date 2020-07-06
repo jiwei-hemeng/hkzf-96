@@ -1,12 +1,10 @@
 ## Vue的面试总结
 
-### Vue的基本原理
+### Vue的响应式原理
 
-+ 建立虚拟DOM Tree，通过document.createDocumentFragment()，遍历指定根节点内部节点，根据{{ prop }}、v-model等规则进行compile；
-+ 通过Object.defineProperty()进行数据变化拦截；
-+ 截取到的数据变化，通过发布者-订阅者模式，触发Watcher，从而改变虚拟DOM中的具体数据；
-+ 通过改变虚拟DOM元素值，从而改变最后渲染dom树的值，完成双向绑定
-+ 完成数据的双向绑定在于Object.defineProperty()
+![data](https://cn.vuejs.org/images/data.png)
+
+当你把一个普通的 JavaScript 对象传入 Vue 实例作为 `data` 选项，Vue 将遍历此对象所有的 property，并使用 [`Object.defineProperty`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 把这些 property 全部转为 [getter/setter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects#定义_getters_与_setters)。这些 getter/setter 对用户来说是不可见的，但是在内部它们让 Vue 能够追踪依赖，在 property 被访问和修改时通知变更，每个组件实例都对应一个 **watcher** 实例，它会在组件渲染的过程中把“接触”过的数据 property 记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。
 
 ### Vue实现数据双向绑定的原理:
 
