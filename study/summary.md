@@ -131,6 +131,24 @@
   - 离线&存储，对本地离线存储能够更好地支持，比如localstorage,Cookies等
   -  设备兼容特性
   
+- 常见的让盒子居中显示的方法
+
+  - **方法一：**
+
+    父盒子给 position：relative；
+
+    盒子给 position：absolute；top：0；right：0；bottom：0；left：0；margin：auto；
+
+  - **方法二：**
+
+    父盒子给 position：relative；
+
+    盒子给 position：absolute；top：50%；left：50%；transform：translate（-50%，-50%）；
+
+  - **方法三：**
+
+    父盒子给 display: flex;align-items: center;justify-content: center;
+
 -  C3新特性
   - CSS实现圆角（border-radius）,阴影（box-shadow）,边框图片border-image
   - 对文字加特效（text-shadow）,强制文本换行（word-wrap）,线性渐变（linear-gradient）
