@@ -679,12 +679,40 @@
   
 - *vue-router*  提供的导航守卫用来控制组件是否允许访问
   
-  ```js
-  const router = new VueRouter({ ... })
-  router.beforeEach((to, from, next) => {
-    // to 表示去哪 from 表示来源 next表示放行
-  })
-  ```
+  - 全局前置守卫
+  
+    ```js
+    const router = new VueRouter({ ... })
+    router.beforeEach((to, from, next) => {
+      // to 表示去哪 from 表示来源 next表示放行
+    })
+    ```
+  
+  - 全局后置首位
+  
+    你也可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 `next` 函数也不会改变导航本身：
+  
+    ```js
+    router.afterEach((to, from) => {
+      // ...
+    })
+    ```
+  
+  - 路由独享的守卫
+  
+    ```js
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/foo',
+          component: Foo,
+          beforeEnter: (to, from, next) => {
+            // ...
+          }
+        }
+      ]
+    })
+    ```
   
 - Vue的生命周期
   
