@@ -637,6 +637,36 @@
     - 子组件：$emit(‘字定义事件名’，值)
     - 父组件：v-on绑定该自定义事件
   
+- vue-router 的路由懒加载
+
+  首先，可以将异步组件定义为返回一个 Promise 的工厂函数 (该函数返回的 Promise 应该 resolve 组件本身)：
+
+  ```js
+  const Foo = () => Promise.resolve({ /* 组件定义对象 */ })
+  ```
+
+  第二，在 Webpack 2 中，我们可以使用[动态 import](https://github.com/tc39/proposal-dynamic-import)语法来定义代码分块点 (split point)：
+
+  ```js
+  import('./Foo.vue') // 返回 Promise
+  ```
+
+  结合这两者，这就是如何定义一个能够被 Webpack 自动代码分割的异步组件。
+
+  ```js
+  const Foo = () => import('./Foo.vue')
+  ```
+
+  在路由配置中什么都不需要改变，只需要像往常一样使用 `Foo`：
+
+  ```js
+  const router = new VueRouter({
+    routes: [
+      { path: '/foo', component: Foo }
+    ]
+  })
+  ```
+
 - *vue-router*  提供的导航守卫用来控制组件是否允许访问
   
   ```js
