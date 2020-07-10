@@ -667,6 +667,16 @@
   })
   ```
 
+- 把组件按组分块
+  
+  有时候我们想把某个路由下的所有组件都打包在同个异步块 (chunk) 中。只需要使用 [命名 chunk](https://webpack.js.org/guides/code-splitting-require/#chunkname)，一个特殊的注释语法来提供 chunk name (需要 Webpack > 2.4)。
+  
+  ```js
+  const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue')
+  const Bar = () => import(/* webpackChunkName: "group-foo" */ './Bar.vue')
+  const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
+  ```
+  
 - *vue-router*  提供的导航守卫用来控制组件是否允许访问
   
   ```js
