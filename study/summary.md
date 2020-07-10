@@ -677,6 +677,12 @@
   const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
   ```
   
+- vue路由钩子大致可以分为三类
+  
+  - 全局钩子,主要包括beforeEach和aftrEach
+  - 单个路由里面的钩子,主要用于写某个指定路由跳转时需要执行的逻辑
+  - 组件路由
+  
 - *vue-router*  提供的导航守卫用来控制组件是否允许访问
   
   - 全局前置守卫
