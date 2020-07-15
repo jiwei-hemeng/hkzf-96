@@ -93,7 +93,7 @@ include 和 exclude 的属性允许组件有条件地缓存。二者都可以用
 + v-pre 让DOM中的数据不进行解析
 + for循环写法繁杂  for..in遍历对象使用，不适合遍历数组forEach 不能和continue break return配合使用  for..of修正以上缺点
 
-###  **methods和computed的作用 **
+###  **methods和computed的作用**
 
 methods方法调用时计算逻辑的过程，相当于js function结算逻辑的过程,computed直接拿到的结果，是一个值，相当于js函数中的return返回值
 
