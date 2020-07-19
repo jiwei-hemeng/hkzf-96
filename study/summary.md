@@ -165,6 +165,24 @@
   
 - 清除浮动
 
+  **1. 额外标签法**：给谁清除浮动，就在其后额外添加一个空白标签 。
+
+  ```css
+  .clear {
+      clear: both;
+  }
+  ```
+
+  **2. 父级添加overflow方法**：
+
+  ```css
+  .father {
+      overflow: hidden;
+  }
+  ```
+
+  **3. 使用after伪元素清除浮动**
+
   ```css
   .clearfix::after {
       content: "";
