@@ -583,6 +583,42 @@
   git merge dev
   ```
 
++ **工作中想将dev分支合并到master分支，操作如下：**
+
+  + 首先切换到master分支上
+
+    ```shell
+    git  checkout master
+    ```
+
+  + 如果是多人开发的话 需要把远程master上的代码pull下来
+
+    ```shell
+    git pull origin master
+    //如果是自己一个开发就没有必要了，为了保险期间还是pull
+    ```
+
+  + 然后我们把dev分支的代码合并到master上
+
+    ```shell
+    git  merge dev
+    ```
+
+  + 然后查看状态及执行提交命令
+
+    ```shell
+    git status
+    
+    On branch master
+    Your branch is ahead of 'origin/master' by 12 commits.
+      (use "git push" to publish your local commits)
+    nothing to commit, working tree clean
+    
+    //上面的意思就是你有12个commit，需要push到远程master上 
+    > 最后执行下面提交命令
+    git push origin master
+    ```
+
 ## ES6
 
 + 关于*var* 、 *const* 、*let* 的区别
