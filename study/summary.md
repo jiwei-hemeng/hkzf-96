@@ -833,6 +833,37 @@
   
   原理：只渲染页面可视区域的列表项，非可视区域的数据 **完全不渲染(预加载前面几项和后面几项)** ，在滚动列表时动态更新列表项
 
++ 关于ref的使用步骤
+
+  - 1 调用 `React.createRef()` 方法创建ref对象
+
+  - 2 将创建好的 ref 对象添加到文本框中
+
+  - 3 通过ref对象获取到文本框的值
+
+    ```js
+    class App extends React.Component {
+        constructor(){
+            super()  
+            //创建 ref
+            this.txtRef = React.createRef()
+        }
+        //或者 txtRef = React.createRef()
+        // 获取文本框的值
+        getTxt =() => {
+            console.log(this.txtRef.current.value)
+        }
+        render(){
+            return (
+              <div>
+                <input type ="text" ref={this.txtRef} />
+                <button onClick ={this.getTxt}>获取值</button>
+              </div>
+            )
+        }
+    }
+    ```
+
 + 组件之间的传值
 
   + 父传子
