@@ -738,6 +738,38 @@
     })
     ```
   
+- 不打包第三方包
+
+  我们推荐使用第三方的 CDN 来加载资源，所谓的 CDN 说白了就是一个在线链接。
+
+  ```html
+  <!-- element 依赖了 Vue，所以这里也必须加载 Vue -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
+  ```
+
+  在项目的根目录创建 `vue.config.js`
+
+  ```js
+  // 该配置文件必须导出一个对象（Node 中的模块语法）
+  module.exports = {
+    // 自定义 VueCLI 中的 webpack 配置
+    configureWebpack: {
+      // 告诉 webpack 使用 script 标签加载的那个资源，而不是去 node_moudles 中打包处理
+      externals: {
+        // 属性名：你加载的那个包名
+        // 属性值：script 标签暴露的全局变量，注意，写到字符串中！！！
+        // 'element-ui': 'ELEMENT'
+        'vue': 'Vue',
+        'element-ui': 'ELEMENT',
+        'echarts': 'echarts'
+      }
+    }
+  }
+  ```
+
 - Vue的生命周期
   
   - BeforeCreate 实例创建之前
