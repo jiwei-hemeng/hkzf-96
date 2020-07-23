@@ -217,6 +217,12 @@
   @media only screen and (min-width: 320px) and (max-width: 767px) {}
   ```
 
++ px 、em 和 rem 的区别
+
+  + px 是一个固定单位
++ em是一个相对单位，相对于当前标签的字体大小
+  + rem是一个相对单位，相对于html的字体大小
+  
 + c3 盒模型
 
   + div p 等元素的大小会受到内边距、外边距以及边框的影响，可以通过设置c3 和模型使其更稳固的结构，意味着如果添加border或padding会造成真正放置内容的区域变小
