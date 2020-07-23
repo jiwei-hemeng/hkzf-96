@@ -222,10 +222,11 @@
 + localStorage与sessionStorage与cookie的区别总结
 
   + **共同的** ：都保存在浏览器端，且同源
-  + localStorage 与 sessionStorage 统称webStorage,保存在浏览器,不参与服务器通信,大小为5M
-  + 生命周期不同: localStorage永久保存, sessionStorage当前会话, 都可手动清除
-  + 作用域不同: 不同浏览器不共享local和session, 不同会话不共享session
-  + Cookie: 设置的过期时间前一直有效, 大小4K.有个数限制, 各浏览器不同, 一般为20个.携带在HTTP头中, 过多会有性能问题.可自己封装, 也可用原生
+  + **不同点**
+    + 传递的数据量不同，cookie不能超过4k，而localStorage 与 sessionStorage大小为5M
+    + 传递方式不同，cookie在浏览器和服务器间来回传递（即使不需要），而localStorage 与 sessionStorage不会自动把数据发给服务器，仅在本地保存。
+    + 生命周期不同:localStorage永久保存, sessionStorage当前会话, 都可手动清除，cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
+    + 作用域不同sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
 
 + c3 盒模型
 
