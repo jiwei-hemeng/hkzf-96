@@ -828,7 +828,7 @@
   - BeforeDestroy 组件销毁之前
   -  Destoryed 组件销毁完毕
   
-- vue 双向数据绑定的原理
+- v-module的语法糖原理
 
   - *v-modle* 默认接受 *input* 事件，相当于 *@input=“事件名”*  默认发送  *:value=“数据 ”*  的数据。
 
