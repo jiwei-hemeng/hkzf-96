@@ -220,7 +220,7 @@
 + px 、em 和 rem 的区别
 
   + px 是一个固定单位
-+ em是一个相对单位，相对于当前标签的字体大小
+  + em是一个相对单位，相对于当前标签的字体大小
   + rem是一个相对单位，相对于html的字体大小
   
 + localStorage与sessionStorage与cookie的区别总结
