@@ -223,6 +223,14 @@
 + em是一个相对单位，相对于当前标签的字体大小
   + rem是一个相对单位，相对于html的字体大小
   
++ localStorage与sessionStorage与cookie的区别总结
+
+  + **共同的** ：都保存在浏览器端，且同源
+  + localStorage 与 sessionStorage 统称webStorage,保存在浏览器,不参与服务器通信,大小为5M
+  + 生命周期不同: localStorage永久保存, sessionStorage当前会话, 都可手动清除
+  + 作用域不同: 不同浏览器不共享local和session, 不同会话不共享session
+  + Cookie: 设置的过期时间前一直有效, 大小4K.有个数限制, 各浏览器不同, 一般为20个.携带在HTTP头中, 过多会有性能问题.可自己封装, 也可用原生
+
 + c3 盒模型
 
   + div p 等元素的大小会受到内边距、外边距以及边框的影响，可以通过设置c3 和模型使其更稳固的结构，意味着如果添加border或padding会造成真正放置内容的区域变小
