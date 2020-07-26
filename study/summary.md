@@ -621,6 +621,44 @@
   $('div').toggleClass('one');
   ```
 
++ jQuery的节点操作
+
+  **append()**  父元素将子元素追加到末尾
+
+  ```js
+  $("#father").append($('.son'))  // 将son添加到father元素内部，并且在末尾
+  ```
+
+  **prepend()**  父元素将子元素追加到开头
+
+  ```js
+  $("#father").prepend($('.son'))  // 将son添加到father元素内部，并且在开头
+  ```
+
+  **appendTo()**   将子元素添加到父元素的末尾
+
+  ```js
+  $(".son").appendTo($(".father"))  // 将对象1添加到对象2内部，并且在末尾
+  ```
+
+  **prependTo()**  将子元素添加到父元素的开头
+
+  ```js
+  $(".son").prependTo($(".father"))  // 将对象1添加到对象2内部，并且在开头
+  ```
+
+  **remove()**  移除元素
+
+  ```js
+  $(".one").remove()    // 将对象删除掉
+  ```
+
+  **empty()**  清空元素的所有后代元素。
+
+  ```js
+  $(".one").empty()    // 将对象的后代元素全部清空，但是保留当前对象以及其属性节点
+  ```
+
 + 如何快速收集form表单数据
 
   ```js
