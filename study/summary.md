@@ -638,13 +638,13 @@
   **appendTo()**   将子元素添加到父元素的末尾
 
   ```js
-  $(".son").appendTo($(".father"))  // 将对象1添加到对象2内部，并且在末尾
+  $(".son").appendTo($(".father"))  // 将son添加到father内部，并且在末尾
   ```
 
   **prependTo()**  将子元素添加到父元素的开头
 
   ```js
-  $(".son").prependTo($(".father"))  // 将对象1添加到对象2内部，并且在开头
+  $(".son").prependTo($(".father"))  // 将son添加到father内部，并且在开头
   ```
 
   **remove()**  移除元素
@@ -728,7 +728,7 @@
 
     ```shell
     git pull origin master
-    //如果是自己一个开发就没有必要了，为了保险期间还是pull
+    # 如果是自己一个开发就没有必要了，为了保险期间还是pull
     ```
 
   + 然后我们把dev分支的代码合并到master上
