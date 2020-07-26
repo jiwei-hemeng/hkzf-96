@@ -547,6 +547,62 @@
 
   节流是要是在规定的时间内只触发一次
 
+## JQuery
+
++ jQuery获取元素的兄弟节点的几种方法
+
+  ```js
+  $('#id').siblings()   // 当前元素所有的兄弟节点
+  $('#id').prev()       // 当前元素前一个兄弟节点
+  $('#id').prevaAll()   // 当前元素之前所有的兄弟节点
+  $('#id').next()       // 当前元素之后第一个兄弟节点
+  $('#id').nextAll()    // 当前元素之后所有的兄弟节点
+  ```
+
++ width方法与height方法
+
+  ```js
+  // 带参数表示设置高度
+  $('img').height(200);
+  // 不带参数获取高度
+  $('img').height();
+  ```
+
++ jQuery操作属性
+
+  **attr操作**
+
+  ```js
+  // 设置单个属性
+  $('img').attr('alt','哎哟，不错哦');
+  // 同时设置多个属性
+  $('img').attr({
+      title:'哎哟，不错哦',
+      alt:'哎哟，不错哦',
+      style:'opacity:.5'
+  });
+  ```
+
+  **prop操作**
+
+  ```js
+  // 在jQuery1.6之后，对于checked、selected、disabled这类boolean类型的属性来说，不能用attr方法，只能用prop方法。
+  // 设置属性
+  $(':checked').prop('checked',true);
+  // 获取属性
+  $(':checked').prop('checked');// 返回true或者false
+  ```
+
++ 如何快速收集form表单数据
+
+  ```js
+  使用$(form表单).serialize()快速收集表单信息。
+  注意：
+  - 在使用serialize()收集表单数据时，必须为每个表单元素添加name属性，并且属性值一定要和接口中定义的参数名称相同。
+  - 通过serialize()获取到的数据是查询字符串的格式，不能用来提交文件。
+  
+  ```
+
 ## Git
 
 + **Git常用命令**
