@@ -593,6 +593,34 @@
   $(':checked').prop('checked');// 返回true或者false
   ```
 
++ jQuery操作样式
+
+  **CSS操作**
+
+  ```js
+  // 获取单个样式
+  $('#one').css('background','gray'); // 将背景色修改为灰色
+  // 获取多个样式
+  $('#one').css({
+      'background':'gray',
+      'width':'400px',
+      'height':'200px'
+  });
+  ```
+
+  **class操作**
+
+  ```js
+  // 添加样式类
+  $('div').addClass('one');
+  // 移除样式类
+  $('div').removeClass('one');
+  // 判断是否有某个样式类
+  $('div').hasClass('one');
+  // 切换样式类
+  $('div').toggleClass('one');
+  ```
+
 + 如何快速收集form表单数据
 
   ```js
