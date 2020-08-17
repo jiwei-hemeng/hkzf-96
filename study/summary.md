@@ -1011,6 +1011,39 @@
 - Vue 的双向数据绑定的原理是什么？
 
   Vue.js采用的是数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter、getter，在数据变化时发布消息给订阅者，触发相应的监听回调
+  
+- vuex中有几个核心，分别是什么
+
+  state唯一数据源，Vue实例中的data遵循相同的规则
+
+  getters可以认为是store的计算属性，就像计算属性一样，getters的返回值会根据它的依赖被缓存起来，且只有当它的值改变时才会被重新计算
+
+  mutation更改Vuex的store中的状态的唯一方法是提交mutation，非常类似于事件
+
+  action类似于mutation，不同在于action提交的是mutation，而不是直接改变状态，action可以包含任意异步操作
+
+  module能够将store分隔成模块module
+
+  ```js
+  const moduleA = {
+      state: ()=>({...}),
+      mutation:{...}
+  }
+  const moduleB = {
+      state: ()=>({...}),
+      mutation:{...}
+  }
+  const store = new Vuex.Store({
+      module:{
+          a:moduleA,
+          b:moduleB
+      }
+  })
+  store.state.a    // moduleA的状态
+  store.state.b    // moduleB的状态
+  ```
+
+  
 
 ## react
 
