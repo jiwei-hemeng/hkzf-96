@@ -1043,7 +1043,10 @@
   store.state.b    // moduleB的状态
   ```
 
-  
+- vue路由传参
+
+  - 使用query的方法传入的参数使用this.$route.query接受
+  - 使用params方式传入的参数使用this.$route.params 接受
 
 ## react
 
