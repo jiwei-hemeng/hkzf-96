@@ -124,3 +124,55 @@ Vue通过getter/setter以及一些函数的劫持，能精确知道数据的变�
 ### Vue生命周期在beforeMount和mounted 做了什么
 
 在**beforemount**周期钩子函数生成了V-DOM，而mounted 真实的Dom已经生成
+
+### vant组件的进阶（rem适配）
+
+Vant 中的样式默认使用 `px` 作为单位，如果需要使用 `rem` 单位，推荐使用以下两个工具：
+
++ [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是一款 postcss 插件，用于将 px 单位转化为 rem
++ [lib-flexible](https://github.com/amfe/lib-flexible) 用于设置 rem 基准值
+
+使用方法：
+
+**（1）使用 [lib-flexible](https://github.com/amfe/lib-flexible) 动态设置 REM 基准值（html 标签的字体大小）**
+
+安装依赖：
+
+```shell
+# yarn add amfe-flexible
+npm i amfe-flexible
+```
+
+然后在 `main.js` 中加载执行该模块：
+
+```js
+import 'amfe-flexible'
+```
+
+**（2）使用 [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 将 `px` 转为 `rem`**
+
+安装依赖：
+
+```shell
+# yarn add -D postcss-pxtorem
+# -D 是 --save-dev 的简写
+npm install postcss-pxtorem -D
+```
+
+然后在**项目根目录**中创建 `postcss.config.js` 文件：
+
+```js
+module.exports = {
+  plugins: {
+    'autoprefixer': {
+      browsers: ['Android >= 4.0', 'iOS >= 8']
+    },
+    'postcss-pxtorem': {
+      rootValue: 37.5,
+      propList: ['*']
+    }
+  }
+}
+```
+
+配置完毕，**重新启动服务**。
