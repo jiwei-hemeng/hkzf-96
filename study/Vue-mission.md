@@ -176,3 +176,78 @@ module.exports = {
 ```
 
 配置完毕，**重新启动服务**。
+
+### 动态路由
+
+概念：不同的路由地址，指向同一个组件，此时需要使用动态路由。
+
+```html
+<!-- 路径传参  路由规则{path:'/article/:id'}-->
+<router-link to="/article/10001"></router-link>
+```
+
+总结：
+
+- 在路由规则中，匹配到不同的地址，指向同一个组件
+- 代码：`{path:'/article/:id', component: ArticleItem}`
+- 数据：模板 `{{$route.params.id}}`  组件  `this.$route.params.id`
+
+### vue-router-属性to
+
++ 直接使用字符串，简单路径跳转。
+
+  ```html
+  <router-link to="/list"></router-link>
+  ```
+
++ 也可以使用字符串，进行带参数的跳转。
+
+  ```html
+  <!-- 路径传参  路由规则{path:'/article/:id'}-->
+  <router-link to="/article/10001"></router-link>
+  <!-- 键值对传参 路由规则{path:'/article'}-->
+  <router-link to="/article?id=10001"></router-link>
+  ```
+
++ 注意：如果有复杂的参数传递，拼接字符串挺麻烦，**to属性支持对象写法**。
+
+### vue-router-属性to的对象写法
+
++ 普通跳转
+
+  ```html
+  <router-link :to="{path:'/list'}"></router-link>
+  ```
+
++ 路径传参（对象写法）
+
+  ```js
+  // 路由规则 (命名路由)
+  const routes = [{path:'/article/:id',name:'article',component:ArticleItem}]
+  ```
+
+  ```html
+  <router-link :to="{name:'article',params:{id: 10001}}"></router-link>
+  <!-- /article/10001 -->
+  ```
+
+  获取 使用$route.params.id 
+
++ 键值对传参（对象写法）
+
+  ```js
+  const routes = [{path:'/article',component:ArticleItem}]
+  ```
+
+  ```html
+  <router-link :to="{path:'/article',query:{id: 10001}}"></router-link>
+  <!-- /article?id=10001 -->
+  ```
+
+  获取 使用$route.query.id 
+
+### vue-router-编程式导航
+
++ 导航：可以发生路由跳转（地址hash值得改变）
+  + <router-link> 这个标签可以实现导航功能,**声明式导航**。
+  + 通过 `$router.push()`  这个函数可以实现导航功能，**编程式导航**。
