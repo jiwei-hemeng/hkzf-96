@@ -383,6 +383,13 @@
   - *forEach()* 对数组进行遍历循环，对数组中的每一项运行给定函数。这个方法没有返回值。参数都是function类型，默认有传参，参数分别为：遍历的数组内容；第对应的数组索引，数组本身。
   - *map()* 循环遍历数组 参数是一个函数，该函数的第一个参数是item表示遍历项目，第二个参数是遍历项的索引,第三个参数循环项本身
 
+- 获取文件对象的blob
+
+    ```js
+    const blob = window.URL.createObjectURL(this.$refs.file.files[0])
+    // this.$refs.file.files[0] 为文件的文件对象
+    ```
+
 - 字符串常用的方法
 
     - *split()* 用于将字符串按照某个分隔符分隔，得到一个数组
@@ -882,6 +889,10 @@
   - 单个路由里面的钩子,主要用于写某个指定路由跳转时需要执行的逻辑
   - 组件路由
   
+- $nextTick的使用
+
+  当你修改data的值以后马上获取这个DOM元素的值，是不能马上获取到新值的，你需要使用$nextTick这个回调函数的，让修改后的data值渲染更新到DOM元素之后获取，才能成功。
+
 - *vue-router*  提供的导航守卫用来控制组件是否允许访问
   
   - 全局前置守卫
@@ -1042,11 +1053,6 @@
   store.state.a    // moduleA的状态
   store.state.b    // moduleB的状态
   ```
-
-- vue路由传参
-
-  - 使用query的方法传入的参数使用this.$route.query接受
-  - 使用params方式传入的参数使用this.$route.params 接受
 
 ## react
 
