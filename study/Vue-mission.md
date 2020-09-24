@@ -251,3 +251,26 @@ module.exports = {
 + 导航：可以发生路由跳转（地址hash值得改变）
   + <router-link> 这个标签可以实现导航功能,**声明式导航**。
   + 通过 `$router.push()`  这个函数可以实现导航功能，**编程式导航**。
+
+### md5 在vue项目中的使用
+
++ 安装
+
+  ```shell
+  import md5 from 'js-md5';
+  ```
+
++ 在*main.js*导入
+
+  ```js
+  import md5 from 'js-md5';
+  Vue.prototype.$md5 = md5;
+  ```
+
++ 使用：
+
+  ```js
+  this.$md5('hello world')  // 5eb63bbbe01eeed093cb22bb8f5acdc3
+  ```
+
+  
