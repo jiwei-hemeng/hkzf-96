@@ -257,7 +257,7 @@ module.exports = {
 + 安装
 
   ```shell
-  import md5 from 'js-md5';
+  npm install --save js-md5
   ```
 
 + 在*main.js*导入
