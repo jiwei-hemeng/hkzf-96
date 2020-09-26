@@ -383,6 +383,49 @@
   - *forEach()* 对数组进行遍历循环，对数组中的每一项运行给定函数。这个方法没有返回值。参数都是function类型，默认有传参，参数分别为：遍历的数组内容；第对应的数组索引，数组本身。
   - *map()* 循环遍历数组 参数是一个函数，该函数的第一个参数是item表示遍历项目，第二个参数是遍历项的索引,第三个参数循环项本身
 
+- javascript中Object常用方法使用总结
+
+    - Object构造函数继承
+
+        只有构造函数才有prototype属性
+
+        js每个对象都有一个__proto__属性 === 构造函数的prototype属性
+
+        ```js
+        function conObj () {}
+        conObj.prototype.age = '12'
+        let newPreObj = new conObj()
+        console.log(newPreObj.age) // 12
+        console.log(newPreObj.__proto__ === conObj.prototype) // true
+        ```
+
+    - Object.assgin()
+
+        用于将一个或者多个对象的可枚举的值从源对象复制到目标对象。返回目标对象
+
+        ```js
+        let target = {name: 'xiaomin'};
+        let source = {age: '14',name:'hua'};
+        const finalObj = Object.assign(target, source)
+        console.log(target, finalObj) // {name: 'hua', age: '14'}
+        ```
+
+    - Object.defineProperty()
+
+        用于直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象
+
+    - Object.keys()、Object.values()
+
+        Object.keys()返回一个指定对象可枚举属性的属性名组成的数组
+
+         Object.values()返回一个指定对象可枚举属性的属性值组成的数组
+
+        ```js
+        let myObj = {name:'xioamin', age:'12'};
+        console.log(Object.keys(myObj)); // ["name", "age"]
+        console.log(Object.values(myObj)); // ["xiaomin", "12"]
+        ```
+
 - 获取文件对象的blob
 
     ```js
@@ -795,8 +838,8 @@
 
   ```js
   // 应用于数组去重
-  var arr = [1,2,3,4,5,6]
-  var newArr = [...new Set(...arr)]
+  var arr = [1,2,3,4,5,6];
+  var newArr = [...new Set(...arr)];
   ```
 
 + 对象、数组的解构

@@ -273,4 +273,91 @@ module.exports = {
   this.$md5('hello world')  // 5eb63bbbe01eeed093cb22bb8f5acdc3
   ```
 
+
+### vue之watch属性使用方法
+
++ 用法一：基本数据监听
+
+  ```js
+  new Vue({
+      el: '#myVue',
+      data: {
+          title:'123'
+      },
+      watch: {
+          title: function(val){ //（new, old） new:变化后的值；old：变化前的值
+              console.log(val)  // 打印出title变化后的数据
+          }
+      } 
+  })
+  ```
+
+  这种用法有个特殊的地方：当值第一次绑定的时候，不会执行监听函数，只有值发生改变才会执行
+
++ 用法二：immediate和handler
+
+  用法一有个不足的地方就是我们在初始值的时候不会执行handler方法。为了解决这个问题我们就需要用到immediate属性了
+
+  ```js
+  new Vue({
+      el: '#myVue',
+      data: {
+          people: {id: 1, name: 'tom'}
+      },
+      watch: {
+          people: {
+              immediate: true
+              handler(val) {
+          		console.log(val)
+  			}
+       	}
+  	} 
+  })
+  ```
+
+  使用场景：父组件向子组件动态传值时，子组件props首次获取到父组件传来的默认值时，也需要执行函数，
+  这时只需要将immediate设为true就行了
+
++ 用法三：deep
+
+  监听一个对象的变化时，普通的watch方法无法监听到对象内部属性的变化，这时就需要使用deep属性对对象进行深度监听。
+
+  ```js
+  new Vue({
+    el: '#vmyVue',
+    data: {
+      student: {id: 1, name: 'Tom',sex: '男'}
+    },
+    watch: {
+      student: {
+        handler(val) {
+          console.log(val)
+        },
+        deep: true,
+      }
+    }, 
+  })
+  ```
+
+  这种写法有个问题就是会监听对象中的全部的属性变化，只要有一个属性发生变化就会执行handler函数.在实际项目中我们
+  可能只需要监听对象中的某一个属性。这时我们可以使用字符串的形式监听对象属性：
+  下面的代码只会监听对象中的name属性，只有name属性发生变化的时候才会触发handler函数
+
+  ```js
+  new Vue({
+    el: '#vmyVue',
+    data: {
+      student: {id: 1, name: 'Tom',sex: '男'}
+    },
+    watch: {
+      'student.name': {
+          handler(val) {
+          	console.log(val)
+          },
+          deep: true,
+       }
+     } 
+  })
+  ```
+
   
