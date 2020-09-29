@@ -273,6 +273,37 @@ module.exports = {
   this.$md5('hello world')  // 5eb63bbbe01eeed093cb22bb8f5acdc3
   ```
 
+### vue项目中使用RSA加密
+
++ 安装
+
+  ```shell
+  npm install --save jsencrypt
+  ```
+
++ 在main.js中
+
+  ```js
+  
+  import JSEncrypt from 'jsencrypt';
+   
+  Vue.prototype.$getRsaCode = function(str){ // 注册方法
+    let pubKey = `-----BEGIN PUBLIC KEY-----
+   rqerewrrrweqrwqewrwqrerwqrsfsafafsafsafqrewqrwqrqwreqer
+    -----END PUBLIC KEY-----`;// ES6 模板字符串 引用 rsa 公钥
+    let encryptStr = new JSEncrypt();
+    encryptStr.setPublicKey(pubKey); // 设置 加密公钥
+    let  data = encryptStr.encrypt(str.toString());  // 进行加密
+    return data;
+  }
+  ```
+
++ 使用加密方法
+
+  ```js
+  let rasUserName = this.$getRsaCode(this.loginForm.userName); // ras 加密 用户名
+  let rasPw = this.$getRsaCode(this.loginForm.password); // ras 加密 密码
+  ```
 
 ### vue之watch属性使用方法
 
