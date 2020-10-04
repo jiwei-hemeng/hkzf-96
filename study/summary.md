@@ -889,6 +889,12 @@
   git log
   # 查看当前文件修改状态
   git status
+  # 添加远程仓库
+  git remote add origin git@github.com:jiwei-hemeng/node-96.git
+  # 将本地仓库推送到远程仓库
+  git push -u origin master
+  # 清除远程仓库
+  git remote rm origin
   ```
 
 + **Git 配置命令**
