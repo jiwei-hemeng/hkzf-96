@@ -1,9 +1,9 @@
-###原理
+### 原理
 
 - 虚拟`dom` 它是一个js对象，它和页面真实dom一一对应。react会在页面加载时自动在内存中生成虚拟dom，根据虚拟dom会在页面生成真实的dom
 - diff算法，它会一层一层、一级一级的比较，如果发现不同将不会在继续进行比较，而是直接更新其组件、及其后代组件
 
-###特点
+### 特点
 
 - 数据驱动视图的更新
 - 组件化开发
@@ -242,7 +242,7 @@ export default withRouter(SearchHeader)
 
 ### React 局部样式
 
-> 在react中写局部样式不能像vue那样给style组件加个scoped属性就行了，
+> 在react中写局部样式不能像vue那样给style组件加个scoped属性就行了
 
 在该组件的同级目录下创建 *index.module.css* 文件
 
