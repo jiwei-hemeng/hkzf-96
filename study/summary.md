@@ -1243,3 +1243,4 @@
   store.state.a    // moduleA的状态
   store.state.b    // moduleB的状态
   ```
+

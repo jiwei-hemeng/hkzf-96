@@ -407,56 +407,20 @@ module.exports = {
   ```json
   {
     "brands": [
-      {
-        "id": 1,
-        "name": "宝马",
-        "time": "2019-10-10 10:10:46"
-      },
-      {
-        "id": 2,
-        "name": "奥迪",
-        "time": "2019-12-10 10:10:46"
-      },
-      {
-        "name": "奔驰",
-        "time": "2020-04-13T11:09:55.423Z",
-        "id": 3
-      },
-      {
-        "name": "奥托",
-        "time": "2020-04-13T11:10:03.953Z",
-        "id": 4
-      }
+      { "id": 1, "name": "宝马", "time": "2019-10-10 10:10:46" },
+      { "id": 2, "name": "奥迪", "time": "2019-12-10 10:10:46" },
+      { "name": "奔驰", "time": "2020-04-13T11:09:55.423Z", "id": 3},
+      { "name": "奥托", "time": "2020-04-13T11:10:03.953Z", "id": 4}
     ],
     "heroes": [
-      {
-        "heroName": "德玛西亚",
-        "gender": "女",
-        "cTime": "2020-05-08T00:36:56.530Z",
-        "id": 10001
-      },
-      {
-        "id": 10002,
-        "heroName": "刘三姐",
-        "gender": "女",
-        "cTime": "Fri Apr 17 2020 16:24:42 GMT+0800 (中国标准时间)"
-      },
-      {
-        "id": 10003,
-        "heroName": "超人",
-        "gender": "男",
-        "cTime": "2020/10/10 10:10:10"
-      },
-      {
-        "cTime": "2020-04-18T02:59:44.920Z",
-        "heroName": "小乔",
-        "gender": "女",
-        "id": 10004
-      }
+      { "heroName": "德玛西亚", "gender": "女", "cTime": "2020-05-08T00:36:56.530Z","id": 10001 },
+      { "id": 10002, "heroName": "刘三姐", "gender": "女", "cTime": "Fri Apr 17 2020 16:24:42 GMT+0800 (中国标准时间)" },
+      { "id": 10003, "heroName": "超人", "gender": "男","cTime": "2020/10/10 10:10:10"},
+      { "cTime": "2020-04-18T02:59:44.920Z", "heroName": "小乔", "gender": "女","id": 10004}
     ]
   }
   ```
-
+  
 + 启动
 
   ```shell
@@ -464,3 +428,32 @@ module.exports = {
   ```
 
   > 常用请求方式：DELETE (删除)	GET(获取数据)	PUT(全部修改)	PATCH(局部修改)
+
+### 递归组件的使用
+
+> 有时候我们不知道后端返回数据的深度，而我们需要深度渲染各层的数据，我们就要使用到递归组件。
+
+当我们定义组件是一定要设置name属性，而且递归组件一定要有递归结束，而不能使其无限制的一直递归下去，即递归是有限的。
+
+```html
+<template>
+  <div class="WarpItem">
+    <WarpItem />
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "WarpItem",
+    components: {},
+    data() {
+      return {};
+    },
+    watch: {},
+    created() {},
+    methods: {},
+  };
+</script>
+<style lang="scss" scoped></style>
+```
+
