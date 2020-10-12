@@ -8,7 +8,7 @@
 - 数据驱动视图的更新
 - 组件化开发
 
-### 鉴定路由 **AuthRoute**
+### 鉴权路由 **AuthRoute**
 
 ```js
 import React, { Component } from 'react'
@@ -35,13 +35,9 @@ export default class AuthRoute extends Component {
 }
 ```
 
-### 可视区域渲染（React-virtualized）
-
-原理：只渲染页面可视区域的列表项，非可视区域的数据 **完全不渲染(预加载前面几项和后面几项)** ，在滚动列表时动态更新列表项
-
 ### 关于ref的使用步骤
 
-> 1 调用 `React.createRef()` 方法创建ref对象	2 将创建好的 ref 对象添加到文本框中	3 通过ref对象获取到文本框的值
+> 1 调用 *React.createRef()* 方法创建ref对象	2 将创建好的 ref 对象添加到文本框中	3 通过ref对象获取到文本框的值
 
 ```js
 class App extends React.Component {
@@ -190,7 +186,7 @@ this.setState({
 npm i props-types
 ```
 
-分装组件
+封装组件
 
 ```js
 import React, { Component } from 'react'

@@ -457,3 +457,40 @@ module.exports = {
 <style lang="scss" scoped></style>
 ```
 
+递归组件向外传递数据直接用$emit是无法实现的。因为是递归的原因。
+
+解决办法：用eventBus实现：这种方法用在兄弟组件之间通信很常见。当然也可以用在爷爷组件和孙子组件之间的传递数据。
+
++ 来创建出我们的eventBus，我们把它命名为bus.js
+
+  ```js
+  import Vue from 'vue';  
+  export default new Vue();
+  ```
+
++ 在递归组件和使用它的组件同时引入：
+
+  ```js
+  import Bus from 'common/js/bus.js';  
+  ```
+
++ 在递归组件里面触发事件：
+
+  ```js
+  addCart(event) {  
+      Bus.$emit('getTarget', event.target);   
+  }   
+  ```
+
++ 在使用递归组件的父组件里面监听事件：
+
+  ```js
+  created() {  
+      Bus.$on('getTarget', target => {  
+          console.log(target);  
+      });  
+  }
+  ```
+
+  
+
