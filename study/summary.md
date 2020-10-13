@@ -537,13 +537,40 @@
 
   深拷贝的方法： JSON.stringify转为字符串再JSON.parse    深度遍历
 
+- 获取一段范围内的随机数
+
+    ```js
+    function GetRandomNum(Min,Max)
+    {   
+    var Range = Max - Min;   
+    var Rand = Math.random();   
+    return(Min + Math.round(Rand * Range));   
+    }   
+    var num = GetRandomNum(1,10); 
+    ```
+
+- 获取随机字符串
+
+    ```js
+    var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    
+    function generateMixed(n) {
+         var res = "";
+         for(var i = 0; i < n ; i ++) {
+             var id = Math.ceil(Math.random()*35);
+             res += chars[id];
+         }
+         return res;
+    }
+    ```
+
 - Bind、Call() 和apply的区别
 
   - apply()方法 接收两个参数，一个是函数运行的作用域（this），另一个是参数数组。
   - call()方法 第一个参数和apply()方法的一样，但是传递给函数的参数必须列举出来
   - Bind()和call很相似，第一个参数是this的指向，从第二个参数开始是接收的参数列表，不会立即执行
 
--  闭包的优点和缺点是什么 
+- 闭包的优点和缺点是什么 
 
   - 在本质上，闭包是将函数内部和函数外部连接起来的桥梁。
 
@@ -572,7 +599,7 @@
   - 缺点
     
       - 会形成数据的缓存，用完之后需要手动清空（给该变量赋一个空值null）
-  
+
 - 防抖
 
   - 概念：短时间内多次触发同一事件，只执行最后一次，或者只执行最开始的一次，中间的不执行
