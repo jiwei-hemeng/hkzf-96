@@ -493,3 +493,67 @@ module.exports = {
 
   
 
+### vue 插槽
+
+> 组件的插槽，提供的是界面上高度复用。
+
+默认插槽（组件只有一处内容不固定）
+
+```html
+<div id="app">
+    <!-- 组件标签之间的内容，插入定义组件的slot标签位置 -->
+    <page>内容1</page>
+    <page>内容2</page>
+    <page>内容3</page>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    // 组件
+    Vue.component('page',{
+      template: `<div class="page">
+          <header>头部</header>
+          <section>
+            <!-- 默认插槽 -->
+            <slot></slot>
+          </section>
+          <footer>底部</footer>
+        </div>`
+    })
+    const vm = new Vue({
+      el: '#app'
+    })
+  </script>
+```
+
+具名插槽（如果组件中有多处内容不固定）
+
+```html
+<div id="app">
+    <!-- 组件标签之间的内容，插入定义组件的slot标签位置 -->
+    <page>
+      <!-- slot="插槽的名字" 把当前标签内的结构插入到名字为content的插槽中 -->
+      <div slot="content">内容1</div>
+      <div slot="footer">底部1</div>
+    </page>
+ </div>
+<script>
+    // 组件
+    Vue.component('page',{
+        template: `<div class="page">
+            <header>头部</header>
+            <section>
+                <!-- 具名插槽 -->
+                <slot name="content"></slot>
+            </section>
+            <footer>
+                <!-- 具名插槽 -->
+                <slot name="footer"></slot>
+            </footer>
+        </div>`
+    })
+    const vm = new Vue({
+        el: '#app'
+    })
+</script>
+```
+
