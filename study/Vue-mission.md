@@ -557,3 +557,49 @@ module.exports = {
 </script>
 ```
 
+### vue中style scope深度访问方式
+
+> **使用场景:** 当我们需要覆盖element-ui中的样式时只能通过深度作用选择器
+
++ **>>>**
+
+  如果vue的style使用的是css，那么则
+
+  ```css
+  <style lang="css" scoped>
+  .a >>> .b {
+  /* ... */
+  }
+  </style>
+  ```
+
+  但是像scss等预处理器却无法解析>>>，所以我们使用下面的方式.
+
++ **/deep/**
+
+  ```scss
+  <style lang="scss" scoped>
+  .a{
+  /deep/ .b {
+  /* ... */
+  }
+  }
+  </style>
+  ```
+
+  但是有些开发者反应，在vue-cli3编译时，deep的方式会报错或者警告。
+
++ **::v-deep**
+
+  ```scss
+  <style lang="scss" scoped>
+  .a{
+  ::v-deep .b {
+  /* ... */
+  }
+  }
+  </style>
+  ```
+
+  
+

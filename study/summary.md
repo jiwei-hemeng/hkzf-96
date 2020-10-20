@@ -135,6 +135,27 @@
   - 离线&存储，对本地离线存储能够更好地支持，比如localstorage,Cookies等
   - 设备兼容特性
   
+- css的calc()函数
+
+  在less或sass中经常会遇到
+
+  ```css
+  $width = 100px;
+  .box {
+      width: $width + 100px;
+  }
+  ```
+
+  然而clac() 函数提供了更好的
+
+  ```css
+  .box {
+      width: clac(100% - 50px);
+  }
+  ```
+
+  表示box元素的宽度总是小于父元素的50px
+
 - 常见的让盒子居中显示的方法
 
   - **方法一：**
