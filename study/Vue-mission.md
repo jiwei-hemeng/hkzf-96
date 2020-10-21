@@ -601,5 +601,61 @@ module.exports = {
   </style>
   ```
 
-  
+
+# webpack项目的require.context的作用
+
+> 在我们项目开发中，经常需要import或者export各种大量有规则模块
+
+我们会这样引入组件：
+
+```js
+import A from 'components/A'
+import B from 'components/B'
+import C from 'components/C'
+import D from 'components/D'
+```
+
+也可以使用**require.context**
+
+```js
+require.context(directory, useSubdirectories, regExp)
+```
+
+1. directory: 要查找的文件路径
+2. useSubdirectories: 是否查找子目录
+3. regExp: 要匹配文件的正则
+
+例如：
+
+```js
+const ctx = require.context('./components/', true, /\.js$/)
+console.log(ctx.keys())
+// 相当于Object.keys 结果是["./A.js", "./B.js", "./C.js", "./D.js"]
+```
+
+其实 *ctx.keys()* 就是
+
+```js
+var map = {
+	"./A.js": "./src/components/test/components/A.js",
+	"./B.js": "./src/components/test/components/B.js",
+	"./C.js": "./src/components/test/components/C.js",
+	"./D.js": "./src/components/test/components/D.js"
+};
+
+Object.keys(map)
+```
+
+只不过map是模块内部变量，无法直接访问，所以通过其实提供的keys方法访问
+
+那么如何引入ABCD组件呢？
+
+```js
+const ctx = require.context('./components/', true, /\.js$/)
+const map = {}
+for (const key of ctx.keys()) {
+  map[key] = ctx(key)
+}
+console.log(map)
+```
 
