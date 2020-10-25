@@ -739,3 +739,68 @@ export const getSubStringSum = (str = "", num = 1) => {
 }
 ```
 
+### vue中纯前端实现导出简单Excel表格的功能
+
+> 在许多的后台系统中少不了导出Excel表格的功能，下面就是我在实际的项目中纯前端使用vue-json-excel插件来实现简单Excel表格的导出功能
+
+**下载**
+
+```bash
+npm install vue-json-excel
+```
+
+**在项目的入口文件(main.js)中引入**
+
+```js
+import Vue from 'vue'
+import JsonExcel from 'vue-json-excel'
+Vue.component('downloadExcel', JsonExcel)
+```
+
+**在模板中使用**
+
+```js
+<download-excel
+    :data   = "json_data"  // 导出的数据
+    :fields = "json_fields"  // Excel中表头的名称
+    name = "用户统计列表"  // 导出Excel文件的文件名
+>  
+   导出Excel
+</download-excel>
+```
+
+**Excel表格表头的设置**
+
+```js
+export default{
+   data(){
+       return{
+          json_fields: {  //导出Excel表格的表头设置
+            '序号': 'type',
+            '姓名': 'userName',
+            '年龄': 'age',
+            '手机号': 'phone',
+            '注册时间': 'createTime',
+          },
+       }
+    }
+ }
+```
+
+**Excel表格中的数据**
+
+```js
+export default{
+   data(){
+       return{
+          json_data:[
+            {"userName":"张三","age":18,"gender":"phone":15612345612,"createTime":"2019-10-22"},
+            {"userName":"李四","age":17,"gender":"phone":15612345613,"createTime":"2019-10-23"},
+            {"userName":"王五","age":19,"gender":"phone":15612345615,"createTime":"2019-10-25"},
+            {"userName":"赵六","age":18,"gender":"phone":15612345618,"createTime":"2019-10-15"},     
+          ]
+       }
+   }
+}
+```
+
