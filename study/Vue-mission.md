@@ -1,13 +1,234 @@
-## Vue的面试总结
+## Vue学习笔记
 
-### Vue的响应式原理
+### 对vue核心的理解
 
-![data](https://cn.vuejs.org/images/data.png)
++ 数据驱动视图
+  + 数据的改变会驱动视图的自动更新。
+  + 传统的做法是手动改变DOM来使视图更新，而vue只需改变数据
++ 组件化开发
+  + 可以降低数据之间的耦合度
+  + 代码封装成组件之后更够高度复用，提高代码的可用性
++ “渐近式框架” & “自底向上逐层应用”
++ 响应式的数据双向绑定
 
-当你把一个普通的 JavaScript 对象传入 Vue 实例作为 `data` 选项，Vue 将遍历此对象所有的 property，并使用 [`Object.defineProperty`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 把这些 property 全部转为 [getter/setter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects#定义_getters_与_setters)。这些 getter/setter 对用户来说是不可见的，但是在内部它们让 Vue 能够追踪依赖，在 property 被访问和修改时通知变更，每个组件实例都对应一个 **watcher** 实例，它会在组件渲染的过程中把“接触”过的数据 property 记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。
+### Vue的组件传值
 
-- property是DOM中的属性，是JavaScript里的对象；
-- attribute是HTML标签上的特性，它的值只能够是字符串；
+- 父-->子
+  - 父组件：v-bind绑定自定义属性
+  - 子组件：组件实例对象中使用Prop对象接收
+- 子--> 父	
+  - 子组件：$emit(‘字定义事件名’，值)
+  - 父组件：v-on绑定该自定义事件
+
+### vue-router 的路由懒加载
+
+首先，可以将异步组件定义为返回一个 Promise 的工厂函数 (该函数返回的 Promise 应该 resolve 组件本身)：
+
+```js
+const Foo = () => Promise.resolve({ /* 组件定义对象 */ })
+```
+
+第二，在 Webpack 2 中，我们可以使用[动态 import](https://github.com/tc39/proposal-dynamic-import)语法来定义代码分块点 (split point)：
+
+```js
+import('./Foo.vue') // 返回 Promise
+```
+
+结合这两者，这就是如何定义一个能够被 Webpack 自动代码分割的异步组件。
+
+```js
+const Foo = () => import('./Foo.vue')
+```
+
+在路由配置中什么都不需要改变，只需要像往常一样使用 `Foo`：
+
+```js
+const router = new VueRouter({
+  routes: [
+    { path: '/foo', component: Foo }
+  ]
+})
+```
+
+### 把组件按组分块
+
+有时候我们想把某个路由下的所有组件都打包在同个异步块 (chunk) 中。只需要使用 [命名 chunk](https://webpack.js.org/guides/code-splitting-require/#chunkname)，一个特殊的注释语法来提供 chunk name (需要 Webpack > 2.4)。
+
+```js
+const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue')
+const Bar = () => import(/* webpackChunkName: "group-foo" */ './Bar.vue')
+const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
+```
+
+### vue路由钩子大致可以分为三类
+
+- 全局钩子,主要包括beforeEach和aftrEach
+- 单个路由里面的钩子,主要用于写某个指定路由跳转时需要执行的逻辑
+- 组件路由
+
+### $nextTick的使用
+
+当你修改data的值以后马上获取这个DOM元素的值，是不能马上获取到新值的，你需要使用$nextTick这个回调函数的，让修改后的data值渲染更新到DOM元素之后获取，才能成功。
+
+### *vue-router*  提供的导航守卫用来控制组件是否允许访问
+
+- 全局前置守卫
+
+  ```js
+  const router = new VueRouter({ ... })
+  router.beforeEach((to, from, next) => {
+    // to 表示去哪 from 表示来源 next表示放行
+  })
+  ```
+
+- 全局后置守卫
+
+  你也可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 `next` 函数也不会改变导航本身：
+
+  ```js
+  router.afterEach((to, from) => {
+    // ...
+  })
+  ```
+
+- 路由独享的守卫
+
+  ```js
+  const router = new VueRouter({
+    routes: [
+      {
+        path: '/foo',
+        component: Foo,
+        beforeEnter: (to, from, next) => {
+          // ...
+        }
+      }
+    ]
+  })
+  ```
+
+### 不打包第三方包
+
+我们推荐使用第三方的 CDN 来加载资源，所谓的 CDN 说白了就是一个在线链接。
+
+```html
+<!-- element 依赖了 Vue，所以这里也必须加载 Vue -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
+```
+
+在项目的根目录创建 `vue.config.js`
+
+```js
+// 该配置文件必须导出一个对象（Node 中的模块语法）
+module.exports = {
+  // 自定义 VueCLI 中的 webpack 配置
+  configureWebpack: {
+    // 告诉 webpack 使用 script 标签加载的那个资源，而不是去 node_moudles 中打包处理
+    externals: {
+      // 属性名：你加载的那个包名
+      // 属性值：script 标签暴露的全局变量，注意，写到字符串中！！！
+      // 'element-ui': 'ELEMENT'
+      'vue': 'Vue',
+      'element-ui': 'ELEMENT',
+      'echarts': 'echarts'
+    }
+  }
+}
+```
+
+### Vue的生命周期
+
+- BeforeCreate 实例创建之前
+- Created 实例创建完成
+- BeforeMount 渲染模板之前
+- Mounted 渲染模板完成
+- BeforeUpdate 更新组件之前
+- Updated 更新组件之后
+- BeforeDestroy 组件销毁之前
+- Destoryed 组件销毁完毕
+
+- v-module的语法糖原理
+
+  - *v-modle* 默认接受 *input* 事件，相当于 *@input=“事件名”*  默认发送  *:value=“数据 ”*  的数据。
+
+### 关于Promise？
+
+- Promise 是Es6 新的对象，用来解决异步程序回调地狱的问题
+
+- 定义：Let p = new promise((resolve, reject)=>{ 异步请求代码写这里 }) 
+
+  -  resolve 是成功调用的方法
+  -  reject 是失败调用的方法
+
+- 获取结果 p.then(res =>{ 请求成功 }).catch(err =>{ 请求失败 })
+
+- promise 的封装和`async` 函数的应用
+
+  ```js
+  // promise 异步的封装
+  function request(option){
+      return new promise(resolve, reject){
+          try{
+              const [err, res] = axios(option)
+              resolve(res)
+          }catch{
+              reject(err)
+          }
+      }
+  }
+  // async 函数的使用
+  async function abc () {
+      const res = await request({
+          method: 'xxx',
+          url: 'http://xxx.com/api'
+      })
+  }
+  ```
+
+### 模块化开发和组件开发的区别
+
+-  组件是具体的
+-  组件开发更多的关注UI部分
+-  模块是抽象的
+-  模块开发侧重于数据的分装
+
+### 对比jQuery、vue有什么不同
+
+jQuery专注于视图层，通过操作Dom去实现页面的一些逻辑渲染；vue专注于数据层，通过数据的双向绑定，最终表现在DOM层面，减少了DOM的操作
+
+### vuex中有几个核心，分别是什么
+
+state唯一数据源，Vue实例中的data遵循相同的规则
+
+getters可以认为是store的计算属性，就像计算属性一样，getters的返回值会根据它的依赖被缓存起来，且只有当它的值改变时才会被重新计算
+
+mutation更改Vuex的store中的状态的唯一方法是提交mutation，非常类似于事件
+
+action类似于mutation，不同在于action提交的是mutation，而不是直接改变状态，action可以包含任意异步操作
+
+module能够将store分隔成模块module
+
+```js
+const moduleA = {
+    state: ()=>({...}),
+    mutation:{...}
+}
+const moduleB = {
+    state: ()=>({...}),
+    mutation:{...}
+}
+const store = new Vuex.Store({
+    module:{
+        a:moduleA,
+        b:moduleB
+    }
+})
+store.state.a    // moduleA的状态
+store.state.b    // moduleB的状态
+```
 
 ### Vue实现数据双向绑定的原理:
 
