@@ -804,3 +804,27 @@ export default{
 }
 ```
 
+### Vue 前端开发——打印功能实现
+
+> 业务场景常见于一些订单记录发票等的一些pdf 打印
+
+**下载安装**
+
+```SHELL
+npm install vue-print-nb --save
+```
+
+**main.js 中导入注册**
+
+```shell
+import Print from 'vue-print-nb'
+Vue.use(Print);
+```
+
+**数据测试**
+
+```html
+<el-button type="primary" v-print="'#printDetail'">打印</el-button>
+<div id="printDetail">要打印的内容</div>
+```
+
