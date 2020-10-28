@@ -1056,40 +1056,6 @@ Vue.use(Print);
 > 通常里面都是一个个计算相关的函数，函数里头可以写大量的逻辑，最后返回计算出来的值
 >  即我们可以把这些计算的过程写到一个计算属性中去，然后让它动态的计算。
 
-```html
-<div class="app">
-    <table border="1">
-        <thead>
-            <th>学科</th>
-            <th>成绩</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>数学</td>
-                <td><input type="text" v-model.number="Math"></td>
-            </tr>
-            <tr>
-                <td>英语</td>
-                <td><input type="text" v-model.number="English"></td>
-            </tr>
-            <tr>
-                <td>化学</td>
-                <td><input type="text" v-model.number="chemistry"></td>
-            </tr>
-            <tr>
-                <td>总分</td>
-                <td>{{sum}}</td>
-            </tr>
-            <tr>
-                <td>平均分</td>
-                <td>{{average}}</td>
-            </tr>
-
-        </tbody>
-    </table>
-</div>
-```
-
 ```js
 var vm = new Vue({
     el:'.app',
@@ -1109,3 +1075,4 @@ var vm = new Vue({
 });
 ```
 
+**计算属性一般就是用来通过其他的数据算出一个新数据，而且它有一个好处就是，它把新的数据缓存下来了，当其他的依赖数据没有发生改变，它调用的是缓存的数据，这就极大的提高了我们程序的性能**
