@@ -961,6 +961,8 @@
   ```shell
   # 查看当前分支
   git branch
+  # 查看所有分支
+  git branch -a
   # 创建分支
   git branch name
   # 修改当前分支名称
@@ -969,8 +971,10 @@
   git checkout -b name
   # 切换分支
   git checkout name
-  # 合并分支
+  # 合并dev到当前分支
   git merge dev
+  # 删除dev分支
+  git branch -D dev
   ```
 
 + **工作中想将dev分支合并到master分支，操作如下：**
